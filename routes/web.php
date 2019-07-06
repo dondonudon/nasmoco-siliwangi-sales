@@ -22,11 +22,15 @@ Route::get('/dashboard','Dashboard@index');
 Route::get('/dashboard/master/user','MasterUser@index');
 Route::get('/dashboard/master/user/list','MasterUser@list');
 Route::post('/dashboard/master/user/new','MasterUser@new');
+Route::post('/dashboard/master/user/edit','MasterUser@edit');
+Route::post('/dashboard/master/user/disable','MasterUser@disable');
 
 Route::get('/dashboard/master/area','MasterArea@index');
 Route::get('/dashboard/master/area/list','MasterArea@list');
 
 Route::get('/dashboard/master/leasing','MasterLeasing@index');
 Route::get('/dashboard/master/leasing/list','MasterLeasing@list');
+
+Route::get('/dashboard/penjualan/baru','PenjualanBaru@index');
 
 

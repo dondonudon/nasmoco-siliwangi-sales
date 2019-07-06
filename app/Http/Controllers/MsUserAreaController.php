@@ -30,9 +30,8 @@ class MsUserAreaController extends Controller
         $area = DB::table('ms_user_areas')
             ->select('ms_user_areas.id_area AS id_area','ms_areas.nama')
             ->where('ms_user_areas.username','=',$username)
-            ->join('ms_areas','ms_areas.id','=','ms_user_areas.id_area');
-        return array(
-            $area->get(),
-        );
+            ->join('ms_areas','ms_areas.id','=','ms_user_areas.id_area')
+            ->get();
+        return $area->toJson();
     }
 }

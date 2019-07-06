@@ -4,7 +4,15 @@
     <bookmark url="file://$PROJECT_DIR$/resources/views/dashboard-master-user.blade.php" line="11" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23933228-8642-4896-88f7-8ed68d795c66" name="Default Changelist" comment="" />
+    <list default="true" id="23933228-8642-4896-88f7-8ed68d795c66" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MasterUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MasterUser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MsUserAreaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MsUserAreaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dashboard-layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard-layout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dashboard-master-user.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard-master-user.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,20 +27,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="23" column="39" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="39" />
+            <state relative-caret-position="346">
+              <caret line="33" column="59" selection-start-line="33" selection-start-column="59" selection-end-line="33" selection-end-column="59" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MasterUser.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="51" column="15" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
+            <state relative-caret-position="-305">
+              <caret line="67" column="32" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
               <folding>
                 <element signature="e#40#55#0#PHP" expanded="true" />
               </folding>
@@ -43,8 +51,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/dashboard-master-user.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3549">
-              <caret line="169" column="54" selection-start-line="169" selection-start-column="54" selection-end-line="169" selection-end-column="54" />
+            <state relative-caret-position="157">
+              <caret line="119" column="38" lean-forward="true" selection-start-line="119" selection-start-column="38" selection-end-line="119" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/dashboard-layout.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="262">
+              <caret line="102" column="83" selection-start-line="102" selection-start-column="83" selection-end-line="102" selection-end-column="83" />
             </state>
           </provider>
         </entry>
@@ -62,7 +79,12 @@
       <find>blue</find>
       <find>indigo</find>
       <find>d1</find>
+      <find>selected</find>
+      <find>topbar</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -95,19 +117,21 @@
         <option value="$PROJECT_DIR$/database/migrations/2019_07_04_074044_create_sys_menus_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_07_04_074054_create_sys_menu_groups_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Dashboard.php" />
-        <option value="$PROJECT_DIR$/resources/views/dashboard-layout.blade.php" />
         <option value="/opt/lampp/htdocs/dion/mapanimasiunika2.html" />
         <option value="$PROJECT_DIR$/resources/views/dashboard-master-area.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/dashboard-master-leasing.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MsLeasingController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MasterLeasing.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/MsUserAreaController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/DashboardMaster.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MasterArea.php" />
         <option value="$PROJECT_DIR$/routes/api.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/public/vendor/datatables/datatables.css" />
+        <option value="$PROJECT_DIR$/public/css/sb-admin-2.css" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/MsUserAreaController.php" />
         <option value="$PROJECT_DIR$/resources/views/dashboard-master-user.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MasterUser.php" />
+        <option value="$PROJECT_DIR$/resources/views/dashboard-layout.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
       </list>
     </option>
   </component>
@@ -208,6 +232,7 @@
     <option name="width" value="660" />
     <option name="height" value="555" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -258,6 +283,19 @@
             <path>
               <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
               <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="datatables" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -278,6 +316,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -337,12 +376,13 @@
       <workItem from="1562153997653" duration="1681000" />
       <workItem from="1562204886165" duration="19386000" />
       <workItem from="1562291549625" duration="13958000" />
-      <workItem from="1562339854351" duration="300000" />
+      <workItem from="1562339854351" duration="10495000" />
+      <workItem from="1562376743765" duration="6701000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54129000" />
+    <option name="totallyTimeSpent" value="71025000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="47" y="25" width="1319" height="743" extended-state="6" />
@@ -350,9 +390,9 @@
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.28436762" />
+      <window_info content_ui="combo" id="Project" order="2" weight="0.28829536" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49960724" weight="0.32890365" />
+      <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49960724" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5003928" side_tool="true" weight="0.32890365" />
       <window_info anchor="bottom" id="Version Control" order="3" />
@@ -396,52 +436,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/artisan">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" />
-    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="36" lean-forward="true" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_02_020506_create_ms_tipe_pembelians_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_02_020808_create_ms_leasings_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_02_015503_create_penjualans_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_02_045634_create_ms_wilayah_kotas_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_02_021118_create_ms_wilayah_provinsis_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -571,32 +565,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MsAreaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
-          <folding>
-            <element signature="e#40#55#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/sb-admin-2.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/sb-admin-2.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1239">
-          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashboard-layout.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
-        </state>
-      </provider>
     </entry>
     <entry file="file:///opt/lampp/htdocs/dion/mapanimasiunika2.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -625,26 +595,6 @@
           <caret line="25" column="8" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="30" selection-end-column="23" />
           <folding>
             <element signature="e#40#58#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MsUserAreaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
-          <folding>
-            <element signature="e#40#59#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DashboardMaster.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="e#40#55#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -680,23 +630,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="23" column="15" lean-forward="true" selection-start-line="23" selection-start-column="15" selection-end-line="23" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashboard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
-          <folding>
-            <element signature="e#40#55#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MsLeasingController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -707,44 +640,152 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MsUserController.php">
+    <entry file="file:///opt/lampp/htdocs/reseller-madu/app/view/dashboard/layout.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="17" selection-end-column="5" />
+        <state relative-caret-position="-242" />
+      </provider>
+    </entry>
+    <entry file="file:///opt/lampp/htdocs/reseller-madu/app/view/dashboard/_partials/footer-script.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file:///opt/lampp/htdocs/reseller-madu/app/js/js-ms_customer.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file:///opt/lampp/htdocs/reseller-madu/app/js/js-ms_user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1260">
+          <caret line="6" column="86" lean-forward="true" selection-start-line="6" selection-start-column="86" selection-end-line="6" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/lampp/htdocs/reseller-madu/app/view/dashboard/vw-ms_customer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/lampp/htdocs/nasmoco-kaligawe-customer-satisfaction/template/startbootstrap-sb-admin-2-gh-pages/tables.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-252" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/vendor/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="27" column="51" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/vendor/datatables/datatables.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="932">
+          <caret line="310" column="30" selection-start-line="310" selection-start-column="24" selection-end-line="310" selection-end-column="30" />
+          <caret line="310" column="49" selection-start-line="310" selection-start-column="43" selection-end-line="310" selection-end-column="49" />
+          <caret line="310" column="67" selection-start-line="310" selection-start-column="61" selection-end-line="310" selection-end-column="67" />
+          <caret line="310" column="85" selection-start-line="310" selection-start-column="79" selection-end-line="310" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/msUser.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/sb-admin-2.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="10973" column="10" lean-forward="true" selection-start-line="10973" selection-start-column="10" selection-end-line="10973" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashboard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1050">
+          <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
           <folding>
             <element signature="e#40#55#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file:///opt/lampp/htdocs/reseller-madu/app/js/js-ms_user.html">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DashboardMaster.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-609">
-          <caret line="115" column="23" selection-start-line="115" selection-start-column="15" selection-end-line="115" selection-end-column="23" />
+        <state relative-caret-position="210">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#40#55#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="23" column="39" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="39" />
+        <state relative-caret-position="415">
+          <caret line="30" column="30" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashboard-master-user.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MsAreaController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3549">
-          <caret line="169" column="54" selection-start-line="169" selection-start-column="54" selection-end-line="169" selection-end-column="54" />
+        <state relative-caret-position="357">
+          <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
+          <folding>
+            <element signature="e#40#55#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MsUserAreaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+          <folding>
+            <element signature="e#40#59#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MsUserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="104" column="23" lean-forward="true" selection-start-line="104" selection-start-column="23" selection-end-line="104" selection-end-column="23" />
+          <folding>
+            <element signature="e#40#55#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MasterUser.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="51" column="15" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
+        <state relative-caret-position="-305">
+          <caret line="67" column="32" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
           <folding>
             <element signature="e#40#55#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/dashboard-master-user.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="119" column="38" lean-forward="true" selection-start-line="119" selection-start-column="38" selection-end-line="119" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/dashboard-layout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="102" column="83" selection-start-line="102" selection-start-column="83" selection-end-line="102" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="33" column="59" selection-start-line="33" selection-start-column="59" selection-end-line="33" selection-end-column="59" />
         </state>
       </provider>
     </entry>

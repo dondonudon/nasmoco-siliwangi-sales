@@ -16,7 +16,10 @@ class MasterUser extends Controller
 
     public function list() {
         return array(
-            'data' => msUser::all()
+            'data' => DB::table('ms_users')
+                ->select('username','nama_lengkap')
+                ->where('isDel',0)
+                ->get()
         );
     }
 
@@ -49,6 +52,65 @@ class MasterUser extends Controller
                 'reason' => 'username sudah terdaftar'
             ];
         }
-        return ;
+        return json_encode($result);
+    }
+
+    public function edit(Request $request) {
+        $username = $request->username;
+        $password = Crypt::encryptString($request->password);
+        $namaLengkap = $request->nama_lengkap;
+        $data = [
+            'password' => $password,
+            'nama_lengkap' => $namaLengkap,
+        ];
+
+        $checkUser = DB::table('ms_users')->where('username',$username);
+        if ($checkUser->exists()) {
+            $user = DB::table('ms_users')->where('username',$username);
+            if ($user->update($data)) {
+                $result = [
+                    'status' => 'success'
+                ];
+            } else {
+                $result = [
+                    'status' => 'failed',
+                    'reason' => 'Gagal tersimpan, silahkan coba lagi'
+                ];
+            }
+        } else {
+            $result = [
+                'status' => 'failed',
+                'reason' => 'username tidak terdaftar'
+            ];
+        }
+        return json_encode($result);
+    }
+
+    public function disable(Request $request) {
+        $username = $request->username;
+        $data = [
+            'isDel' => '1',
+        ];
+
+        $checkUser = DB::table('ms_users')->where('username',$username);
+        if ($checkUser->exists()) {
+            $user = DB::table('ms_users')->where('username',$username);
+            if ($user->update($data)) {
+                $result = [
+                    'status' => 'success'
+                ];
+            } else {
+                $result = [
+                    'status' => 'failed',
+                    'reason' => 'Gagal tersimpan, silahkan coba lagi'
+                ];
+            }
+        } else {
+            $result = [
+                'status' => 'failed',
+                'reason' => 'username tidak terdaftar'
+            ];
+        }
+        return json_encode($result);
     }
 }

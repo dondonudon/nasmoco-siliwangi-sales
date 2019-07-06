@@ -21,7 +21,8 @@
     <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet">
 
     <!-- DataTables -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/datatables/datatables.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css') }}">
 
 </head>
 
@@ -81,6 +82,25 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Sub Menu:</h6>
                     <a class="collapse-item" href="{{ url('dashboard/master/user') }}">User</a>
+                    <a class="collapse-item" href="{{ url('dashboard/master/area') }}">Area</a>
+                    <a class="collapse-item" href="{{ url('dashboard/master/leasing') }}">Leasing</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#modulPenjualan" aria-expanded="true" aria-controls="modulPenjualan">
+                <i class="fas fa-fw fa-car"></i>
+                <span>Penjualan</span>
+            </a>
+            <div id="modulPenjualan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Sub Menu:</h6>
+                    <a class="collapse-item" href="{{ url('dashboard/penjualan/baru') }}">Penjualan Baru</a>
                     <a class="collapse-item" href="{{ url('dashboard/master/area') }}">Area</a>
                     <a class="collapse-item" href="{{ url('dashboard/master/leasing') }}">Leasing</a>
                 </div>
@@ -214,6 +234,9 @@
 <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('vendor/bootstrap-4.3.1-dist/js/bootstrap.bundle.min.js') }}"></script>
 
+<!-- SweetAlert 2 -->
+<script src="{{ asset('vendor/sweetalert2-8.13.1/sweetalert2.all.min.js') }}"></script>
+
 <!-- Core plugin JavaScript-->
 <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
@@ -221,7 +244,8 @@
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
 <!-- DataTables -->
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
+<script type="text/javascript" src="{{ asset('vendor/datatables/DataTables-1.10.18/js/jquery.dataTables.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendor/datatables/DataTables-1.10.18/js/dataTables.bootstrap4.min.js') }}"></script>
 
 @yield('script')
 

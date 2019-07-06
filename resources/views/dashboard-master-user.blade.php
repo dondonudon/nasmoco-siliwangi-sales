@@ -24,7 +24,7 @@
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
-                        <table class="table table-sm table-hover table-bordered display nowrap" id="datatable" width="100%">
+                        <table class="table table-hover table-bordered table-sm display nowrap" id="datatable" width="100%">
                             <thead class="text-white bg-primary">
                                 <tr>
                                     <th>Username</th>
@@ -38,10 +38,10 @@
                         <div class="row">
                             <div class="col-xl-8"></div>
                             <div class="col-xl-2">
-                                <button class="btn btn-block btn-outline-primary">Disable</button>
+                                <button class="btn btn-block btn-outline-primary" id="btnDisable" disabled>Disable</button>
                             </div>
                             <div class="col-xl-2">
-                                <button class="btn btn-block btn-primary">Edit</button>
+                                <button class="btn btn-block btn-primary" id="btnEdit" disabled>Edit</button>
                             </div>
                         </div>
                     </div>
@@ -61,25 +61,26 @@
                         @csrf
                         <!-- Card Body -->
                         <div class="card-body">
-                                <div class="form-group">
-                                    <label for="inputUsername">Username</label>
-                                    <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Username">
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword">Password</label>
-                                    <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputNamaLengkap">Nama Lengkap</label>
-                                    <input type="text" class="form-control" id="inputNamaLengkap" name="nama_lengkap" placeholder="Nama Lengkap">
-                                </div>
+                            <input type="hidden" id="option" value="new">
+                            <div class="form-group">
+                                <label for="inputUsername">Username</label>
+                                <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Username" autocomplete="off" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword">Password</label>
+                                <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" autocomplete="off" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputNamaLengkap">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="inputNamaLengkap" name="nama_lengkap" placeholder="Nama Lengkap" autocomplete="off" required>
+                            </div>
                         </div>
                         <!-- Card Footer -->
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-xl-8"></div>
                                 <div class="col-xl-2">
-                                    <button type="button" class="btn btn-block btn-outline-primary" id="cancelBtn">Cancel</button>
+                                    <button type="button" class="btn btn-block btn-outline-primary" id="btnCancel">Cancel</button>
                                 </div>
                                 <div class="col-xl-2">
                                     <button type="submit" class="btn btn-block btn-primary">Simpan</button>
@@ -100,18 +101,92 @@
             var cardComponent = $('#cardData');
             var cardForm = $('#cardForm');
             var cardTitle = $('#judulCard');
-            var newButton = $('#btnNew');
-            var cancelButton = $('#cancelBtn');
+            var optionData = $('#option');
 
-            cancelButton.click(function (e) {
+            var buttonNew = $('#btnNew');
+            var buttonDisable = $('#btnDisable');
+            var buttonEdit = $('#btnEdit');
+            var buttonCancel = $('#btnCancel');
+
+            var username = '';
+            var namalengkap = '';
+            var inputUsername = $('#inputUsername');
+            var inputPassword = $('#inputPassword');
+            var inputNamaLengkap = $('#inputNamaLengkap');
+
+            buttonCancel.click(function (e) {
                 e.preventDefault();
                 cardComponent.addClass('d-none');
+                inputUsername.val('');
+                inputNamaLengkap.val('');
             });
 
-            newButton.click(function (e) {
+            buttonNew.click(function (e) {
                 e.preventDefault();
+                optionData.val('new');
                 cardTitle.html('New User');
                 cardComponent.removeClass('d-none');
+                inputUsername.val('');
+                inputPassword.val('');
+                inputNamaLengkap.val('');
+                $('html, body').animate({
+                    scrollTop: cardComponent.offset().top
+                }, 500);
+            });
+
+            buttonEdit.click(function (e) {
+                e.preventDefault();
+                optionData.val('edit');
+                cardTitle.html('Edit User');
+                cardComponent.removeClass('d-none');
+                inputUsername.val(username);
+                inputNamaLengkap.val(namalengkap);
+
+                $('html, body').animate({
+                    scrollTop: cardComponent.offset().top
+                }, 500);
+            });
+
+            buttonDisable.click(function (e) {
+                e.preventDefault();
+                Swal.fire({
+                    type: 'warning',
+                    title: 'Disable user '+username,
+                    text: 'Anda yakin ingin menonaktifkan user?',
+                    showCancelButton: true
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                            }
+                        });
+                        $.ajax({
+                            url: "{{ url('dashboard/master/user/disable') }}",
+                            method: "post",
+                            data: {username: username},
+                            success: function(result) {
+                                var data = JSON.parse(result);
+                                console.log(data);
+                                if (data.status == 'success') {
+                                    Swal.fire({
+                                        type: 'success',
+                                        title: 'User dinonaktifkan',
+                                        onClose: function() {
+                                            tables.ajax.reload();
+                                        }
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        type: 'info',
+                                        title: 'Gagal',
+                                        text: data.reason,
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
             });
 
             var tables = $('#datatable').DataTable({
@@ -137,21 +212,18 @@
 
             $('#datatable tbody').on( 'click', 'tr', function () {
                 var data = tables.row( this ).data();
-                console.log(data);
+                username = data.username;
+                namalengkap = data.nama_lengkap;
+                // console.log(data);
                 if ( $(this).hasClass('selected') ) {
                     $(this).removeClass('selected');
-                    // setID.val('');
-                    // setDisplayName.val('');
-                    // btnEdit.attr('disabled','true');
-                    // btnDelete.attr('disabled','true');
-                }
-                else {
+                    buttonEdit.attr('disabled','true');
+                    buttonDisable.attr('disabled','true');
+                } else {
                     tables.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
-                    // setID.val(data['id_product']);
-                    // setDisplayName.val(data['nama']);
-                    // btnEdit.removeAttr('disabled');
-                    // btnDelete.removeAttr('disabled');
+                    buttonEdit.removeAttr('disabled');
+                    buttonDisable.removeAttr('disabled');
                 }
             });
 
@@ -162,19 +234,61 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                     }
                 });
-                $.ajax({
-                    url: "{{ url('dashboard/master/user/new') }}",
-                    method: "post",
-                    data: $(this).serialize(),
-                    success: function(result) {
-                        var data = JSON.parse(result);
-                        console.log(data);
-                        // if (data.status == 'success') {
-                        //     cardComponent.addClass('d-none');
-                        //     tables.reload();
-                        // }
-                    }
-                });
+                if ($('#option').val() == 'new') {
+                    $.ajax({
+                        url: "{{ url('dashboard/master/user/new') }}",
+                        method: "post",
+                        data: $(this).serialize(),
+                        success: function(result) {
+                            var data = JSON.parse(result);
+                            if (data.status == 'success') {
+                                Swal.fire({
+                                    type: 'success',
+                                    title: 'Berhasil',
+                                    text: 'Data user tersimpan',
+                                    onClose: function() {
+                                        cardComponent.addClass('d-none');
+                                        tables.ajax.reload();
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    type: 'info',
+                                    title: 'Gagal',
+                                    text: data.reason,
+                                });
+                            }
+                        }
+                    });
+                } else {
+                    $.ajax({
+                        url: "{{ url('dashboard/master/user/edit') }}",
+                        method: "post",
+                        data: $(this).serialize(),
+                        success: function(result) {
+                            var data = JSON.parse(result);
+                            console.log(data);
+                            var data = JSON.parse(result);
+                            if (data.status == 'success') {
+                                Swal.fire({
+                                    type: 'success',
+                                    title: 'Berhasil',
+                                    text: 'Data user tersimpan',
+                                    onClose: function() {
+                                        cardComponent.addClass('d-none');
+                                        tables.ajax.reload();
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    type: 'info',
+                                    title: 'Gagal',
+                                    text: data.reason,
+                                });
+                            }
+                        }
+                    });
+                }
             });
         })
     </script>
