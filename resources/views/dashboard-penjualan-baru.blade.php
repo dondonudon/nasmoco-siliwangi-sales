@@ -27,8 +27,16 @@
                         <table class="table table-hover table-bordered table-sm display nowrap" id="datatable" width="100%">
                             <thead class="text-white bg-primary">
                             <tr>
-                                <th>Username</th>
-                                <th>Nama Lengkap</th>
+                                <th>Nomor SPK</th>
+                                <th>Nama Customer</th>
+                                <th>Nomor Rangka</th>
+                                <th>Leasing</th>
+                                <th>Kota</th>
+                                <th>Kecamatan</th>
+                                <th>Alamat</th>
+                                <th>Tanggal SPK</th>
+                                <th>Admin</th>
+                                <th>Status</th>
                             </tr>
                             </thead>
                         </table>
@@ -36,10 +44,7 @@
                     <!-- Card Footer -->
                     <div class="card-footer">
                         <div class="row">
-                            <div class="col-xl-8"></div>
-                            <div class="col-xl-2">
-                                <button class="btn btn-block btn-outline-primary" id="btnDisable" disabled>Disable</button>
-                            </div>
+                            <div class="col-xl-10"></div>
                             <div class="col-xl-2">
                                 <button class="btn btn-block btn-primary" id="btnEdit" disabled>Edit</button>
                             </div>
@@ -63,7 +68,7 @@
                         <div class="card-body">
                             <input type="hidden" id="option" value="new">
                             <div class="form-group">
-                                <label for="inputUsername">Username</label>
+                                <label for="inputUsername">Nomor SPK</label>
                                 <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Username" autocomplete="off" required>
                             </div>
                             <div class="form-group">
@@ -198,14 +203,22 @@
                 "bInfo": false,
                 "ajax": {
                     "method": "GET",
-                    "url": "{{ url('/dashboard/master/user/list') }}",
+                    "url": "{{ url('/dashboard/penjualan/baru/list') }}",
                     "header": {
                         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content'),
                     }
                 },
                 "columns": [
+                    { "data": "no_spk" },
+                    { "data": "nama_customer" },
+                    { "data": "no_rangka" },
+                    { "data": "id_leasing" },
+                    { "data": "id_kota" },
+                    { "data": "id_kecamatan" },
+                    { "data": "alamat" },
+                    { "data": "created_at" },
                     { "data": "username" },
-                    { "data": "nama_lengkap" }
+                    { "data": "finish" },
                 ],
                 "order": [[0,'asc']]
             });

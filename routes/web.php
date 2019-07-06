@@ -32,5 +32,6 @@ Route::get('/dashboard/master/leasing','MasterLeasing@index');
 Route::get('/dashboard/master/leasing/list','MasterLeasing@list');
 
 Route::get('/dashboard/penjualan/baru','PenjualanBaru@index');
+Route::get('/dashboard/penjualan/baru/list','PenjualanBaru@list');
 
 
