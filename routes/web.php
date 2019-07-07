@@ -33,5 +33,9 @@ Route::get('/dashboard/master/leasing/list','MasterLeasing@list');
 
 Route::get('/dashboard/penjualan/baru','PenjualanBaru@index');
 Route::get('/dashboard/penjualan/baru/list','PenjualanBaru@list');
+Route::get('/dashboard/penjualan/baru/leasing','PenjualanBaru@leasing');
+Route::get('/dashboard/penjualan/baru/kota','PenjualanBaru@kota');
+Route::post('/dashboard/penjualan/baru/kecamatan','PenjualanBaru@kecamatan');
+Route::post('/dashboard/penjualan/baru/add','PenjualanBaru@add');
 
 

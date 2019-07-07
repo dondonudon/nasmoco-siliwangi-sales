@@ -24,6 +24,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/datatables/datatables.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css') }}">
 
+    <!-- DateRangePicker -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/daterangepicker-master/daterangepicker.css') }}">
+
 </head>
 
 <body id="page-top">
@@ -246,6 +249,10 @@
 <!-- DataTables -->
 <script type="text/javascript" src="{{ asset('vendor/datatables/DataTables-1.10.18/js/jquery.dataTables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendor/datatables/DataTables-1.10.18/js/dataTables.bootstrap4.min.js') }}"></script>
+
+<!-- DataTables -->
+<script type="text/javascript" src="{{ asset('vendor/daterangepicker-master/moment.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendor/daterangepicker-master/daterangepicker.js') }}"></script>
 
 @yield('script')
 

@@ -31,7 +31,7 @@
                                 <th>Nama Customer</th>
                                 <th>Nomor Rangka</th>
                                 <th>Leasing</th>
-                                <th>Kota</th>
+                                <th>Kota / Kabupaten</th>
                                 <th>Kecamatan</th>
                                 <th>Alamat</th>
                                 <th>Tanggal SPK</th>
@@ -68,16 +68,43 @@
                         <div class="card-body">
                             <input type="hidden" id="option" value="new">
                             <div class="form-group">
-                                <label for="inputUsername">Nomor SPK</label>
-                                <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Username" autocomplete="off" required>
+                                <label for="inputNomorSPK">Nomor SPK</label>
+                                <input type="text" class="form-control" id="inputNomorSPK" name="no_spk" placeholder="Nomor SPK" autocomplete="off" required>
                             </div>
                             <div class="form-group">
-                                <label for="inputPassword">Password</label>
-                                <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" autocomplete="off" required>
+                                <label for="inputCustomer">Nama Customer</label>
+                                <input type="text" class="form-control" id="inputCustomer" name="nama_customer" placeholder="Nama Customer" autocomplete="off" required>
                             </div>
                             <div class="form-group">
-                                <label for="inputNamaLengkap">Nama Lengkap</label>
-                                <input type="text" class="form-control" id="inputNamaLengkap" name="nama_lengkap" placeholder="Nama Lengkap" autocomplete="off" required>
+                                <label for="inputNomorRangka">Nomor Rangka</label>
+                                <input type="text" class="form-control" id="inputNomorRangka" name="no_rangka" placeholder="Nomor Rangka" autocomplete="off" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputLeasing">Leasing</label>
+                                <select class="form-control" id="inputLeasing" name="id_leasing" required>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputKota">Kota</label>
+                                <select class="form-control" id="inputKota" name="id_kota" required>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputKecamatan">Kecamatan</label>
+                                <select class="form-control" id="inputKecamatan" name="id_kecamatan" disabled required>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAlamat">Alamat</label>
+                                <input type="text" class="form-control" id="inputAlamat" name="alamat" placeholder="Alamat" autocomplete="off" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputTanggalSPK">Tanggal SPK</label>
+                                <input type="text" class="form-control" id="inputTanggalSPK" name="tanggal_spk" placeholder="Tanggal SPK" autocomplete="off" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputUsername">Admin</label>
+                                <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Admin" value="{{ \Illuminate\Support\Facades\Session::get('username') }}" readonly>
                             </div>
                         </div>
                         <!-- Card Footer -->
@@ -102,6 +129,45 @@
 
 @section('script')
     <script>
+        var noSPK = '';
+        var iNomorSpk = $('#inputNomorSPK');
+        var iCustomer = $('#inputCustomer');
+        var iNomorRangka = $('#inputNomorRangka');
+        var iLeasing = $('#inputLeasing');
+        var iKota = $('#inputKota');
+        var iKecamatan = $('#inputKecamatan');
+        var iAlamat = $('#inputAlamat');
+        var iTanggalSpk = $('#inputTanggalSPK');
+        var iUsername = $('#inputUsername');
+
+        var htmlLeasing = '';
+        var htmlKota = '';
+        var htmlKecamatan = '';
+
+        iTanggalSpk.daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+                format: 'DD-MM-YYYY',
+            }
+        }, function (start,end,label) {
+            startDate = moment(start).format('YYYY-MM-DD');
+            // console.log(startDate);
+        });
+
+        function formReset() {
+            iNomorSpk.val('');
+            iCustomer.val('');
+            iNomorRangka.val('');
+            iLeasing.val('');
+            iKecamatan.html('');
+            iKecamatan.attr('disabled');
+            iAlamat.val('');
+            iTanggalSpk.val(
+                moment().format('DD-MM-YYYY')
+            );
+        }
+
         $(document).ready(function() {
             var cardComponent = $('#cardData');
             var cardForm = $('#cardForm');
@@ -109,31 +175,69 @@
             var optionData = $('#option');
 
             var buttonNew = $('#btnNew');
-            var buttonDisable = $('#btnDisable');
             var buttonEdit = $('#btnEdit');
             var buttonCancel = $('#btnCancel');
 
-            var username = '';
-            var namalengkap = '';
-            var inputUsername = $('#inputUsername');
-            var inputPassword = $('#inputPassword');
-            var inputNamaLengkap = $('#inputNamaLengkap');
+            $.ajax({
+                url: "{{ url('dashboard/penjualan/baru/leasing') }}",
+                method: "get",
+                success: function(result) {
+                    var data = JSON.parse(result);
+                    // console.log(data);
+                    data.forEach(function(val,index) {
+                        htmlLeasing += '<option value="' + val.id + '">' + val.nama + '</option>';
+                    });
+                    iLeasing.html(htmlLeasing);
+                }
+            });
+
+            $.ajax({
+                url: "{{ url('dashboard/penjualan/baru/kota') }}",
+                method: "get",
+                success: function(result) {
+                    var data = JSON.parse(result);
+                    // console.log(data);
+                    data.forEach(function(val,index) {
+                        htmlKota += '<option value="' + val.id + '">' + val.nama + '</option>';
+                    });
+                    iKota.html(htmlKota);
+                }
+            });
+            iKota.change(function(e) {
+                e.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    }
+                });
+                $.ajax({
+                    url: "{{ url('dashboard/penjualan/baru/kecamatan') }}",
+                    method: "post",
+                    data: {kota: iKota.val()},
+                    success: function(result) {
+                        var data = JSON.parse(result);
+                        htmlKecamatan = '';
+                        data.forEach(function(val,index) {
+                            htmlKecamatan += '<option value="' + val.id + '">' + val.nama + '</option>';
+                        });
+                        iKecamatan.html(htmlKecamatan);
+                    }
+                });
+                iKecamatan.removeAttr('disabled');
+            });
 
             buttonCancel.click(function (e) {
                 e.preventDefault();
                 cardComponent.addClass('d-none');
-                inputUsername.val('');
-                inputNamaLengkap.val('');
+                formReset();
             });
 
             buttonNew.click(function (e) {
                 e.preventDefault();
                 optionData.val('new');
-                cardTitle.html('New User');
+                cardTitle.html('Data Penjualan Baru');
                 cardComponent.removeClass('d-none');
-                inputUsername.val('');
-                inputPassword.val('');
-                inputNamaLengkap.val('');
+                formReset();
                 $('html, body').animate({
                     scrollTop: cardComponent.offset().top
                 }, 500);
@@ -142,7 +246,7 @@
             buttonEdit.click(function (e) {
                 e.preventDefault();
                 optionData.val('edit');
-                cardTitle.html('Edit User');
+                cardTitle.html('Edit Data Penjualan');
                 cardComponent.removeClass('d-none');
                 inputUsername.val(username);
                 inputNamaLengkap.val(namalengkap);
@@ -150,48 +254,6 @@
                 $('html, body').animate({
                     scrollTop: cardComponent.offset().top
                 }, 500);
-            });
-
-            buttonDisable.click(function (e) {
-                e.preventDefault();
-                Swal.fire({
-                    type: 'warning',
-                    title: 'Disable user '+username,
-                    text: 'Anda yakin ingin menonaktifkan user?',
-                    showCancelButton: true
-                }).then((result) => {
-                    if (result.value) {
-                        $.ajaxSetup({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                            }
-                        });
-                        $.ajax({
-                            url: "{{ url('dashboard/master/user/disable') }}",
-                            method: "post",
-                            data: {username: username},
-                            success: function(result) {
-                                var data = JSON.parse(result);
-                                console.log(data);
-                                if (data.status == 'success') {
-                                    Swal.fire({
-                                        type: 'success',
-                                        title: 'User dinonaktifkan',
-                                        onClose: function() {
-                                            tables.ajax.reload();
-                                        }
-                                    });
-                                } else {
-                                    Swal.fire({
-                                        type: 'info',
-                                        title: 'Gagal',
-                                        text: data.reason,
-                                    });
-                                }
-                            }
-                        });
-                    }
-                });
             });
 
             var tables = $('#datatable').DataTable({
@@ -216,27 +278,37 @@
                     { "data": "id_kota" },
                     { "data": "id_kecamatan" },
                     { "data": "alamat" },
-                    { "data": "created_at" },
+                    {
+                        "render": function (data, type, full, meta) {
+                            return moment(full.tanggal_spk).format('DD-MM-YYYY');
+                        },
+                    },
                     { "data": "username" },
-                    { "data": "finish" },
+                    {
+                        "render": function (data, type, full, meta) {
+                            if (full.finish == '0') {
+                                var status = 'Dalam Proses';
+                            } else {
+                                var status = 'Selesai';
+                            }
+                            return status;
+                        },
+                    },
                 ],
                 "order": [[0,'asc']]
             });
 
             $('#datatable tbody').on( 'click', 'tr', function () {
                 var data = tables.row( this ).data();
-                username = data.username;
-                namalengkap = data.nama_lengkap;
+                noSPK = data.no_spk;
                 // console.log(data);
                 if ( $(this).hasClass('selected') ) {
                     $(this).removeClass('selected');
                     buttonEdit.attr('disabled','true');
-                    buttonDisable.attr('disabled','true');
                 } else {
                     tables.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
                     buttonEdit.removeAttr('disabled');
-                    buttonDisable.removeAttr('disabled');
                 }
             });
 
@@ -247,9 +319,9 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                     }
                 });
-                if ($('#option').val() == 'new') {
+                if (optionData.val() == 'new') {
                     $.ajax({
-                        url: "{{ url('dashboard/master/user/new') }}",
+                        url: "{{ url('dashboard/penjualan/baru/add') }}",
                         method: "post",
                         data: $(this).serialize(),
                         success: function(result) {
@@ -286,7 +358,7 @@
                                 Swal.fire({
                                     type: 'success',
                                     title: 'Berhasil',
-                                    text: 'Data user tersimpan',
+                                    text: 'Data penjualan tersimpan',
                                     onClose: function() {
                                         cardComponent.addClass('d-none');
                                         tables.ajax.reload();

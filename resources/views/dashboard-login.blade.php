@@ -58,7 +58,8 @@
                                         type="text"
                                         name="username"
                                         autocomplete="off"
-                                        placeholder="e-mail / username">
+                                        placeholder="e-mail / username"
+                                        autofocus>
                             </div>
                         </div>
                         <div class="field">
