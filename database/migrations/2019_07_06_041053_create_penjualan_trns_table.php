@@ -15,10 +15,11 @@ class CreatePenjualanTrnsTable extends Migration
     {
         Schema::create('penjualan_trn', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('id_penjualan_mst');
+            $table->string('no_spk');
             $table->integer('id_area');
             $table->string('catatan')->default('');
-            $table->string('username');
+            $table->date('tanggal');
+            $table->string('username',10);
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

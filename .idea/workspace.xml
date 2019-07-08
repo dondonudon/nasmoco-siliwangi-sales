@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="23933228-8642-4896-88f7-8ed68d795c66" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PenjualanBaru.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PenjualanBaru.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/penjualanTrn.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/penjualanTrn.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AndroidSearchSpk.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AndroidSPK.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_06_041053_create_penjualan_trns_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_06_041053_create_penjualan_trns_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard-master-area.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard-master-area.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,8 +26,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="38" column="62" selection-start-line="38" selection-start-column="62" selection-end-line="38" selection-end-column="62" />
+            <state relative-caret-position="346">
+              <caret line="38" column="62" selection-start-line="38" selection-start-column="59" selection-end-line="38" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -47,20 +44,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="32" column="20" lean-forward="true" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="23" />
+            <state relative-caret-position="388">
+              <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AndroidSearchSpk.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AndroidSPK.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="11" column="86" selection-start-line="11" selection-start-column="86" selection-end-line="11" selection-end-column="86" />
+            <state relative-caret-position="451">
+              <caret line="68" column="27" selection-start-line="68" selection-start-column="27" selection-end-line="68" selection-end-column="27" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_06_041053_create_penjualan_trns_table.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="19" column="47" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -88,7 +94,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_07_02_015503_create_penjualans_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_07_02_020506_create_ms_tipe_pembelians_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_07_02_020441_create_ms_tipe_akuns_table.php" />
@@ -130,15 +135,16 @@
         <option value="$PROJECT_DIR$/app/penjualanMst.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_07_06_043109_add_tanggal_to_penjualan_mst.php" />
         <option value="$PROJECT_DIR$/resources/views/dashboard-layout.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/dashboard-login.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/dashboard-penjualan-baru.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/dashboard-master-area.blade.php" />
         <option value="$PROJECT_DIR$/app/penjualanTrn.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/PenjualanBaru.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_07_06_041053_create_penjualan_trns_table.php" />
-        <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AndroidSearchSpk.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_07_06_041053_create_penjualan_trns_table.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AndroidSPK.php" />
       </list>
     </option>
   </component>
@@ -233,11 +239,11 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="211" />
-    <option name="y" value="119" />
-    <option name="width" value="991" />
-    <option name="height" value="557" />
+  <component name="ProjectFrameBounds" extendedState="4">
+    <option name="x" value="706" />
+    <option name="y" value="25" />
+    <option name="width" value="660" />
+    <option name="height" value="743" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -280,6 +286,12 @@
               <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
               <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
               <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
@@ -396,20 +408,20 @@
       <workItem from="1562509925695" duration="2551000" />
       <workItem from="1562538604695" duration="207000" />
       <workItem from="1562549747027" duration="598000" />
-      <workItem from="1562557314082" duration="2167000" />
+      <workItem from="1562557314082" duration="8652000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96994000" />
+    <option name="totallyTimeSpent" value="103479000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="47" y="25" width="1319" height="743" extended-state="6" />
+    <frame x="706" y="25" width="660" height="743" extended-state="4" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" weight="0.21288295" />
+      <window_info content_ui="combo" id="Project" order="2" weight="0.44136807" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49960724" weight="0.32833335" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
@@ -659,16 +671,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MsUserAreaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
-          <folding>
-            <element signature="e#40#59#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MsUserController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="409">
@@ -781,27 +783,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_06_041053_create_penjualan_trns_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="38" column="62" selection-start-line="38" selection-start-column="62" selection-end-line="38" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="32" column="20" lean-forward="true" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PenjualanBaru.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -812,6 +793,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_06_041053_create_penjualan_trns_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="19" column="47" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/dashboard-master-area.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-578">
@@ -819,10 +807,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AndroidSearchSpk.php">
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="86" selection-start-line="11" selection-start-column="86" selection-end-line="11" selection-end-column="86" />
+        <state relative-caret-position="346">
+          <caret line="38" column="62" selection-start-line="38" selection-start-column="59" selection-end-line="38" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MsUserAreaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="34" column="31" lean-forward="true" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+          <folding>
+            <element signature="e#40#59#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AndroidSPK.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="68" column="27" selection-start-line="68" selection-start-column="27" selection-end-line="68" selection-end-column="27" />
           <folding>
             <element signature="e#40#68#0#PHP" expanded="true" />
           </folding>

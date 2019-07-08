@@ -30,4 +30,6 @@ Route::post('ms-leasing/add','MasterLeasing@add');
 Route::post('ms-userarea/add','MsUserAreaController@add');
 Route::post('ms-userarea/check','MsUserAreaController@checkArea');
 
-Route::post('spk/search','AndroidSearchSpk@search');
+Route::post('spk/search','AndroidSPK@search');
+Route::post('spk/area','AndroidSPK@getTrn');
+Route::post('spk/save','AndroidSPK@comment');
