@@ -4,6 +4,8 @@
     <title>Nasmoco Siliwangi - LOGIN</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('vendor/bulma-0.7.5/css/bulma.min.css') }}" rel="stylesheet" type="text/css">
+    <script src="{{ asset('vendor/sweetalert2-8.13.1/sweetalert2.all.min.js') }}"></script>
+    <link href="{{ asset('vendor/sweetalert2-8.13.1/sweetalert2.min.css') }}" rel="stylesheet" type="text/css">
     <style>
         .footer {
             padding: 1rem 1.5rem 1rem 3rem;
@@ -17,7 +19,7 @@
             <div class="container">
                 <div class="navbar-brand">
                     <a class="navbar-item has-text-weight-bold">
-                        NASMOCO Kaligawe
+                        NASMOCO Siliwangi
                     </a>
                     <span class="navbar-burger burger" data-target="navbarMenuHeroA">
                             <span></span>
@@ -49,8 +51,7 @@
                         LOGIN
                     </h1>
                     <hr>
-                    <form method="post" id="form-login">
-                        @csrf
+                    <form id="form-login">
                         <div class="field">
                             <div class="control">
                                 <input
@@ -106,19 +107,30 @@
 </footer>
 <script src="{{ asset('js/navbar.bulma.js') }}"></script>
 <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $('#form-login').submit(function(e) {
             e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                }
+            });
             $.ajax({
                 url: "{{ url('dashboard/login/check') }}",
                 method: "post",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                },
                 data: $(this).serialize(),
                 success: function(result) {
-                    window.location.href = "{{ url('dashboard') }}";
+                    let data = JSON.parse(result);
+                    if (data.status == 'failed') {
+                        Swal.fire({
+                            type: 'info',
+                            title: data.reason
+                        });
+                    } else {
+                        window.location.href = "{{ url('dashboard') }}";
+                    }
                 }
             });
         })

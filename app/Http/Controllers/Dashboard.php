@@ -30,19 +30,22 @@ class Dashboard extends Controller
                 Session::put('username',$username);
                 Session::put('nama_lengkap',$user[0]['nama_lengkap']);
 
-                return redirect('dashboard');
+                $result = array([
+                    'status' => 'success'
+                ]);
             } else {
-                return $result = array([
+                $result = array([
                     'status' => 'failed',
-                    'reason' => 'wrong password',
+                    'reason' => 'Cek kembali username dan password anda!',
                 ]);
             }
         } else {
-            return $result = array([
+            $result = array([
                 'status' => 'failed',
-                'reason' => 'username not registered',
+                'reason' => 'Cek kembali username dan password anda!',
             ]);
         }
+        return json_encode($result);
     }
 
 //    public function sidebar() {

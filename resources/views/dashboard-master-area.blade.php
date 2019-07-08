@@ -38,7 +38,7 @@
                         <div class="row">
                             <div class="col-xl-8"></div>
                             <div class="col-xl-2">
-                                <button class="btn btn-block btn-outline-primary" id="btnDisable" disabled>Disable</button>
+{{--                                <button class="btn btn-block btn-outline-primary" id="btnDisable" disabled>Disable</button>--}}
                             </div>
                             <div class="col-xl-2">
                                 <button class="btn btn-block btn-primary" id="btnEdit" disabled>Edit</button>
@@ -102,6 +102,7 @@
         let buttonCancel = $('#btnCancel');
 
         var idArea;
+        var namaArea;
 
         function resetForm() {
             iArea.val('');
@@ -118,6 +119,18 @@
             }, 500);
         });
 
+        buttonEdit.click(function (e) {
+            e.preventDefault();
+            optionData.val('edit');
+            cardTitle.html('Edit Area');
+            cardComponent.removeClass('d-none');
+            iArea.val(namaArea);
+
+            $('html, body').animate({
+                scrollTop: cardComponent.offset().top
+            }, 500);
+        });
+
         buttonCancel.click(function (e) {
             e.preventDefault();
             cardComponent.addClass('d-none');
@@ -125,7 +138,6 @@
         });
 
         $(document).ready(function() {
-
             let tables = $('#datatable').DataTable({
                 "scrollY": "150px",
                 "scrollX": true,
@@ -145,6 +157,85 @@
                     { "data": "nama" }
                 ],
                 "order": [[0,'asc']]
+            });
+            $('#datatable tbody').on( 'click', 'tr', function () {
+                var data = tables.row( this ).data();
+                idArea = data.id;
+                namaArea = data.nama;
+                // console.log(data);
+                if ( $(this).hasClass('selected') ) {
+                    $(this).removeClass('selected');
+                    buttonEdit.attr('disabled','true');
+                    buttonDisable.attr('disabled','true');
+                } else {
+                    tables.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                    buttonEdit.removeAttr('disabled');
+                    buttonDisable.removeAttr('disabled');
+                }
+            });
+
+            cardForm.submit(function (e) {
+                e.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    }
+                });
+                if (optionData.val() == 'new') {
+                    $.ajax({
+                        url: "{{ url('dashboard/master/area/add') }}",
+                        method: "post",
+                        data: $(this).serialize(),
+                        success: function(result) {
+                            var data = JSON.parse(result);
+                            if (data.status == 'success') {
+                                Swal.fire({
+                                    type: 'success',
+                                    title: 'Berhasil',
+                                    text: 'Data Tersimpan',
+                                    onClose: function() {
+                                        cardComponent.addClass('d-none');
+                                        tables.ajax.reload();
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    type: 'info',
+                                    title: 'Gagal',
+                                    text: data.reason,
+                                });
+                            }
+                        }
+                    });
+                } else {
+                    $.ajax({
+                        url: "{{ url('dashboard/master/area/edit') }}",
+                        method: "post",
+                        data: {id: idArea, area: iArea.val()},
+                        success: function(result) {
+                            var data = JSON.parse(result);
+                            console.log(data);
+                            var data = JSON.parse(result);
+                            if (data.status == 'success') {
+                                Swal.fire({
+                                    type: 'success',
+                                    title: 'Update Berhasil',
+                                    onClose: function() {
+                                        cardComponent.addClass('d-none');
+                                        tables.ajax.reload();
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    type: 'info',
+                                    title: 'Gagal',
+                                    text: data.reason,
+                                });
+                            }
+                        }
+                    });
+                }
             });
         })
     </script>

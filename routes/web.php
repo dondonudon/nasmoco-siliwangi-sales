@@ -27,6 +27,8 @@ Route::post('/dashboard/master/user/disable','MasterUser@disable');
 
 Route::get('/dashboard/master/area','MasterArea@index');
 Route::get('/dashboard/master/area/list','MasterArea@list');
+Route::post('/dashboard/master/area/add','MasterArea@add');
+Route::post('/dashboard/master/area/edit','MasterArea@edit');
 
 Route::get('/dashboard/master/leasing','MasterLeasing@index');
 Route::get('/dashboard/master/leasing/list','MasterLeasing@list');

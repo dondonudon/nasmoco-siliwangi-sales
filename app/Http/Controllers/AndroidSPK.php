@@ -19,7 +19,7 @@ class AndroidSPK extends Controller
             $spk->where('no_spk','like', $search)
                 ->orWhere('nama_customer','like', $search);
         }
-        return $spk->get();
+        return $spk->get()->toJson();
     }
 
     public function getTrn(Request $request) {
