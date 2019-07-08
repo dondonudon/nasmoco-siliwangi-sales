@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\msWilayahKota;
 use App\penjualanMst;
+use App\penjualanTrn;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class PenjualanBaru extends Controller
 {
@@ -48,6 +50,19 @@ class PenjualanBaru extends Controller
         return json_encode($result);
     }
 
+//    public function addTrn($idMst) {
+//        $trn = DB::table('penjualan_trn');
+//        $area = DB::table('ms_areas')->select('id')->get();
+//        foreach ($area as $v) {
+//            $data = [
+//                'id_penjualan_mst' => $idMst,
+//                'id_area' => $v->id,
+//                'username' => Session::get('username'),
+//            ];
+//            $trn->insert($data);
+//        }
+//    }
+
     public function add(Request $request) {
         $noSPK = $request->no_spk;
         $data = [
@@ -64,6 +79,16 @@ class PenjualanBaru extends Controller
         $penjualan = DB::table('penjualan_mst');
         if ($penjualan->where('no_spk','=',$noSPK)->doesntExist()) {
             if ($penjualan->insert($data)) {
+                $trn = DB::table('penjualan_trn');
+                $area = DB::table('ms_areas')->select('id')->get();
+                foreach ($area as $v) {
+                    $data = [
+                        'id_penjualan_mst' => $noSPK,
+                        'id_area' => $v->id,
+                        'username' => Session::get('username'),
+                    ];
+                    $trn->insert($data);
+                }
                 $result = [
                     'status' => 'success',
                 ];
