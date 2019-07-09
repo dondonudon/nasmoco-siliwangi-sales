@@ -7,9 +7,6 @@
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Master Area</h1>
-            <button class="btn d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" id="btnNew">
-                <i class="fas fa-plus"></i> Tambah Area Baru
-            </button>
         </div>
 
         <!-- Content Row -->
@@ -21,13 +18,15 @@
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Data Area</h6>
+                        <button class="btn d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" id="btnNew" style="font-size: 12px;">
+                            <i class="fas fa-plus"></i>
+                        </button>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
                         <table class="table table-sm table-hover table-bordered display nowrap" id="datatable" width="100%">
                             <thead class="text-white bg-primary">
                                 <tr>
-                                    <th>ID</th>
                                     <th>Nama Area</th>
                                 </tr>
                             </thead>
@@ -41,7 +40,7 @@
 {{--                                <button class="btn btn-block btn-outline-primary" id="btnDisable" disabled>Disable</button>--}}
                             </div>
                             <div class="col-xl-2">
-                                <button class="btn btn-block btn-primary" id="btnEdit" disabled>Edit</button>
+                                <button class="btn btn-block btn-danger" id="btnEdit" disabled>Edit</button>
                             </div>
                         </div>
                     </div>
@@ -75,7 +74,7 @@
                                     <button type="button" class="btn btn-block btn-outline-primary" id="btnCancel">Cancel</button>
                                 </div>
                                 <div class="col-xl-2">
-                                    <button type="submit" class="btn btn-block btn-primary">Simpan</button>
+                                    <button type="submit" class="btn btn-block btn-danger">Simpan</button>
                                 </div>
                             </div>
                         </div>
@@ -153,7 +152,6 @@
                     }
                 },
                 "columns": [
-                    { "data": "id" },
                     { "data": "nama" }
                 ],
                 "order": [[0,'asc']]

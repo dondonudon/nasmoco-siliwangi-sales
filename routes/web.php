@@ -32,6 +32,9 @@ Route::post('/dashboard/master/area/edit','MasterArea@edit');
 
 Route::get('/dashboard/master/leasing','MasterLeasing@index');
 Route::get('/dashboard/master/leasing/list','MasterLeasing@list');
+Route::post('/dashboard/master/leasing/add','MasterLeasing@add');
+Route::post('/dashboard/master/leasing/edit','MasterLeasing@edit');
+Route::post('/dashboard/master/leasing/delete','MasterLeasing@delete');
 
 Route::get('/dashboard/penjualan/baru','PenjualanBaru@index');
 Route::get('/dashboard/penjualan/baru/list','PenjualanBaru@list');

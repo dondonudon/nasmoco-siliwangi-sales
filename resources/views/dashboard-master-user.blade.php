@@ -7,9 +7,6 @@
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Master User</h1>
-            <button class="btn d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" id="btnNew">
-                <i class="fas fa-plus"></i> New User
-            </button>
         </div>
 
         <!-- Content Row -->
@@ -20,7 +17,10 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
+                        <h6 class="m-0 font-weight-bold text-danger">Data User</h6>
+                        <button class="btn d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" id="btnNew" style="font-size: 12px;">
+                            <i class="fas fa-plus"></i>
+                        </button>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
@@ -38,10 +38,10 @@
                         <div class="row">
                             <div class="col-xl-8"></div>
                             <div class="col-xl-2">
-                                <button class="btn btn-block btn-outline-primary" id="btnDisable" disabled>Disable</button>
+                                <button class="btn btn-block btn-outline-danger" id="btnDisable" disabled>Disable</button>
                             </div>
                             <div class="col-xl-2">
-                                <button class="btn btn-block btn-primary" id="btnEdit" disabled>Edit</button>
+                                <button class="btn btn-block btn-danger" id="btnEdit" disabled>Edit</button>
                             </div>
                         </div>
                     </div>
@@ -79,11 +79,11 @@
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-xl-8"></div>
-                                <div class="col-xl-2">
-                                    <button type="button" class="btn btn-block btn-outline-primary" id="btnCancel">Cancel</button>
+                                <div class="col-xl-2 mt-2">
+                                    <button type="button" class="btn btn-block btn-outline-warning" id="btnCancel">Cancel</button>
                                 </div>
-                                <div class="col-xl-2">
-                                    <button type="submit" class="btn btn-block btn-primary">Simpan</button>
+                                <div class="col-xl-2 mt-2">
+                                    <button type="submit" class="btn btn-block btn-danger">Simpan</button>
                                 </div>
                             </div>
                         </div>
