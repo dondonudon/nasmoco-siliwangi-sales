@@ -13,8 +13,12 @@ class CreateSysMenuGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sys_menu_groups', function (Blueprint $table) {
+        Schema::create('sys_menu_group', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nama',20);
+            $table->string('id_target',25);
+            $table->string('icon',25);
+            $table->integer('order');
             $table->timestamps();
         });
     }

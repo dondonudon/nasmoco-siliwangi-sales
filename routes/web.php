@@ -19,6 +19,17 @@ Route::get('/dashboard/login', 'Dashboard@loginCheck');
 Route::post('/dashboard/login/check','Dashboard@login');
 Route::get('/dashboard','Dashboard@index');
 
+Route::get('/dashboard/system/menu','SystemMenu@index');
+Route::get('/dashboard/system/menu/list','SystemMenu@list');
+Route::get('/dashboard/system/menu/list/group','SystemMenu@group');
+Route::post('/dashboard/system/menu/add','SystemMenu@add');
+Route::post('/dashboard/system/menu/edit','SystemMenu@edit');
+
+Route::get('/dashboard/system/group-menu','SystemGroupMenu@index');
+Route::get('/dashboard/system/group-menu/list','SystemGroupMenu@list');
+Route::post('/dashboard/system/group-menu/add','SystemGroupMenu@add');
+Route::post('/dashboard/system/group-menu/edit','SystemGroupMenu@edit');
+
 Route::get('/dashboard/master/user','MasterUser@index');
 Route::get('/dashboard/master/user/list','MasterUser@list');
 Route::post('/dashboard/master/user/new','MasterUser@new');

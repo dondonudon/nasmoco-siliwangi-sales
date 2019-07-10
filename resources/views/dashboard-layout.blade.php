@@ -1,3 +1,6 @@
+@php
+    $sidebar = App\Http\Controllers\Dashboard::getSidebar();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,60 +61,26 @@
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#system_utility" aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-project-diagram"></i>
-                <span>System Utility</span>
-            </a>
-            <div id="system_utility" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Sub Menu:</h6>
-                    <a class="collapse-item" href="{{ url('dashboard/master/user') }}">Menu</a>
+        @foreach($sidebar as $s)
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#{{ $s['group']['id_target'] }}" aria-expanded="true" aria-controls="{{ $s['group']['id_target'] }}">
+                    <i class="{{ $s['group']['icon'] }}"></i>
+                    <span>{{ $s['group']['nama'] }}</span>
+                </a>
+                <div id="{{ $s['group']['id_target'] }}" class="collapse" aria-labelledby="{{ $s['group']['id_target'] }}" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Sub Menu:</h6>
+                        @foreach($s['menu'] as $m)
+                            <a class="collapse-item" href="{{ url($m['url']) }}">{{ $m['nama'] }}</a>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-        </li>
+            </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Master Data</span>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Sub Menu:</h6>
-                    <a class="collapse-item" href="{{ url('dashboard/master/user') }}">User</a>
-                    <a class="collapse-item" href="{{ url('dashboard/master/area') }}">Area</a>
-                    <a class="collapse-item" href="{{ url('dashboard/master/leasing') }}">Leasing</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#modulPenjualan" aria-expanded="true" aria-controls="modulPenjualan">
-                <i class="fas fa-fw fa-car"></i>
-                <span>Penjualan</span>
-            </a>
-            <div id="modulPenjualan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Sub Menu:</h6>
-                    <a class="collapse-item" href="{{ url('dashboard/penjualan/baru') }}">Penjualan Baru</a>
-                    <a class="collapse-item" href="{{ url('dashboard/master/area') }}">Area</a>
-                    <a class="collapse-item" href="{{ url('dashboard/master/leasing') }}">Leasing</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+        @endforeach
 
     </ul>
     <!-- End of Sidebar -->

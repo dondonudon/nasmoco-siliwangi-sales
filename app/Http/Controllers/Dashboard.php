@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\msUser;
+use App\sysMenu;
 use App\sysMenuGroup;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -11,6 +13,33 @@ use Illuminate\Http\Request;
 
 class Dashboard extends Controller
 {
+    public static function getSidebar() {
+        $listSidebar = array();
+        $group = sysMenuGroup::all();
+        foreach ($group as $g) {
+            $listMenu = array();
+            $menu = DB::table('sys_menu')
+                ->select('nama','url')
+                ->where('id_group','=',$g->id)
+                ->get();
+            foreach ($menu as $m) {
+                $listMenu[] = array(
+                    'nama' => $m->nama,
+                    'url' => $m->url,
+                );
+            }
+            $listSidebar[] = array(
+                'group' => array(
+                    'nama' => $g->nama,
+                    'id_target' => $g->id_target,
+                    'icon' => $g->icon,
+                ),
+                'menu' => $listMenu,
+            );
+        }
+        return $listSidebar;
+    }
+
     public function loginCheck() {
         if (Session::has('username')) {
             return redirect('dashboard');
