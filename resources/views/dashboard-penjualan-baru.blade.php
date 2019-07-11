@@ -228,8 +228,10 @@
 
             buttonCancel.click(function (e) {
                 e.preventDefault();
-                cardComponent.addClass('d-none');
-                formReset();
+                $("html, body").animate({ scrollTop: 0 }, 500, function () {
+                    cardComponent.addClass('d-none');
+                    formReset();
+                });
             });
 
             buttonNew.click(function (e) {
@@ -332,8 +334,10 @@
                                     title: 'Berhasil',
                                     text: 'Data user tersimpan',
                                     onClose: function() {
-                                        cardComponent.addClass('d-none');
-                                        tables.ajax.reload();
+                                        $("html, body").animate({ scrollTop: 0 }, 500, function () {
+                                            cardComponent.addClass('d-none');
+                                            tables.ajax.reload();
+                                        });
                                     }
                                 });
                             } else {
@@ -360,8 +364,10 @@
                                     title: 'Berhasil',
                                     text: 'Data penjualan tersimpan',
                                     onClose: function() {
-                                        cardComponent.addClass('d-none');
-                                        tables.ajax.reload();
+                                        $("html, body").animate({ scrollTop: 0 }, 500, function () {
+                                            cardComponent.addClass('d-none');
+                                            tables.ajax.reload();
+                                        });
                                     }
                                 });
                             } else {

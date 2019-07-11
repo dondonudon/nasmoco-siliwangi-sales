@@ -26,6 +26,14 @@ class MasterArea extends Controller
         }
     }
 
+    public static function getListArea() {
+        $area = DB::table('ms_areas')
+            ->select('id','nama')
+            ->where('initial','=','0')
+            ->get();
+        return $area;
+    }
+
     public function list() {
         return array(
             'data' => msArea::all()

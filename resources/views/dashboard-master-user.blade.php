@@ -2,6 +2,7 @@
 
 @php
     $sidebar = App\Http\Controllers\Dashboard::getAllSidebar();
+    $area = App\Http\Controllers\MasterArea::getListArea();
 @endphp
 
 @section('content')
@@ -98,6 +99,23 @@
                                 <hr>
                             @endforeach
 
+                            <hr style="border-width: 10px;">
+                            <div class="form-group row">
+                                <div class="col-sm-2">Area Permission</div>
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                        @foreach($area as $a)
+                                            <div class="col-sm-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="area_{{ $a->id }}" name="area_permission[]" value="{{ $a->id }}">
+                                                    <label class="form-check-label" for="area_{{ $a->id }}">{{ $a->nama }}</label>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         <!-- Card Footer -->
                         <div class="card-footer">
@@ -144,9 +162,11 @@
 
             buttonCancel.click(function (e) {
                 e.preventDefault();
-                cardComponent.addClass('d-none');
-                inputUsername.val('');
-                inputNamaLengkap.val('');
+                $("html, body").animate({ scrollTop: 0 }, 500, function () {
+                    cardComponent.addClass('d-none');
+                    inputUsername.val('');
+                    inputNamaLengkap.val('');
+                });
             });
 
             buttonNew.click(function (e) {
@@ -182,8 +202,13 @@
                     data: {username: username},
                     success: function(result) {
                         var data = JSON.parse(result);
-                        data.forEach(function(val, i) {
+                        let permission = data.permission;
+                        let area = data.area;
+                        permission.forEach(function(val, i) {
                             $('#permission_'+val['id_menu']).prop('checked',true);
+                        });
+                        area.forEach(function(val, i) {
+                            $('#area_'+val['id_area']).prop('checked',true);
                         });
                     }
                 });
@@ -287,7 +312,7 @@
                         method: "post",
                         data: $(this).serialize(),
                         success: function(result) {
-                            // console.log(result);
+                            console.log(result);
                             var data = JSON.parse(result);
                             if (data.status == 'success') {
                                 Swal.fire({
@@ -295,8 +320,12 @@
                                     title: 'Berhasil',
                                     text: 'Data user tersimpan',
                                     onClose: function() {
-                                        cardComponent.addClass('d-none');
-                                        tables.ajax.reload();
+                                        $("html, body").animate({ scrollTop: 0 }, 500, function () {
+                                            cardComponent.addClass('d-none');
+                                            inputUsername.val('');
+                                            inputNamaLengkap.val('');
+                                            tables.ajax.reload();
+                                        });
                                     }
                                 });
                             } else {
@@ -314,7 +343,7 @@
                         method: "post",
                         data: $(this).serialize(),
                         success: function(result) {
-                            // console.log(data);
+                            console.log(result);
                             var data = JSON.parse(result);
                             if (data.status == 'success') {
                                 Swal.fire({
@@ -322,8 +351,12 @@
                                     title: 'Berhasil',
                                     text: 'Data user tersimpan',
                                     onClose: function() {
-                                        cardComponent.addClass('d-none');
-                                        tables.ajax.reload();
+                                        $("html, body").animate({ scrollTop: 0 }, 500, function () {
+                                            cardComponent.addClass('d-none');
+                                            inputUsername.val('');
+                                            inputNamaLengkap.val('');
+                                            tables.ajax.reload();
+                                        });
                                     }
                                 });
                             } else {

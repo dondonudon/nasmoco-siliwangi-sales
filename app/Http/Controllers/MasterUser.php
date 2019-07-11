@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\msPermission;
 use App\msUser;
+use App\msUserArea;
 use App\sysMenu;
 use http\Env\Response;
 use Illuminate\Http\Request;
@@ -13,6 +14,35 @@ use Illuminate\Support\Facades\Session;
 
 class MasterUser extends Controller
 {
+    public function serializePermission($data,$username) {
+        $menu = sysMenu::all();
+        $permission = [];
+        foreach ($menu as $m) {
+            if (in_array($m->id,$data)) {
+                $isAllowed = '1';
+            } else {
+                $isAllowed = '0';
+            }
+            $permission[] = [
+                'username' => $username,
+                'id_menu' => $m->id,
+                'permission' => $isAllowed,
+            ];
+        }
+        return $permission;
+    }
+
+    function serializeArea($data,$username) {
+        $area = [];
+        foreach ($data as $d) {
+            $area[] = [
+                'username' => $username,
+                'id_area' => $d,
+            ];
+        }
+        return $area;
+    }
+
     public function index() {
         $viewName = 'master_user';
         $username = Session::get('username');
@@ -43,35 +73,31 @@ class MasterUser extends Controller
         $username = $request->username;
         $password = Crypt::encryptString($request->password);
         $namaLengkap = $request->nama_lengkap;
-        $permission = $request->menu_permission;
+        $permission = $this->serializePermission($request->menu_permission,$username);
+        $area = $this->serializeArea($request->area_permission,$username);
+
         $savePermission = [];
         $data = [
             'username' => $username,
             'password' => $password,
             'nama_lengkap' => $namaLengkap,
         ];
-        $menu = sysMenu::all();
-        foreach ($menu as $m) {
-            if (in_array($m->id,$permission)) {
-                $isAllowed = '1';
-            } else {
-                $isAllowed = '0';
-            }
-            $savePermission[] = [
-                'username' => $username,
-                'id_menu' => $m->id,
-                'permission' => $isAllowed,
-            ];
-        }
 
         $checkUser = DB::table('ms_users')->where('username',$username);
         if ($checkUser->doesntExist()) {
             $user = DB::table('ms_users');
             if ($user->insert($data)) {
-                if (msPermission::insert($savePermission)) {
-                    $result = [
-                        'status' => 'success'
-                    ];
+                if (msPermission::insert($permission)) {
+                    if (msUserArea::insert($area)) {
+                        $result = [
+                            'status' => 'success'
+                        ];
+                    } else {
+                        $result = [
+                            'status' => 'failed',
+                            'reason' => 'Gagal menyimpan area'
+                        ];
+                    }
                 } else {
                     $result = [
                         'status' => 'failed',
@@ -97,21 +123,9 @@ class MasterUser extends Controller
         $username = $request->username;
         $password = Crypt::encryptString($request->password);
         $namaLengkap = $request->nama_lengkap;
-        $permission = $request->menu_permission;
-        $savePermission = [];
-        $menu = sysMenu::all();
-        foreach ($menu as $m) {
-            if (in_array($m->id,$permission)) {
-                $isAllowed = '1';
-            } else {
-                $isAllowed = '0';
-            }
-            $savePermission[] = [
-                'username' => $username,
-                'id_menu' => $m->id,
-                'permission' => $isAllowed,
-            ];
-        }
+        $permission = $this->serializePermission($request->menu_permission,$username);
+        $area = $this->serializeArea($request->area_permission,$username);
+
         $data = [
             'password' => $password,
             'nama_lengkap' => $namaLengkap,
@@ -123,10 +137,25 @@ class MasterUser extends Controller
             if ($user->update($data)) {
                 $del = DB::table('ms_permission')->where('username','=',$username);
                 if ($del->delete()) {
-                    if (msPermission::insert($savePermission)) {
-                        $result = [
-                            'status' => 'success'
-                        ];
+                    if (msPermission::insert($permission)) {
+                        $del = DB::table('ms_user_areas')->where('username','=',$username);
+                        if ($del->delete()) {
+                            if (msUserArea::insert($area)) {
+                                $result = [
+                                    'status' => 'success'
+                                ];
+                            } else {
+                                $result = [
+                                    'status' => 'failed',
+                                    'reason' => 'Gagal menyimpan area'
+                                ];
+                            }
+                        } else {
+                            $result = [
+                                'status' => 'failed',
+                                'reason' => 'Gagal menghapus area'
+                            ];
+                        }
                     } else {
                         $result = [
                             'status' => 'failed',
@@ -191,6 +220,17 @@ class MasterUser extends Controller
                 ['permission','=','1'],
             ])
             ->get();
-        return json_encode($permission);
+        $area = DB::table('ms_user_areas')
+            ->select('id_area')
+            ->where([
+                ['username','=',$username],
+            ])
+            ->get();
+
+        $result = array(
+            'permission' => $permission,
+            'area' => $area,
+        );
+        return json_encode($result);
     }
 }

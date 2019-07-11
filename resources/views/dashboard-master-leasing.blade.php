@@ -179,8 +179,10 @@
                                 title: 'Berhasil',
                                 text: 'Data Tersimpan',
                                 onClose: function() {
-                                    cardComponent.addClass('d-none');
-                                    tables.ajax.reload();
+                                    $("html, body").animate({ scrollTop: 0 }, 500, function () {
+                                        cardComponent.addClass('d-none');
+                                        tables.ajax.reload();
+                                    });
                                 }
                             });
                         } else {
@@ -219,8 +221,10 @@
 
             buttonCancel.click(function (e) {
                 e.preventDefault();
-                cardComponent.addClass('d-none');
-                resetForm();
+                $("html, body").animate({ scrollTop: 0 }, 500, function () {
+                    cardComponent.addClass('d-none');
+                    resetForm();
+                });
             });
 
             buttonDisable.click(function (e) {
