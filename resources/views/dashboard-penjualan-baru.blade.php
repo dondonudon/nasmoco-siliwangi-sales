@@ -68,6 +68,13 @@
                         <div class="card-body">
                             <input type="hidden" id="option" value="new">
                             <div class="form-group">
+                                <label for="inputKota">Tipe Aju</label>
+                                <select class="form-control" id="inputAju" name="aju" required>
+                                    <option value="1">AJU FAKTUR</option>
+                                    <option value="2">AJU DR</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="inputNomorSPK">Nomor SPK</label>
                                 <input type="text" class="form-control" id="inputNomorSPK" name="no_spk" placeholder="Nomor SPK" autocomplete="off" required>
                             </div>

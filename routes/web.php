@@ -55,3 +55,4 @@ Route::get('/dashboard/penjualan/baru/kota','PenjualanBaru@kota');
 Route::post('/dashboard/penjualan/baru/kecamatan','PenjualanBaru@kecamatan');
 Route::post('/dashboard/penjualan/baru/add','PenjualanBaru@add');
 
+Route::get('/dashboard/penjualan/baru','PenjualanBaru@index')->name('penjualan_baru');

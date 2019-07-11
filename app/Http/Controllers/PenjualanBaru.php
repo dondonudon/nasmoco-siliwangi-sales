@@ -78,7 +78,16 @@ class PenjualanBaru extends Controller
 
     public function add(Request $request) {
         $noSPK = $request->no_spk;
-        $data = [
+        $aju = $request->aju;
+        $dataTrn = [
+            'no_spk' => $request->no_spk,
+            'id_area' => $aju,
+            'catatan' => 'Initial Data',
+            'tanggal' => date("Y-m-d", strtotime($request->tanggal_spk)),
+            'username' => $request->username,
+            'status' => '1',
+        ];
+        $dataMst = [
             'no_spk' => $request->no_spk,
             'nama_customer' => $request->nama_customer,
             'no_rangka' => $request->no_rangka,
@@ -89,19 +98,10 @@ class PenjualanBaru extends Controller
             'tanggal_spk' => date("Y-m-d", strtotime($request->tanggal_spk)),
             'username' => $request->username,
         ];
-        $penjualan = DB::table('penjualan_mst');
-        if ($penjualan->where('no_spk','=',$noSPK)->doesntExist()) {
-            if ($penjualan->insert($data)) {
-                $trn = DB::table('penjualan_trn');
-                $area = DB::table('ms_areas')->select('id')->get();
-                foreach ($area as $v) {
-                    $data = [
-                        'id_penjualan_mst' => $noSPK,
-                        'id_area' => $v->id,
-                        'username' => Session::get('username'),
-                    ];
-                    $trn->insert($data);
-                }
+        $mst = DB::table('penjualan_mst');
+        $trn = DB::table('penjualan_trn');
+        if ($mst->where('no_spk','=',$noSPK)->doesntExist()) {
+            if ($mst->insert($dataMst) && $trn->insert($dataTrn)) {
                 $result = [
                     'status' => 'success',
                 ];
