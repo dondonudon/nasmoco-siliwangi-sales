@@ -6,7 +6,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">System Utility Group Menu</h1>
+            <h1 class="h3 mb-0 text-gray-800">System Utility Menu</h1>
         </div>
 
         <!-- Content Row -->
@@ -27,9 +27,10 @@
                         <table class="table table-hover table-bordered table-sm display nowrap" id="datatable" width="100%">
                             <thead class="text-white bg-primary">
                             <tr>
-                                <th>Group</th>
                                 <th>Nama Menu</th>
+                                <th>Group</th>
                                 <th>Url</th>
+                                <th>View Name</th>
                                 <th>Order</th>
                             </tr>
                             </thead>
@@ -77,6 +78,10 @@
                                 <input type="text" class="form-control" id="inputUrl" name="url" placeholder="Url" autocomplete="off" required>
                             </div>
                             <div class="form-group">
+                                <label for="inputViewName">Url</label>
+                                <input type="text" class="form-control" id="inputViewName" name="view_name" placeholder="View Name" autocomplete="off" required>
+                            </div>
+                            <div class="form-group">
                                 <label for="inputOrder">Order</label>
                                 <input type="number" class="form-control" id="inputOrder" name="order" placeholder="Order" autocomplete="off" required>
                             </div>
@@ -106,6 +111,7 @@
         const iGroup = $('#inputGroup');
         const iNama = $('#inputMenu');
         const iUrl = $('#inputUrl');
+        const iViewName = $('#inputViewName');
         const iOrder = $('#inputOrder');
 
         const cardComponent = $('#cardData');
@@ -118,11 +124,12 @@
         const buttonEdit = $('#btnEdit');
         const buttonCancel = $('#btnCancel');
 
-        var idMenu, idGroup, htmlGroup, menuName, url, order;
+        var idMenu, idGroup, htmlGroup, menuName, url, viewName, order;
 
         function resetForm() {
             iNama.val('');
             iUrl.val('');
+            iViewName.val('');
             iOrder.val('');
         }
 
@@ -158,23 +165,24 @@
                     }
                 },
                 "columns": [
-                    { "data": "nama_group" },
                     { "data": "nama" },
+                    { "data": "nama_group" },
                     { "data": "url" },
+                    { "data": "view_name" },
                     { "data": "order" },
                 ],
                 "order": [
-                    [0,'asc'],
-                    [3,'asc']
+                    [1,'asc'],
+                    [4,'asc']
                 ]
             });
             $('#datatable tbody').on( 'click', 'tr', function () {
                 var data = tables.row( this ).data();
                 idMenu = data.id;
-                console.log(data.id);
                 idGroup = data.id_group;
                 menuName = data.nama;
                 url = data.url;
+                viewName = data.view_name;
                 order = data.order;
                 // console.log(data);
                 if ( $(this).hasClass('selected') ) {
@@ -214,6 +222,7 @@
                 iGroup.val(idGroup);
                 iNama.val(menuName);
                 iUrl.val(url);
+                iViewName.val(viewName);
                 iOrder.val(order);
 
                 $('html, body').animate({
@@ -281,7 +290,7 @@
                 $.ajax({
                     url: url,
                     method: "post",
-                    data: {id: idMenu, id_group: iGroup.val(), nama: iNama.val(), url: iUrl.val(), order: iOrder.val()},
+                    data: {id: idMenu, id_group: iGroup.val(), nama: iNama.val(), url: iUrl.val(), view_name: iViewName.val(), order: iOrder.val()},
                     success: function(result) {
                         console.log(result);
                         var data = JSON.parse(result);

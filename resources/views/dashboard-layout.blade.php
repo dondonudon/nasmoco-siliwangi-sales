@@ -1,5 +1,6 @@
 @php
     $sidebar = App\Http\Controllers\Dashboard::getSidebar();
+    $routeName = \Illuminate\Support\Facades\Route::currentRouteName();
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -52,8 +53,12 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
-            <a class="nav-link" href="index.html">
+        @if($routeName == 'dashboard_overview')
+            <li class="nav-item active">
+        @else
+            <li class="nav-item">
+        @endif
+            <a class="nav-link" href="{{ url('dashboard') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -63,7 +68,11 @@
 
         @foreach($sidebar as $s)
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            @if(in_array($routeName,$s['group']['url']))
+                <li class="nav-item active">
+            @else
+                <li class="nav-item">
+            @endif
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#{{ $s['group']['id_target'] }}" aria-expanded="true" aria-controls="{{ $s['group']['id_target'] }}">
                     <i class="{{ $s['group']['icon'] }}"></i>
                     <span>{{ $s['group']['nama'] }}</span>
@@ -155,6 +164,15 @@
 
             </nav>
             <!-- End of Topbar -->
+
+            @if(session('permission'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Permission denied.</strong> {{ session('permission') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
 
             @yield('content')
             <!-- /.container-fluid -->

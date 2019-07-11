@@ -5,11 +5,25 @@ namespace App\Http\Controllers;
 use App\sysMenuGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class SystemGroupMenu extends Controller
 {
     public function index() {
-        return view('dashboard-system-group-menu');
+        $viewName = 'system_menu_group';
+        $username = Session::get('username');
+        $permission = DB::table('ms_permission')
+            ->join('sys_menu','ms_permission.id_menu','=','sys_menu.id')
+            ->where([
+                ['ms_permission.username','=',$username],
+                ['ms_permission.permission','=','1'],
+                ['sys_menu.view_name','=',$viewName],
+            ]);
+        if ($permission->exists()) {
+            return view('dashboard-system-group-menu');
+        } else {
+            return abort('403');
+        }
     }
 
     public function list() {

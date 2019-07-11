@@ -3,13 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\msLeasing;
+use App\sysMenu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class MasterLeasing extends Controller
 {
     public function index() {
-        return view('dashboard-master-leasing');
+        $viewName = 'master_leasing';
+        $username = Session::get('username');
+        $permission = DB::table('ms_permission')
+            ->join('sys_menu','ms_permission.id_menu','=','sys_menu.id')
+            ->where([
+                ['ms_permission.username','=',$username],
+                ['ms_permission.permission','=','1'],
+                ['sys_menu.view_name','=',$viewName],
+            ]);
+        if ($permission->exists()) {
+            return view('dashboard-master-leasing');
+        } else {
+            return abort('403');
+        }
     }
 
     public function list() {

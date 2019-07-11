@@ -6,16 +6,30 @@ use App\sysMenu;
 use App\sysMenuGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class SystemMenu extends Controller
 {
     public function index() {
-        return view('dashboard-system-menu');
+        $viewName = 'system_menu';
+        $username = Session::get('username');
+        $permission = DB::table('ms_permission')
+            ->join('sys_menu','ms_permission.id_menu','=','sys_menu.id')
+            ->where([
+                ['ms_permission.username','=',$username],
+                ['ms_permission.permission','=','1'],
+                ['sys_menu.view_name','=',$viewName],
+            ]);
+        if ($permission->exists()) {
+            return view('dashboard-system-menu');
+        } else {
+            return abort('403');
+        }
     }
 
     public function list() {
         $menu = DB::table('sys_menu')
-            ->select('sys_menu.id','sys_menu.id_group','sys_menu_group.nama AS nama_group','sys_menu.nama','url','sys_menu.order')
+            ->select('sys_menu.id','sys_menu.id_group','sys_menu_group.nama AS nama_group','sys_menu.nama','url','view_name','sys_menu.order')
             ->join('sys_menu_group','sys_menu.id_group','=','sys_menu_group.id')
             ->get();
         $result = array(
@@ -34,6 +48,7 @@ class SystemMenu extends Controller
             'id_group' => $request->id_group,
             'nama' => $request->nama,
             'url' => $request->url,
+            'view_name' => $request->view_name,
             'order' => $request->order,
         ];
 
@@ -56,6 +71,7 @@ class SystemMenu extends Controller
             'id_group' => $request->id_group,
             'nama' => $request->nama,
             'url' => $request->url,
+            'view_name' => $request->view_name,
             'order' => $request->order,
         ];
 

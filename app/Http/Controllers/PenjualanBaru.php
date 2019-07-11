@@ -12,7 +12,20 @@ use Illuminate\Support\Facades\Session;
 class PenjualanBaru extends Controller
 {
     public function index() {
-        return view('dashboard-penjualan-baru');
+        $viewName = 'penjualan_baru';
+        $username = Session::get('username');
+        $permission = DB::table('ms_permission')
+            ->join('sys_menu','ms_permission.id_menu','=','sys_menu.id')
+            ->where([
+                ['ms_permission.username','=',$username],
+                ['ms_permission.permission','=','1'],
+                ['sys_menu.view_name','=',$viewName],
+            ]);
+        if ($permission->exists()) {
+            return view('dashboard-penjualan-baru');
+        } else {
+            return abort('403');
+        }
     }
 
     public function list() {

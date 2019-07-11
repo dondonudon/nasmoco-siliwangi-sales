@@ -1,5 +1,9 @@
 @extends('dashboard-layout')
 
+@php
+    $sidebar = App\Http\Controllers\Dashboard::getAllSidebar();
+@endphp
+
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -74,6 +78,26 @@
                                 <label for="inputNamaLengkap">Nama Lengkap</label>
                                 <input type="text" class="form-control" id="inputNamaLengkap" name="nama_lengkap" placeholder="Nama Lengkap" autocomplete="off" required>
                             </div>
+                            <hr style="border-width: 10px;">
+                            @foreach($sidebar as $s)
+                                <div class="form-group row">
+                                    <div class="col-sm-2">{{ $s['group']['nama'] }}</div>
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            @foreach($s['menu'] as $m)
+                                                <div class="col-sm-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="permission_{{ $m['id'] }}" name="menu_permission[]" value="{{ $m['id'] }}">
+                                                        <label class="form-check-label" for="permission_{{ $m['id'] }}">{{ $m['nama'] }}</label>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            @endforeach
+
                         </div>
                         <!-- Card Footer -->
                         <div class="card-footer">
@@ -97,6 +121,10 @@
 
 @section('script')
     <script>
+        function resetForm() {
+            $("input[type='checkbox']").prop("checked", false);
+        }
+
         $(document).ready(function() {
             var cardComponent = $('#cardData');
             var cardForm = $('#cardForm');
@@ -123,6 +151,7 @@
 
             buttonNew.click(function (e) {
                 e.preventDefault();
+                resetForm();
                 optionData.val('new');
                 cardTitle.html('New User');
                 cardComponent.removeClass('d-none');
@@ -136,11 +165,28 @@
 
             buttonEdit.click(function (e) {
                 e.preventDefault();
+                resetForm();
                 optionData.val('edit');
                 cardTitle.html('Edit User');
                 cardComponent.removeClass('d-none');
                 inputUsername.val(username);
                 inputNamaLengkap.val(namalengkap);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    }
+                });
+                $.ajax({
+                    url: "{{ url('dashboard/master/user/permission') }}",
+                    method: "post",
+                    data: {username: username},
+                    success: function(result) {
+                        var data = JSON.parse(result);
+                        data.forEach(function(val, i) {
+                            $('#permission_'+val['id_menu']).prop('checked',true);
+                        });
+                    }
+                });
 
                 $('html, body').animate({
                     scrollTop: cardComponent.offset().top
@@ -167,7 +213,7 @@
                             data: {username: username},
                             success: function(result) {
                                 var data = JSON.parse(result);
-                                console.log(data);
+                                // console.log(data);
                                 if (data.status == 'success') {
                                     Swal.fire({
                                         type: 'success',
@@ -235,11 +281,13 @@
                     }
                 });
                 if ($('#option').val() == 'new') {
+                    // console.log($(this).serialize());
                     $.ajax({
                         url: "{{ url('dashboard/master/user/new') }}",
                         method: "post",
                         data: $(this).serialize(),
                         success: function(result) {
+                            // console.log(result);
                             var data = JSON.parse(result);
                             if (data.status == 'success') {
                                 Swal.fire({
@@ -266,8 +314,7 @@
                         method: "post",
                         data: $(this).serialize(),
                         success: function(result) {
-                            var data = JSON.parse(result);
-                            console.log(data);
+                            // console.log(data);
                             var data = JSON.parse(result);
                             if (data.status == 'success') {
                                 Swal.fire({
