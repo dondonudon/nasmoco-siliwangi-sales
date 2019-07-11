@@ -28,7 +28,7 @@ class MasterArea extends Controller
 
     public static function getListArea() {
         $area = DB::table('ms_areas')
-            ->select('id','nama')
+            ->select('id','nama','color')
             ->where('initial','=','0')
             ->get();
         return $area;
@@ -43,6 +43,7 @@ class MasterArea extends Controller
     public function add(Request $request) {
         $area = new msArea;
         $area->nama = $request->area;
+        $area->color = $request->color;
         if ($area->save()) {
             $result = [
                 'status' => 'success',
@@ -57,7 +58,10 @@ class MasterArea extends Controller
     }
 
     public function edit(Request $request) {
-        $data = ['nama' => $request->area];
+        $data = [
+            'nama' => $request->area,
+            'color' => $request->color,
+        ];
         $area = DB::table('ms_areas')->where('id', $request->id);
 
         if ($area->update($data)) {

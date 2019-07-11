@@ -28,6 +28,7 @@
                             <thead class="text-white bg-primary">
                                 <tr>
                                     <th>Nama Area</th>
+                                    <th>Color</th>
                                 </tr>
                             </thead>
                         </table>
@@ -65,6 +66,10 @@
                                 <label for="inputArea">Nama Area</label>
                                 <input type="text" class="form-control" id="inputArea" name="area" placeholder="Nama Area" autocomplete="off" required>
                             </div>
+                            <div class="form-group">
+                                <label for="inputColor">Color</label>
+                                <input type="text" class="form-control" id="inputColor" name="color" placeholder="Hex Color" autocomplete="off" required>
+                            </div>
                         </div>
                         <!-- Card Footer -->
                         <div class="card-footer">
@@ -89,6 +94,7 @@
 @section('script')
     <script>
         let iArea = $('#inputArea');
+        let iColor = $('#inputColor');
 
         let cardComponent = $('#cardData');
         let cardForm = $('#cardForm');
@@ -102,9 +108,11 @@
 
         var idArea;
         var namaArea;
+        var color;
 
         function resetForm() {
             iArea.val('');
+            iColor.val('');
         }
 
         buttonNew.click(function (e) {
@@ -154,7 +162,13 @@
                     }
                 },
                 "columns": [
-                    { "data": "nama" }
+                    { "data": "nama" },
+                    {
+                        "render": function (data, type, full, meta) {
+                            // return '<hr style="border: 10px; border-color: '+full.color+'; border-radius: 5px;">';
+                            return '<span style="font-weight: bold; color: '+full.color+'">'+full.color+'</span>';
+                        },
+                    }
                 ],
                 "order": [[0,'asc']]
             });
@@ -162,6 +176,7 @@
                 var data = tables.row( this ).data();
                 idArea = data.id;
                 namaArea = data.nama;
+                color = data.color;
                 // console.log(data);
                 if ( $(this).hasClass('selected') ) {
                     $(this).removeClass('selected');
@@ -214,7 +229,7 @@
                     $.ajax({
                         url: "{{ url('dashboard/master/area/edit') }}",
                         method: "post",
-                        data: {id: idArea, area: iArea.val()},
+                        data: {id: idArea, area: iArea.val(), color: iColor.val()},
                         success: function(result) {
                             var data = JSON.parse(result);
                             console.log(data);

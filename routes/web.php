@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+//    return view('welcome');
+    return redirect('dashboard/login');
 });
 
 Route::get('/dashboard/login', 'Dashboard@login')->name('dashboard_login');
@@ -55,4 +56,5 @@ Route::get('/dashboard/penjualan/baru/kota','PenjualanBaru@kota');
 Route::post('/dashboard/penjualan/baru/kecamatan','PenjualanBaru@kecamatan');
 Route::post('/dashboard/penjualan/baru/add','PenjualanBaru@add');
 
-Route::get('/dashboard/penjualan/baru','PenjualanBaru@index')->name('penjualan_baru');
+Route::get('/dashboard/penjualan/summary','PenjualanSummary@index')->name('penjualan_summary');
+Route::post('/dashboard/penjualan/summary/list','PenjualanSummary@getPenjualan')->name('penjualan_summary_list');
