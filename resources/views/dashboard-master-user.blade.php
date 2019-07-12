@@ -122,7 +122,7 @@
                             <div class="row">
                                 <div class="col-xl-8"></div>
                                 <div class="col-xl-2 mt-2">
-                                    <button type="button" class="btn btn-block btn-outline-warning" id="btnCancel">Cancel</button>
+                                    <button type="button" class="btn btn-block btn-outline-dark" id="btnCancel">Cancel</button>
                                 </div>
                                 <div class="col-xl-2 mt-2">
                                     <button type="submit" class="btn btn-block btn-danger">Simpan</button>

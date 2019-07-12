@@ -43,7 +43,9 @@ class MasterArea extends Controller
     public function add(Request $request) {
         $area = new msArea;
         $area->nama = $request->area;
+        $area->tgl_target_default = $request->target;
         $area->color = $request->color;
+        $area->ord = $request->ord;
         if ($area->save()) {
             $result = [
                 'status' => 'success',
@@ -60,7 +62,9 @@ class MasterArea extends Controller
     public function edit(Request $request) {
         $data = [
             'nama' => $request->area,
+            'tgl_target_default' => $request->target,
             'color' => $request->color,
+            'ord' => $request->ord,
         ];
         $area = DB::table('ms_areas')->where('id', $request->id);
 

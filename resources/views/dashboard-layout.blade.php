@@ -140,19 +140,19 @@
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profile
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Settings
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Activity Log
-                            </a>
-                            <div class="dropdown-divider"></div>
+{{--                            <a class="dropdown-item" href="#">--}}
+{{--                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>--}}
+{{--                                Profile--}}
+{{--                            </a>--}}
+{{--                            <a class="dropdown-item" href="#">--}}
+{{--                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>--}}
+{{--                                Settings--}}
+{{--                            </a>--}}
+{{--                            <a class="dropdown-item" href="#">--}}
+{{--                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>--}}
+{{--                                Activity Log--}}
+{{--                            </a>--}}
+{{--                            <div class="dropdown-divider"></div>--}}
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Logout
@@ -206,15 +206,15 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Apakah anda ingin keluar?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body">Silahkan klik tombol logout dibawah untuk mengakhiri sesi ini.</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <button class="btn btn-outline-dark" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-danger" type="button" id="btnLogout">Logout</button>
             </div>
         </div>
     </div>
@@ -240,6 +240,29 @@
 <!-- DataTables -->
 <script type="text/javascript" src="{{ asset('vendor/daterangepicker-master/moment.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendor/daterangepicker-master/daterangepicker.js') }}"></script>
+
+<script type="text/javascript">
+    const btnLogout = $('#btnLogout');
+    btnLogout.click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: "{{ url('dashboard/session/flush') }}",
+            method: "get",
+            success: function(result) {
+                console.log(result);
+                var data = JSON.parse(result);
+                if (data.status == 'success') {
+                    document.location.replace('{{ url('dashboard/login') }}');
+                } else {
+                    Swal.fire({
+                        type: 'info',
+                        title: 'Gagal',
+                    });
+                }
+            }
+        });
+    })
+</script>
 
 @yield('script')
 

@@ -18,6 +18,8 @@ Route::get('/', function () {
 
 Route::get('/dashboard/login', 'Dashboard@login')->name('dashboard_login');
 Route::post('/dashboard/login/check','Dashboard@loginCheck');
+Route::get('/dashboard/session/flush','Dashboard@sessionFLush');
+
 Route::get('/dashboard','Dashboard@index')->name('dashboard_overview');
 
 Route::get('/dashboard/system/menu','SystemMenu@index')->name('system_menu');

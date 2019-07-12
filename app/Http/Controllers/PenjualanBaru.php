@@ -79,14 +79,26 @@ class PenjualanBaru extends Controller
     public function add(Request $request) {
         $noSPK = $request->no_spk;
         $aju = $request->aju;
-        $dataTrn = [
-            'no_spk' => $request->no_spk,
-            'id_area' => $aju,
-            'catatan' => 'Initial Data',
-            'tanggal' => date("Y-m-d", strtotime($request->tanggal_spk)),
-            'username' => $request->username,
-            'status' => '1',
-        ];
+        if ($request->has('nominal')) {
+            $dataTrn = [
+                'no_spk' => $request->no_spk,
+                'id_area' => $aju,
+                'catatan' => 'Initial Data',
+                'nominal' => $request->nominal,
+                'tanggal' => date("Y-m-d", strtotime($request->tanggal_spk)),
+                'username' => $request->username,
+                'status' => '1',
+            ];
+        } else {
+            $dataTrn = [
+                'no_spk' => $request->no_spk,
+                'id_area' => $aju,
+                'catatan' => 'Initial Data',
+                'tanggal' => date("Y-m-d", strtotime($request->tanggal_spk)),
+                'username' => $request->username,
+                'status' => '1',
+            ];
+        }
         $dataMst = [
             'no_spk' => $request->no_spk,
             'nama_customer' => $request->nama_customer,

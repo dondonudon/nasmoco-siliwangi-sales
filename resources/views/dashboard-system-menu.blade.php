@@ -91,7 +91,7 @@
                             <div class="row">
                                 <div class="col-xl-8"></div>
                                 <div class="col-xl-2 mt-2">
-                                    <button type="button" class="btn btn-block btn-outline-warning" id="btnCancel">Cancel</button>
+                                    <button type="button" class="btn btn-block btn-outline-dark" id="btnCancel">Cancel</button>
                                 </div>
                                 <div class="col-xl-2 mt-2">
                                     <button type="submit" class="btn btn-block btn-danger">Simpan</button>
@@ -199,8 +199,10 @@
 
             buttonCancel.click(function (e) {
                 e.preventDefault();
-                resetForm();
-                cardComponent.addClass('d-none');
+                $("html, body").animate({ scrollTop: 0 }, 500, function () {
+                    resetForm();
+                    cardComponent.addClass('d-none');
+                });
             });
 
             buttonNew.click(function (e) {
@@ -299,8 +301,10 @@
                                 type: 'success',
                                 title: 'Data Tersimpan',
                                 onClose: function() {
-                                    cardComponent.addClass('d-none');
-                                    tables.ajax.reload();
+                                    $("html, body").animate({ scrollTop: 0 }, 500, function () {
+                                        cardComponent.addClass('d-none');
+                                        tables.ajax.reload();
+                                    });
                                 }
                             });
                         } else {

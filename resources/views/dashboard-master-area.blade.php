@@ -28,7 +28,9 @@
                             <thead class="text-white bg-primary">
                                 <tr>
                                     <th>Nama Area</th>
+                                    <th>Target (Hari)</th>
                                     <th>Color</th>
+                                    <th>Order</th>
                                 </tr>
                             </thead>
                         </table>
@@ -67,8 +69,16 @@
                                 <input type="text" class="form-control" id="inputArea" name="area" placeholder="Nama Area" autocomplete="off" required>
                             </div>
                             <div class="form-group">
+                                <label for="inputTarget">Tanggal Target Default</label>
+                                <input type="number" class="form-control" id="inputTarget" name="target" placeholder="Tanggal Target" autocomplete="off" required>
+                            </div>
+                            <div class="form-group">
                                 <label for="inputColor">Color</label>
                                 <input type="text" class="form-control" id="inputColor" name="color" placeholder="Hex Color" autocomplete="off" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputOrder">Order</label>
+                                <input type="number" class="form-control" id="inputOrder" name="ord" placeholder="Input Order" autocomplete="off" required>
                             </div>
                         </div>
                         <!-- Card Footer -->
@@ -76,7 +86,7 @@
                             <div class="row">
                                 <div class="col-xl-8"></div>
                                 <div class="col-xl-2">
-                                    <button type="button" class="btn btn-block btn-outline-primary" id="btnCancel">Cancel</button>
+                                    <button type="button" class="btn btn-block btn-outline-dark" id="btnCancel">Cancel</button>
                                 </div>
                                 <div class="col-xl-2">
                                     <button type="submit" class="btn btn-block btn-danger">Simpan</button>
@@ -94,7 +104,9 @@
 @section('script')
     <script>
         let iArea = $('#inputArea');
+        let iTarget = $('#inputTarget');
         let iColor = $('#inputColor');
+        let iOrder = $('#inputOrder');
 
         let cardComponent = $('#cardData');
         let cardForm = $('#cardForm');
@@ -108,11 +120,15 @@
 
         var idArea;
         var namaArea;
+        var target;
         var color;
+        var order;
 
         function resetForm() {
             iArea.val('');
+            iTarget.val('');
             iColor.val('');
+            iOrder.val('');
         }
 
         buttonNew.click(function (e) {
@@ -132,6 +148,9 @@
             cardTitle.html('Edit Area');
             cardComponent.removeClass('d-none');
             iArea.val(namaArea);
+            iTarget.val(target);
+            iColor.val(color);
+            iOrder.val(order);
 
             $('html, body').animate({
                 scrollTop: cardComponent.offset().top
@@ -163,20 +182,24 @@
                 },
                 "columns": [
                     { "data": "nama" },
+                    { "data": "tgl_target_default" },
                     {
                         "render": function (data, type, full, meta) {
                             // return '<hr style="border: 10px; border-color: '+full.color+'; border-radius: 5px;">';
                             return '<span style="font-weight: bold; color: '+full.color+'">'+full.color+'</span>';
                         },
-                    }
+                    },
+                    { "data": "ord" },
                 ],
-                "order": [[0,'asc']]
+                "order": [[3,'asc']]
             });
             $('#datatable tbody').on( 'click', 'tr', function () {
                 var data = tables.row( this ).data();
                 idArea = data.id;
                 namaArea = data.nama;
+                target = data.tgl_target_default;
                 color = data.color;
+                order = data.ord;
                 // console.log(data);
                 if ( $(this).hasClass('selected') ) {
                     $(this).removeClass('selected');
@@ -203,6 +226,7 @@
                         method: "post",
                         data: $(this).serialize(),
                         success: function(result) {
+                            // console.log(result);
                             var data = JSON.parse(result);
                             if (data.status == 'success') {
                                 Swal.fire({
@@ -229,7 +253,7 @@
                     $.ajax({
                         url: "{{ url('dashboard/master/area/edit') }}",
                         method: "post",
-                        data: {id: idArea, area: iArea.val(), color: iColor.val()},
+                        data: {id: idArea, area: iArea.val(), target: iTarget.val(), color: iColor.val(), ord: iOrder.val()},
                         success: function(result) {
                             var data = JSON.parse(result);
                             console.log(data);

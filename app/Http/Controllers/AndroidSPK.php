@@ -35,24 +35,60 @@ class AndroidSPK extends Controller
                     ['id_area','=',$idArea],
                 ]);
             if ($areaPermission->exists()) {
-                $spk = DB::table('penjualan_trn')->where([
-                    ['no_spk','=',$noSpk],
-                    ['id_area','=',$idArea],
-                ]);
-                if ($spk->exists()) {
-                    $result = array(
-                        [
-                            'status' => 'success',
-                            'data' => $spk->first(),
-                        ]
-                    );
+                if ($idArea == '10') {
+                    $info = DB::table('penjualan_trn')
+                        ->where([
+                            ['no_spk','=',$noSpk],
+                        ])
+                        ->whereIn('id_area',['5','9'])
+                        ->orderBy('id_area')
+                        ->get();
+                    $spk = DB::table('penjualan_trn')
+                        ->where([
+                            ['no_spk','=',$noSpk],
+                            ['id_area','=',$idArea],
+                        ]);
                 } else {
-                    $result = array(
-                        [
-                            'status' => 'success',
-                            'data' => 'baru',
-                        ]
-                    );
+                    $spk = DB::table('penjualan_trn')->where([
+                        ['no_spk','=',$noSpk],
+                        ['id_area','=',$idArea],
+                    ]);
+                }
+
+                if ($spk->exists()) {
+                    if ($idArea == '10') {
+                        $result = array(
+                            [
+                                'status' => 'success',
+                                'data' => $spk->first(),
+                                'info' => $info,
+                            ]
+                        );
+                    } else {
+                        $result = array(
+                            [
+                                'status' => 'success',
+                                'data' => $spk->first(),
+                            ]
+                        );
+                    }
+                } else {
+                    if ($idArea == '10') {
+                        $result = array(
+                            [
+                                'status' => 'success',
+                                'data' => 'baru',
+                                'info' => $info,
+                            ]
+                        );
+                    } else {
+                        $result = array(
+                            [
+                                'status' => 'success',
+                                'data' => 'baru',
+                            ]
+                        );
+                    }
                 }
             } else {
                 $result = array(
@@ -99,12 +135,22 @@ class AndroidSPK extends Controller
 '.$catatan.'
 
 ';
-                    $data = [
-                        'catatan' => $newCat,
-                        'tanggal' => $tanggal,
-                        'username' => $username,
-                        'status' => $status,
-                    ];
+                    if (in_array($idArea,['5','9'])) {
+                        $data = [
+                            'catatan' => $newCat,
+                            'tanggal' => $tanggal,
+                            'username' => $username,
+                            'nominal' => $request->nominal,
+                            'status' => $status,
+                        ];
+                    } else {
+                        $data = [
+                            'catatan' => $newCat,
+                            'tanggal' => $tanggal,
+                            'username' => $username,
+                            'status' => $status,
+                        ];
+                    }
                     if ($spk->update($data)) {
                         $result = array(
                             [
@@ -124,14 +170,26 @@ class AndroidSPK extends Controller
 '.$catatan.'
 
 ';
-                    $data = [
-                        'no_spk' => $noSpk,
-                        'id_area' => $idArea,
-                        'catatan' => $newCat,
-                        'tanggal' => $tanggal,
-                        'username' => $username,
-                        'status' => $status,
-                    ];
+                    if (in_array($idArea,['5','9'])) {
+                        $data = [
+                            'no_spk' => $noSpk,
+                            'id_area' => $idArea,
+                            'catatan' => $newCat,
+                            'tanggal' => $tanggal,
+                            'username' => $username,
+                            'nominal' => $request->nominal,
+                            'status' => $status,
+                        ];
+                    } else {
+                        $data = [
+                            'no_spk' => $noSpk,
+                            'id_area' => $idArea,
+                            'catatan' => $newCat,
+                            'tanggal' => $tanggal,
+                            'username' => $username,
+                            'status' => $status,
+                        ];
+                    }
                     if (DB::table('penjualan_trn')->insert($data)) {
                         $result = array(
                             [

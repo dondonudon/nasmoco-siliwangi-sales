@@ -11641,7 +11641,8 @@ a:focus {
 }
 
 .bg-login-image {
-  background: url("https://source.unsplash.com/K4mSJ7kc0As/600x800");
+  background: url("https://source.unsplash.com/xjSkI_seiZY/800x600/");
+  /*background: url("https://source.unsplash.com/K4mSJ7kc0As/600x800");*/
   background-position: center;
   background-size: cover;
 }

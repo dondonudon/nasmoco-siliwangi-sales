@@ -102,27 +102,28 @@ class Dashboard extends Controller
         $username = $request->username;
         $password = $request->password;
 
-        $user = msUser::where('username',$username)->get();
-        if ($user->count() > 0) {
-            $passUser = Crypt::decryptString($user[0]['password']);
+        $user = DB::table('ms_users')->where('username','=',$username);
+        if ($user->exists()) {
+            $dataUser = $user->first();
+            $passUser = Crypt::decryptString($dataUser->password);
             if ($password == $passUser) {
                 Session::put('username',$username);
-                Session::put('nama_lengkap',$user[0]['nama_lengkap']);
+                Session::put('nama_lengkap',$dataUser->nama_lengkap);
 
-                $result = array([
+                $result = [
                     'status' => 'success'
-                ]);
+                ];
             } else {
-                $result = array([
+                $result = [
                     'status' => 'failed',
-                    'reason' => 'Cek kembali username dan password anda!',
-                ]);
+                    'reason' => 'Password Salah',
+                ];
             }
         } else {
-            $result = array([
+            $result = [
                 'status' => 'failed',
-                'reason' => 'Cek kembali username dan password anda!',
-            ]);
+                'reason' => 'User tidak terdaftar',
+            ];
         }
         return json_encode($result);
     }
@@ -133,5 +134,19 @@ class Dashboard extends Controller
         } else {
             return view('dashboard-overview');
         }
+    }
+
+    public function sessionFlush() {
+        Session::flush();
+        if(Session::has('username')) {
+            $result = [
+                'status' => 'failed'
+            ];
+        } else {
+            $result = [
+                'status' => 'success'
+            ];
+        }
+        return json_encode($result);
     }
 }
