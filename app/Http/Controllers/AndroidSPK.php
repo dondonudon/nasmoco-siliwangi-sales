@@ -29,82 +29,29 @@ class AndroidSPK extends Controller
 
         $user = DB::table('ms_users')->where('username','=',$username);
         if ($user->exists()) {
-            $areaPermission = DB::table('ms_user_areas')
+            $userArea = DB::table('ms_user_areas')
                 ->where([
                     ['username','=',$username],
                     ['id_area','=',$idArea],
                 ]);
-            if ($areaPermission->exists()) {
-                if ($idArea == '10') {
-                    $info = DB::table('penjualan_trn')
-                        ->where([
-                            ['no_spk','=',$noSpk],
-                        ])
-                        ->whereIn('id_area',['5','9'])
-                        ->orderBy('id_area')
-                        ->get();
-                    $spk = DB::table('penjualan_trn')
-                        ->where([
-                            ['no_spk','=',$noSpk],
-                            ['id_area','=',$idArea],
-                        ]);
-                } else {
-                    $spk = DB::table('penjualan_trn')->where([
+            if ($userArea->exists()) {
+                $trn = DB::table('penjualan_trn')
+                    ->where([
                         ['no_spk','=',$noSpk],
                         ['id_area','=',$idArea],
                     ]);
-                }
-
-                if ($spk->exists()) {
-                    if ($idArea == '10') {
-                        $result = array(
-                            [
-                                'status' => 'success',
-                                'data' => $spk->first(),
-                                'info' => $info,
-                            ]
-                        );
-                    } else {
-                        $result = array(
-                            [
-                                'status' => 'success',
-                                'data' => $spk->first(),
-                            ]
-                        );
-                    }
-                } else {
-                    if ($idArea == '10') {
-                        $result = array(
-                            [
-                                'status' => 'success',
-                                'data' => 'baru',
-                                'info' => $info,
-                            ]
-                        );
-                    } else {
-                        $result = array(
-                            [
-                                'status' => 'success',
-                                'data' => 'baru',
-                            ]
-                        );
-                    }
-                }
+                $result = array($trn->get());
             } else {
-                $result = array(
-                    [
-                        'status' => 'failed',
-                        'reason' => 'Username not alowed to edit area',
-                    ]
-                );
+                $result = [
+                    'status' => 'failed',
+                    'reason' => 'User tidak memiliki akses ke area tersebut',
+                ];
             }
         } else {
-            $result = array(
-                [
-                    'status' => 'failed',
-                    'reason' => 'username not available',
-                ]
-            );
+            $result = [
+                'status' => 'failed',
+                'reason' => 'Username tidak terdaftar',
+            ];
         }
         return json_encode($result);
     }
@@ -129,81 +76,106 @@ class AndroidSPK extends Controller
                     ['no_spk','=',$noSpk],
                     ['id_area','=',$idArea],
                 ]);
-                if ($spk->exists()) {
-                    $oldCat = $spk->first();
-                    $newCat = $oldCat->catatan.$tanggal.' - '.$username.'
+                $oldCat = $spk->first();
+                $newCat = $oldCat->catatan.$tanggal.' - '.$username.'
 '.$catatan.'
 
 ';
-                    if (in_array($idArea,['5','9'])) {
-                        $data = [
-                            'catatan' => $newCat,
-                            'tanggal' => $tanggal,
-                            'username' => $username,
-                            'nominal' => $request->nominal,
-                            'status' => $status,
-                        ];
-                    } else {
-                        $data = [
-                            'catatan' => $newCat,
-                            'tanggal' => $tanggal,
-                            'username' => $username,
-                            'status' => $status,
-                        ];
-                    }
-                    if ($spk->update($data)) {
-                        $result = array(
-                            [
-                                'status' => 'success',
-                            ]
-                        );
-                    } else {
-                        $result = array(
-                            [
-                                'status' => 'failed',
-                                'reason' => 'gagal update data',
-                            ]
-                        );
-                    }
+                if (in_array($idArea,['5','9'])) {
+                    $data = [
+                        'catatan' => $newCat,
+                        'tanggal' => $tanggal,
+                        'username' => $username,
+                        'nominal' => $request->nominal,
+                        'status' => $status,
+                    ];
                 } else {
-                    $newCat = $tanggal.' - '.$username.'
+                    $data = [
+                        'catatan' => $newCat,
+                        'tanggal' => $tanggal,
+                        'username' => $username,
+                        'status' => $status,
+                    ];
+                }
+                if ($spk->update($data)) {
+                    $result = array(
+                        [
+                            'status' => 'success',
+                        ]
+                    );
+                } else {
+                    $result = array(
+                        [
+                            'status' => 'failed',
+                            'reason' => 'gagal update data',
+                        ]
+                    );
+                }
+            } else {
+                $result = array(
+                    [
+                        'status' => 'failed',
+                        'data' => 'Username not alowed to edit area',
+                    ]
+                );
+            }
+        } else {
+            $result = array(
+                [
+                    'status' => 'failed',
+                    'data' => 'username not available',
+                ]
+            );
+        }
+        return json_encode($result);
+    }
+
+    public function updateTarget(Request $request) {
+        $noSpk = $request->no_spk;
+        $idArea = $request->id_area;
+        $catatan = $request->catatan;
+        $tanggal = date('Y-m-d');
+        $tanggalTarget = $request->tanggal;
+        $username = $request->username;
+        $status = $request->status;
+
+        $user = DB::table('ms_users')->where('username','=',$username);
+        if ($user->exists()) {
+            $areaPermission = DB::table('ms_user_areas')
+                ->where([
+                    ['username','=',$username],
+                    ['id_area','=',$idArea],
+                ]);
+            if ($areaPermission->exists()) {
+                $spk = DB::table('penjualan_trn')->where([
+                    ['no_spk','=',$noSpk],
+                    ['id_area','=',$idArea],
+                ]);
+                $oldCat = $spk->first();
+                $newCat = $oldCat->catatan.$tanggal.' - '.$username.'
 '.$catatan.'
 
 ';
-                    if (in_array($idArea,['5','9'])) {
-                        $data = [
-                            'no_spk' => $noSpk,
-                            'id_area' => $idArea,
-                            'catatan' => $newCat,
-                            'tanggal' => $tanggal,
-                            'username' => $username,
-                            'nominal' => $request->nominal,
-                            'status' => $status,
-                        ];
-                    } else {
-                        $data = [
-                            'no_spk' => $noSpk,
-                            'id_area' => $idArea,
-                            'catatan' => $newCat,
-                            'tanggal' => $tanggal,
-                            'username' => $username,
-                            'status' => $status,
-                        ];
-                    }
-                    if (DB::table('penjualan_trn')->insert($data)) {
-                        $result = array(
-                            [
-                                'status' => 'success',
-                            ]
-                        );
-                    } else {
-                        $result = array(
-                            [
-                                'status' => 'failed',
-                                'reason' => 'gagal menyimpan data baru',
-                            ]
-                        );
-                    }
+                $data = [
+                    'catatan' => $newCat,
+                    'tanggal_target' => $tanggalTarget,
+                    'username' => $username,
+                    'status' => $status,
+                    'tgl_target_updated' => '1',
+                ];
+                if ($spk->update($data)) {
+                    $result = array(
+                        [
+                            'status' => 'success',
+                        ]
+                    );
+                } else {
+                    $result = array(
+                        [
+                            'status' => 'failed',
+                            'reason' => 'gagal update data',
+                        ]
+                    );
                 }
             } else {
                 $result = array(

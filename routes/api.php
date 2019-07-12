@@ -24,3 +24,4 @@ Route::post('ms-userarea/check','MsUserAreaController@checkArea');
 Route::post('spk/search','AndroidSPK@search');
 Route::post('spk/area','AndroidSPK@getTrn');
 Route::post('spk/save','AndroidSPK@comment');
+Route::post('spk/update/target','AndroidSPK@updateTarget');

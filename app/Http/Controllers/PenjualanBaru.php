@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\msArea;
 use App\msWilayahKota;
 use App\penjualanMst;
 use App\penjualanTrn;
+use http\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -77,51 +79,81 @@ class PenjualanBaru extends Controller
 //    }
 
     public function add(Request $request) {
-        $noSPK = $request->no_spk;
-        $aju = $request->aju;
-        if ($request->has('nominal')) {
-            $dataTrn = [
-                'no_spk' => $request->no_spk,
-                'id_area' => $aju,
-                'catatan' => 'Initial Data',
-                'nominal' => $request->nominal,
-                'tanggal' => date("Y-m-d", strtotime($request->tanggal_spk)),
-                'username' => $request->username,
-                'status' => '1',
-            ];
-        } else {
-            $dataTrn = [
-                'no_spk' => $request->no_spk,
-                'id_area' => $aju,
-                'catatan' => 'Initial Data',
-                'tanggal' => date("Y-m-d", strtotime($request->tanggal_spk)),
-                'username' => $request->username,
-                'status' => '1',
-            ];
-        }
-        $dataMst = [
-            'no_spk' => $request->no_spk,
-            'nama_customer' => $request->nama_customer,
-            'no_rangka' => $request->no_rangka,
-            'id_leasing' => $request->id_leasing,
-            'id_kota' => $request->id_kota,
-            'id_kecamatan' => $request->id_kecamatan,
-            'alamat' => $request->alamat,
-            'tanggal_spk' => date("Y-m-d", strtotime($request->tanggal_spk)),
-            'username' => $request->username,
-        ];
+        $tglSekarang = date('Y-m-d');
+        $tglIncrement = $tglSekarang;
+        $area = DB::table('ms_areas')->get();
         $mst = DB::table('penjualan_mst');
         $trn = DB::table('penjualan_trn');
+
+        $noSPK = $request->no_spk;
+        $aju = $request->aju;
+        $namaCust = $request->nama_customer;
+        $noRangka = $request->no_rangka;
+        $idLeasing = $request->id_leasing;
+        $idKota = $request->id_kota;
+        $idKecamatan = $request->id_kecamatan;
+        $alamat = $request->alamat;
+        $tglSPK = date('Y-m-d',strtotime($request->tanggal_spk));
+        $username = Session::get('username');
+
         if ($mst->where('no_spk','=',$noSPK)->doesntExist()) {
-            if ($mst->insert($dataMst) && $trn->insert($dataTrn)) {
-                $result = [
-                    'status' => 'success',
-                ];
-            } else {
-                $result = [
-                    'status' => 'failed',
-                    'reason' => 'gagal menyimpan data',
-                ];
+            $mstBaru = new penjualanMst;
+            $mstBaru->no_spk = $noSPK;
+            $mstBaru->nama_customer = $namaCust;
+            $mstBaru->no_rangka = $noRangka;
+            $mstBaru->id_leasing = $idLeasing;
+            $mstBaru->id_kota = $idKota;
+            $mstBaru->id_kecamatan = $idKecamatan;
+            $mstBaru->alamat = $alamat;
+            $mstBaru->tanggal_spk = $tglSPK;
+            $mstBaru->username = $username;
+
+            if ($mstBaru->save()) {
+                $counter = 0;
+                $dataTrn = array();
+                foreach ($area as $a) {
+                    if ($a->id !== '1') {
+                        $startDate = $tglIncrement;
+                        $default = $a->tgl_target_default;
+                        $your_date = strtotime($default." day", strtotime($startDate));
+                        $tglIncrement = date("Y-m-d", $your_date);
+                    }
+                    if ($a->id == $aju) {
+                        $listTrn = array(
+                            'no_spk' => $noSPK,
+                            'id_area' => $a->id,
+                            'tanggal_target' => $tglIncrement,
+                            'catatan' => 'initial',
+                            'tanggal' => $tglSPK,
+                            'username' => $username,
+                            'status' => '1',
+                            'created_at' => date('Y-m-d H:i:s'),
+                            'updated_at' => date('Y-m-d H:i:s'),
+                        );
+                    } else {
+                        $listTrn = array(
+                            'no_spk' => $noSPK,
+                            'id_area' => $a->id,
+                            'tanggal_target' => $tglIncrement,
+                            'created_at' => date('Y-m-d H:i:s'),
+                            'updated_at' => date('Y-m-d H:i:s'),
+                        );
+                    }
+                    array_push($dataTrn,$listTrn);
+                    if ($trn->insert($listTrn)) {
+                        $counter++;
+                    }
+                }
+                if ($counter == $area->count()) {
+                    $result = [
+                        'status' => 'success',
+                    ];
+                } else {
+                    $result = [
+                        'status' => 'failed',
+                        'reason' => 'Gagal insert trn',
+                    ];
+                }
             }
         } else {
             $result = [

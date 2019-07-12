@@ -7,6 +7,9 @@
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Penjualan</h1>
+            <button class="btn d-none d-sm-inline-block btn btn-sm btn-info shadow-sm" id="btnUpload">
+                <i class="fas fa-upload"></i> Upload Data
+            </button>
         </div>
 
         <!-- Content Row -->
@@ -185,6 +188,7 @@
             var buttonNew = $('#btnNew');
             var buttonEdit = $('#btnEdit');
             var buttonCancel = $('#btnCancel');
+            var buttonUpload = $('#btnUpload');
 
             $.ajax({
                 url: "{{ url('dashboard/penjualan/baru/leasing') }}",
@@ -335,6 +339,7 @@
                         method: "post",
                         data: $(this).serialize(),
                         success: function(result) {
+                            // console.log(result);
                             var data = JSON.parse(result);
                             if (data.status == 'success') {
                                 Swal.fire({
