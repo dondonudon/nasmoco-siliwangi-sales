@@ -27,9 +27,15 @@
     <!-- DataTables -->
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/datatables/datatables.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/datatables/FixedColumns-3.2.5/css/fixedColumns.bootstrap4.css') }}">
 
     <!-- DateRangePicker -->
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/daterangepicker-master/daterangepicker.css') }}">
+
+    <!-- Slim Select -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/slimselect/slimselect.min.css') }}">
+
+    @yield('style')
 
 </head>
 
@@ -91,6 +97,10 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
         @endforeach
+
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
 
     </ul>
     <!-- End of Sidebar -->
@@ -185,7 +195,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2019</span>
+                    <span>Copyright &copy; NASMOCO Siliwangi {{ date('Y') }}</span>
                 </div>
             </div>
         </footer>
@@ -228,6 +238,9 @@
 <!-- SweetAlert 2 -->
 <script src="{{ asset('vendor/sweetalert2-8.13.1/sweetalert2.all.min.js') }}"></script>
 
+<!-- DateRangePicker -->
+<script src="{{ asset('vendor/notify.js/notify.js') }}"></script>
+
 <!-- Core plugin JavaScript-->
 <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
@@ -237,10 +250,15 @@
 <!-- DataTables -->
 <script type="text/javascript" src="{{ asset('vendor/datatables/DataTables-1.10.18/js/jquery.dataTables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendor/datatables/DataTables-1.10.18/js/dataTables.bootstrap4.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendor/datatables/FixedColumns-3.2.5/js/dataTables.fixedColumns.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendor/datatables/FixedColumns-3.2.5/js/fixedColumns.bootstrap4.min.js') }}"></script>
 
-<!-- DataTables -->
+<!-- DateRangePicker -->
 <script type="text/javascript" src="{{ asset('vendor/daterangepicker-master/moment.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendor/daterangepicker-master/daterangepicker.js') }}"></script>
+
+<!-- Slim Select -->
+<script type="text/javascript" src="{{ asset('vendor/slimselect/slimselect.min.js') }}"></script>
 
 <script type="text/javascript">
     const btnLogout = $('#btnLogout');

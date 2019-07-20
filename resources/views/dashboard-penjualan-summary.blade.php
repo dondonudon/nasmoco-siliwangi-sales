@@ -1,5 +1,13 @@
 @extends('dashboard-layout')
 
+@section('style')
+    <style>
+        #datatable {
+            width: 1700px;
+        }
+    </style>
+@endsection
+
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -13,7 +21,7 @@
 
         <div class="row">
 
-            <div class="col-xl col-lg">
+            <div class="col-xl-6 col-lg">
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -22,20 +30,58 @@
                     <!-- Card Body -->
                     <form id="form_filter">
                         <div class="card-body">
+                            <div class="form-group">
+                                <label for="inputTanggal">Tanggal</label>
+                                <input type="text" class="form-control" id="inputTanggal" name="tanggal" placeholder="Range Tanggal" autocomplete="off" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputTanggal">Status Penjualan</label>
+                                <select class="form-control" id="inputPenjualan" name="penjualan" required>
+                                    <option value="0">Belum Selesai</option>
+                                    <option value="1">Selesai</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Card Footer -->
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-xl-8"></div>
+                                <div class="col-xl-4">
+                                    <button class="btn btn-sm btn-block btn-danger" id="btnView">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-lg">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Info Perbedaan Tanggal</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <form id="form_difference">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="noSpk">Nomor SPK</label>
+                                <select id="noSpk"></select>
+                            </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="inputTanggal">Tanggal</label>
-                                        <input type="text" class="form-control" id="inputTanggal" name="tanggal" placeholder="Range Tanggal" autocomplete="off" required>
+                                        <label for="exampleFormControlSelect1">Area Awal</label>
+{{--                                        <input type="text" class="form-control" id="area_awal" name="area_awal" placeholder="Area Awal">--}}
+                                        <select id="area_awal"></select>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="inputTanggal">Status Penjualan</label>
-                                        <select class="form-control" id="inputPenjualan" name="penjualan" required>
-                                            <option value="1">Selesai</option>
-                                            <option value="0">Belum Selesai</option>
-                                        </select>
+                                        <label for="exampleFormControlSelect1">Area Akhir</label>
+                                        <select id="area_akhir"></select>
                                     </div>
                                 </div>
                             </div>
@@ -43,9 +89,9 @@
                         <!-- Card Footer -->
                         <div class="card-footer">
                             <div class="row">
-                                <div class="col-xl-10"></div>
-                                <div class="col-xl-2">
-                                    <button class="btn btn-block btn-danger" id="btnView">
+                                <div class="col-xl-8"></div>
+                                <div class="col-xl-4">
+                                    <button type="submit" class="btn btn-sm btn-block btn-danger" id="btnViewDateDiff" disabled>
                                         <i class="fas fa-eye"></i> View
                                     </button>
                                 </div>
@@ -62,18 +108,95 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Chart</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Status Area Penjualan</h6>
+                        <button class="btn btn-sm btn-outline-primary" id="newTab">
+                            <i class="fas fa-external-link-alt"></i> Buka di tab baru
+                        </button>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
-                        <div id="timeline" style="height: 450px;"></div>
+                        <table class="table table-hover table-bordered table-sm display nowrap" id="datatable" width="100%">
+                            <thead class="text-white bg-dark">
+                                <tr>
+                                    <th>Nomor SPK</th>
+                                    <th>AJU FAKTUR</th>
+                                    <th>AJU DR</th>
+                                    <th>PDS IN</th>
+                                    <th>GESEK</th>
+                                    <th>RETAIL</th>
+                                    <th>F. DATANG</th>
+                                    <th>PDS OUT</th>
+                                    <th>STNK</th>
+                                    <th>PENAGIHAN</th>
+                                    <th>PELUNASAN</th>
+                                    <th>BPKB</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" id="viewNoSpk" placeholder="Nomor SPK" readonly>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-danger" type="button" id="btnViewDetail" disabled>View Detail SPK</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4"></div>
+                            <div class="col-xl-2">
+                                <button class="btn btn-block btn-outline-danger" id="btnClose">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row d-none" id="cardDetailSPK">
+
+            <div class="col-xl col-lg">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Detail SPK</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <table class="table table-sm table-bordered" width="100%">
+                            <thead class="text-white bg-primary">
+                            <tr>
+                                <th>info</th>
+                                <th>AJU FAKTUR</th>
+                                <th>AJU DR</th>
+                                <th>PDS IN</th>
+                                <th>GESEK</th>
+                                <th>RETAIL</th>
+                                <th>F. DATANG</th>
+                                <th>PDS OUT</th>
+                                <th>STNK</th>
+                                <th>PENAGIHAN</th>
+                                <th>PELUNASAN</th>
+                                <th>BPKB</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr id="selisihPerArea"></tr>
+                            <tr id="selisihPerFaktur"></tr>
+                            <tr id="retailVsPenagihan"></tr>
+                            <tr id="retailVsPelunasan"></tr>
+                            <tr id="custom"></tr>
+                            </tbody>
+                        </table>
                     </div>
                     <!-- Card Footer -->
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-xl-10"></div>
                             <div class="col-xl-2">
-                                <button class="btn btn-block btn-danger" id="btnClose">Close</button>
+                                <button class="btn btn-block btn-outline-danger" id="btnCloseDetailSPK">Close</button>
                             </div>
                         </div>
                     </div>
@@ -82,25 +205,108 @@
         </div>
 
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade bd-example-modal-lg" id="modalDetail" tabindex="-1" role="dialog" aria-labelledby="modalDetailTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalDetailTitle">Detail SPK</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <dl class="row" id="detailArea">
+                        <dt class="col-sm-3">Nomor SPK</dt>
+                        <dd class="col-sm-9">WV-9175-2019</dd>
+
+                        <dt class="col-sm-3">AJU FAKTUR</dt>
+                        <dd class="col-sm-9">
+                            <dl class="row">
+                                <dt class="col-sm-4">Catatan</dt>
+                                <dd class="col-sm-8">Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc.</dd>
+
+                                <dt class="col-sm-4">Tanggal Validasi</dt>
+                                <dd class="col-sm-8">10-07-2019</dd>
+
+                                <dt class="col-sm-4">Tanggal Target</dt>
+                                <dd class="col-sm-8">10-07-2019</dd>
+
+                                <dt class="col-sm-4">Nominal</dt>
+                                <dd class="col-sm-8">100.000.000</dd>
+                            </dl>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCloseDetail">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('script')
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            }
+        });
         const iStatus = $('#inputPenjualan');
+        const iAreaAwal = $('#area_awal');
+        const iAreaAkhir = $('#area_akhir');
         const formFilter = $('#form_filter');
+        const formDifference = $('#form_difference');
 
         const btnCancel = $('#btnClose');
+        const btnCloseDetail = $('#btnCloseDetail');
+        const btnCloseDetailSPK = $('#btnCloseDetailSPK');
+        const btnNewTab = $('#newTab');
+        const btnViewDetail = $('#btnViewDetail');
+        const btnViewDateDiff = $('#btnViewDateDiff');
+
+        const vNoSpk = $('#viewNoSpk');
 
         const cardComponent = $('#cardData');
+        const cardDetailSPK = $('#cardDetailSPK');
+
+        let noSPK;
+
+        const selectSpk = new SlimSelect({
+            select: '#noSpk',
+            placeholder: 'Pilih SPK'
+        });
+
+        const dataAreaSelect = [
+            {text: 'AJU FAKTUR', value: '1'},
+            {text: 'AJU DR', value: '2'},
+            {text: 'PDS IN', value: '3'},
+            {text: 'GESEK', value: '4'},
+            {text: 'RETAIL', value: '5'},
+            {text: 'FAKTUR DATANG', value: '6'},
+            {text: 'PDS OUT', value: '7'},
+            {text: 'STNK JADI', value: '8'},
+            {text: 'PENAGIHAN', value: '9'},
+            {text: 'PELUNASAN', value: '10'},
+            {text: 'BPKB', value: '11'},
+        ];
+
+        const selectAreaAwal = new SlimSelect({
+            select: '#area_awal',
+        });
+        selectAreaAwal.setData(dataAreaSelect);
+
+        const selectAreaAkhir = new SlimSelect({
+            select: '#area_akhir',
+        });
+        selectAreaAkhir.setData(dataAreaSelect);
 
         const iTanggal = $('#inputTanggal').daterangepicker({
             maxDate: moment(),
             startDate: moment().startOf('month'),
             endDate: moment(),
-            maxSpan: {
-                'days': 31,
-            },
             locale: {
                 format: 'DD-MM-YYYY'
             }
@@ -109,51 +315,461 @@
         btnCancel.click(function (e) {
             e.preventDefault();
             $("html, body").animate({ scrollTop: 0 }, 500, function () {
+                btnViewDetail.attr('disabled',true);
+                vNoSpk.val('');
                 cardComponent.addClass('d-none');
             });
         });
 
-        formFilter.submit(function(e) {
+        btnCloseDetail.click(function (e) {
+            e.preventDefault();
+        });
+
+        btnCloseDetailSPK.click(function (e) {
+            e.preventDefault();
+            $("html, body").animate({ scrollTop: 0 }, 500, function () {
+                cardDetailSPK.addClass('d-none');
+            });
+        });
+
+        btnNewTab.click(function(e) {
+            e.preventDefault();
             let startDate = moment($('#inputTanggal').data('daterangepicker').startDate._d).format('YYYY-MM-DD');
             let endDate = moment($('#inputTanggal').data('daterangepicker').endDate._d).format('YYYY-MM-DD');
+            let url = "/dashboard/penjualan/summary/"+startDate+"/"+endDate+"/"+iStatus.val();
+            window.open('{{ url('') }}'+url);
+        });
+
+        btnViewDetail.click(function(e) {
             e.preventDefault();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                }
-            });
+            let htmlData = '';
             $.ajax({
-                url: "{{ url('dashboard/penjualan/summary/list') }}",
+                url: "{{ url('dashboard/penjualan/summary/spk/detail') }}",
                 method: "post",
-                data: {start_date: startDate, end_date: endDate, status: iStatus.val()},
+                data: {no_spk: noSPK},
                 success: function(result) {
-                    var data = JSON.parse(result);
-                    if (data.rows == '') {
-                        Swal.fire({
-                            type: 'info',
-                            title: 'Data kosong',
-                            text: 'Tidak terdapat data pada filter yang anda pilih'
-                        });
-                    } else {
-                        cardComponent.removeClass('d-none');
-                        google.charts.load('current', {'packages':['timeline']});
-                        google.charts.setOnLoadCallback(function () {
-                            drawChart(result);
-                        });
-                        $('html, body').animate({
-                            scrollTop: cardComponent.offset().top
-                        }, 500);
-                    }
+                    console.log(result);
+                    let data = JSON.parse(result);
+                    htmlData += '<dt class="col-sm-3">Nomor SPK</dt>';
+                    htmlData += '<dd class="col-sm-9">'+data[0].no_spk+'</dd>';
+
+                    data.forEach(function(v,i) {
+                        htmlData += '<dt class="col-sm-3">'+v.nama_area+'</dt>';
+                        htmlData += '<dd class="col-sm-9">';
+                        htmlData += '<dl class="row">';
+                        htmlData += '<dt class="col-sm-4">Catatan</dt>';
+                        htmlData += '<dd class="col-sm-8">'+v.catatan+'</dd>';
+
+                        htmlData += '<dt class="col-sm-4">Tanggal Validasi</dt>';
+                        htmlData += '<dd class="col-sm-8">'+v.tanggal+'</dd>';
+
+                        htmlData += '<dt class="col-sm-4">Tanggal Target</dt>';
+                        htmlData += '<dd class="col-sm-8">'+v.tanggal_target+'</dd>';
+
+                        htmlData += '<dt class="col-sm-4">Nominal</dt>';
+                        htmlData += '<dd class="col-sm-8">'+v.nominal+'</dd>';
+                        htmlData += '</dl>';
+                        htmlData += '</dd>';
+                    });
+                    $('#detailArea').html(htmlData);
+                    $('#modalDetail').modal('show');
                 }
             });
         });
 
-        function drawChart(datas) {
-            var container = document.getElementById('timeline');
-            var chart = new google.visualization.Timeline(container);
-            var data = new google.visualization.DataTable(datas);
-
-            chart.draw(data);
+        function setCreatedCells(data) {
+            let result;
+            if (data == null) {
+                result = 'white';
+            } else {
+                if (tgl.indexOf('overdue') == -1) {
+                    result = 'white';
+                } else {
+                    result = 'red';
+                }
+            }
+            return result;
         }
+
+        $(document).ready(function () {
+            var tables = $('#datatable').DataTable({
+                // "scrollY": "150px",
+                "scrollX": true,
+                "scrollCollapse": true,
+                "paging": false,
+                // "pageLength": 25,
+                "searching": false,
+                "bInfo": false,
+                "fixedColumns": {
+                    "leftColumns": 1,
+                },
+                "autoWidth": false,
+                "columnDefs": [
+                    { width: '200px', targets: 0 },
+                    { width: '100px', targets: 1 },
+                    { width: '100px', targets: 2 },
+                    { width: '100px', targets: 3 },
+                    { width: '100px', targets: 4 },
+                    { width: '100px', targets: 5 },
+                    { width: '100px', targets: 6 },
+                    { width: '100px', targets: 7 },
+                    { width: '100px', targets: 8 },
+                    { width: '100px', targets: 9 },
+                    { width: '100px', targets: 10 },
+                    { width: '100px', targets: 11 },
+                ],
+                {{--"ajax": {--}}
+                {{--    "method": "GET",--}}
+                {{--    "url": "{{ url('/dashboard/penjualan/summary') }}",--}}
+                {{--    "header": {--}}
+                {{--        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content'),--}}
+                {{--    }--}}
+                {{--},--}}
+                "columns": [
+                    {
+                        "data": "no_spk",
+                        createdCell: function (td, cellData, rowData, row, col) {
+                            $(td).css('background-color', 'white');
+                            $(td).css('color', 'black');
+                        }
+                    },
+                    {
+                        "data": "1",
+                        createdCell: function (td, cellData, rowData, row, col) {
+                            var tgl = cellData;
+                            if (tgl == null) {
+                                $(td).css('background-color', 'white');
+                            } else {
+                                if (tgl.startsWith('overdue') == true) {
+                                    $(td).html(cellData.replace('overdue -', ''));
+                                    $(td).css('background-color', 'red');
+                                    $(td).css('color', 'white');
+                                } else if (tgl.startsWith('updated') == true) {
+                                    $(td).html(cellData.replace('updated -', ''));
+                                    $(td).css('background-color', 'orange');
+                                    $(td).css('color', 'white');
+                                } else {
+                                    $(td).css('background-color', 'green');
+                                    $(td).css('color', 'white');
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "data": "2",
+                        createdCell: function (td, cellData, rowData, row, col) {
+                            var tgl = cellData;
+                            if (tgl == null) {
+                                $(td).css('background-color', 'white');
+                            } else {
+                                if (tgl.startsWith('overdue') == true) {
+                                    $(td).html(cellData.replace('overdue -', ''));
+                                    $(td).css('background-color', 'red');
+                                    $(td).css('color', 'white');
+                                } else if (tgl.startsWith('updated') == true) {
+                                    $(td).html(cellData.replace('updated -', ''));
+                                    $(td).css('background-color', 'orange');
+                                    $(td).css('color', 'white');
+                                } else {
+                                    $(td).css('background-color', 'green');
+                                    $(td).css('color', 'white');
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "data": "3",
+                        createdCell: function (td, cellData, rowData, row, col) {
+                            var tgl = cellData;
+                            if (tgl == null) {
+                                $(td).css('background-color', 'white');
+                            } else {
+                                if (tgl.startsWith('overdue') == true) {
+                                    $(td).html(cellData.replace('overdue -', ''));
+                                    $(td).css('background-color', 'red');
+                                    $(td).css('color', 'white');
+                                } else if (tgl.startsWith('updated') == true) {
+                                    $(td).html(cellData.replace('updated -', ''));
+                                    $(td).css('background-color', 'orange');
+                                    $(td).css('color', 'white');
+                                } else {
+                                    $(td).css('background-color', 'green');
+                                    $(td).css('color', 'white');
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "data": "4",
+                        createdCell: function (td, cellData, rowData, row, col) {
+                            var tgl = cellData;
+                            if (tgl == null) {
+                                $(td).css('background-color', 'white');
+                            } else {
+                                if (tgl.startsWith('overdue') == true) {
+                                    $(td).html(cellData.replace('overdue -', ''));
+                                    $(td).css('background-color', 'red');
+                                    $(td).css('color', 'white');
+                                } else if (tgl.startsWith('updated') == true) {
+                                    $(td).html(cellData.replace('updated -', ''));
+                                    $(td).css('background-color', 'orange');
+                                    $(td).css('color', 'white');
+                                } else {
+                                    $(td).css('background-color', 'green');
+                                    $(td).css('color', 'white');
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "data": "5",
+                        createdCell: function (td, cellData, rowData, row, col) {
+                            var tgl = cellData;
+                            if (tgl == null) {
+                                $(td).css('background-color', 'white');
+                            } else {
+                                if (tgl.startsWith('overdue') == true) {
+                                    $(td).html(cellData.replace('overdue -', ''));
+                                    $(td).css('background-color', 'red');
+                                    $(td).css('color', 'white');
+                                } else if (tgl.startsWith('updated') == true) {
+                                    $(td).html(cellData.replace('updated -', ''));
+                                    $(td).css('background-color', 'orange');
+                                    $(td).css('color', 'white');
+                                } else {
+                                    $(td).css('background-color', 'green');
+                                    $(td).css('color', 'white');
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "data": "6",
+                        createdCell: function (td, cellData, rowData, row, col) {
+                            var tgl = cellData;
+                            if (tgl == null) {
+                                $(td).css('background-color', 'white');
+                            } else {
+                                if (tgl.startsWith('overdue') == true) {
+                                    $(td).html(cellData.replace('overdue -', ''));
+                                    $(td).css('background-color', 'red');
+                                    $(td).css('color', 'white');
+                                } else if (tgl.startsWith('updated') == true) {
+                                    $(td).html(cellData.replace('updated -', ''));
+                                    $(td).css('background-color', 'orange');
+                                    $(td).css('color', 'white');
+                                } else {
+                                    $(td).css('background-color', 'green');
+                                    $(td).css('color', 'white');
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "data": "7",
+                        createdCell: function (td, cellData, rowData, row, col) {
+                            var tgl = cellData;
+                            if (tgl == null) {
+                                $(td).css('background-color', 'white');
+                            } else {
+                                if (tgl.startsWith('overdue') == true) {
+                                    $(td).html(cellData.replace('overdue -', ''));
+                                    $(td).css('background-color', 'red');
+                                    $(td).css('color', 'white');
+                                } else if (tgl.startsWith('updated') == true) {
+                                    $(td).html(cellData.replace('updated -', ''));
+                                    $(td).css('background-color', 'orange');
+                                    $(td).css('color', 'white');
+                                } else {
+                                    $(td).css('background-color', 'green');
+                                    $(td).css('color', 'white');
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "data": "8",
+                        createdCell: function (td, cellData, rowData, row, col) {
+                            var tgl = cellData;
+                            if (tgl == null) {
+                                $(td).css('background-color', 'white');
+                            } else {
+                                if (tgl.startsWith('overdue') == true) {
+                                    $(td).html(cellData.replace('overdue -', ''));
+                                    $(td).css('background-color', 'red');
+                                    $(td).css('color', 'white');
+                                } else if (tgl.startsWith('updated') == true) {
+                                    $(td).html(cellData.replace('updated -', ''));
+                                    $(td).css('background-color', 'orange');
+                                    $(td).css('color', 'white');
+                                } else {
+                                    $(td).css('background-color', 'green');
+                                    $(td).css('color', 'white');
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "data": "9",
+                        createdCell: function (td, cellData, rowData, row, col) {
+                            var tgl = cellData;
+                            if (tgl == null) {
+                                $(td).css('background-color', 'white');
+                            } else {
+                                if (tgl.startsWith('overdue') == true) {
+                                    $(td).html(cellData.replace('overdue -', ''));
+                                    $(td).css('background-color', 'red');
+                                    $(td).css('color', 'white');
+                                } else if (tgl.startsWith('updated') == true) {
+                                    $(td).html(cellData.replace('updated -', ''));
+                                    $(td).css('background-color', 'orange');
+                                    $(td).css('color', 'white');
+                                } else {
+                                    $(td).css('background-color', 'green');
+                                    $(td).css('color', 'white');
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "data": "10",
+                        createdCell: function (td, cellData, rowData, row, col) {
+                            var tgl = cellData;
+                            if (tgl == null) {
+                                $(td).css('background-color', 'white');
+                            } else {
+                                if (tgl.startsWith('overdue') == true) {
+                                    $(td).html(cellData.replace('overdue -', ''));
+                                    $(td).css('background-color', 'red');
+                                    $(td).css('color', 'white');
+                                } else if (tgl.startsWith('updated') == true) {
+                                    $(td).html(cellData.replace('updated -', ''));
+                                    $(td).css('background-color', 'orange');
+                                    $(td).css('color', 'white');
+                                } else {
+                                    $(td).css('background-color', 'green');
+                                    $(td).css('color', 'white');
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "data": "11",
+                        createdCell: function (td, cellData, rowData, row, col) {
+                            var tgl = cellData;
+                            if (tgl == null) {
+                                $(td).css('background-color', 'white');
+                            } else {
+                                if (tgl.startsWith('overdue') == true) {
+                                    $(td).html(cellData.replace('overdue -', ''));
+                                    $(td).css('background-color', 'red');
+                                    $(td).css('color', 'white');
+                                } else if (tgl.startsWith('updated') == true) {
+                                    $(td).html(cellData.replace('updated -', ''));
+                                    $(td).css('background-color', 'orange');
+                                    $(td).css('color', 'white');
+                                } else {
+                                    $(td).css('background-color', 'green');
+                                    $(td).css('color', 'white');
+                                }
+                            }
+                        }
+                    },
+                ],
+                "order": [[0,'asc']]
+            });
+
+            $('#datatable tbody').on( 'click', 'tr', function () {
+                var data = tables.row( this ).data();
+                noSPK = data.no_spk;
+                $('#viewNoSpk').val(noSPK);
+                // console.log(noSPK);
+                btnViewDetail.removeAttr('disabled');
+            });
+
+            formFilter.submit(function(e) {
+                let startDate = moment($('#inputTanggal').data('daterangepicker').startDate._d).format('YYYY-MM-DD');
+                let endDate = moment($('#inputTanggal').data('daterangepicker').endDate._d).format('YYYY-MM-DD');
+                e.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    }
+                });
+                $.ajax({
+                    url: "{{ url('dashboard/penjualan/summary/list') }}",
+                    method: "post",
+                    data: {start_date: startDate, end_date: endDate, status: iStatus.val()},
+                    success: function(result) {
+                        // console.log(result);
+                        var data = JSON.parse(result);
+                        if (data.rows == '') {
+                            Swal.fire({
+                                type: 'info',
+                                title: 'Data kosong',
+                                text: 'Tidak terdapat data pada filter yang anda pilih'
+                            });
+                        } else {
+                            cardComponent.removeClass('d-none');
+                            tables.clear().draw();
+                            tables.rows.add(data.data).draw();
+                            $('html, body').animate({
+                                scrollTop: cardComponent.offset().top
+                            }, 500);
+                        }
+                        let dataSPK = Array();
+                        let tableData = tables.data();
+                        for (i=0 ; i<tableData.length ; i++) {
+                            let array = {
+                                text: tableData[i].no_spk
+                            };
+                            dataSPK.push(array);
+                        }
+                        selectSpk.setData(dataSPK);
+                        btnViewDateDiff.removeAttr('disabled');
+                    }
+                });
+            });
+
+            formDifference.submit(function(e) {
+                e.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    }
+                });
+                $.ajax({
+                    url: "{{ url('dashboard/penjualan/summary/spk/difference') }}",
+                    method: "post",
+                    data: {no_spk: selectSpk.selected(), area_awal: iAreaAwal.val(), area_akhir: iAreaAkhir.val()},
+                    success: function(result) {
+                        // console.log(result);
+                        let htmlSpa = '<td>Selisih per Area</td>';
+                        let htmlSdf = '<td>Selisih dari Faktur</td>';
+
+                        var data = JSON.parse(result);
+                        cardDetailSPK.removeClass('d-none');
+
+                        data.selisih_per_area.forEach(function(v) {
+                            htmlSpa += '<td>'+v+'</td>';
+                        });
+
+                        data.selisih_dari_faktur.forEach(function(v) {
+                            htmlSdf += '<td>'+v+'</td>';
+                        });
+
+                        $('#selisihPerArea').html(htmlSpa);
+                        $('#selisihPerFaktur').html(htmlSdf);
+                        $('#retailVsPenagihan').html(data.retail_vs_penagihan);
+                        $('#retailVsPelunasan').html(data.retail_vs_pelunasan);
+                        $('#custom').html(data.custom);
+
+                        $('html, body').animate({
+                            scrollTop: cardDetailSPK.offset().top
+                        }, 500);
+                    }
+                });
+            });
+        });
     </script>
 @endsection

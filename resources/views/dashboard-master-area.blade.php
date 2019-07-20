@@ -18,9 +18,9 @@
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Data Area</h6>
-                        <button class="btn d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" id="btnNew" style="font-size: 12px;">
-                            <i class="fas fa-plus"></i>
-                        </button>
+{{--                        <button class="btn d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" id="btnNew" style="font-size: 12px;">--}}
+{{--                            <i class="fas fa-plus"></i>--}}
+{{--                        </button>--}}
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">

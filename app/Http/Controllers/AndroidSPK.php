@@ -35,12 +35,21 @@ class AndroidSPK extends Controller
                     ['id_area','=',$idArea],
                 ]);
             if ($userArea->exists()) {
-                $trn = DB::table('penjualan_trn')
-                    ->where([
-                        ['no_spk','=',$noSpk],
-                        ['id_area','=',$idArea],
-                    ]);
-                $result = array($trn->get());
+                if ($idArea == '10') {
+                    $trn = DB::table('penjualan_trn')
+                        ->where([
+                            ['no_spk','=',$noSpk],
+                        ])
+                        ->whereIn('id_area',['5','9','10'])
+                        ->orderBy('id_area','asc');
+                } else {
+                    $trn = DB::table('penjualan_trn')
+                        ->where([
+                            ['no_spk','=',$noSpk],
+                            ['id_area','=',$idArea],
+                        ]);
+                }
+                $result = $trn->get();
             } else {
                 $result = [
                     'status' => 'failed',
@@ -137,7 +146,7 @@ class AndroidSPK extends Controller
         $tanggal = date('Y-m-d');
         $tanggalTarget = $request->tanggal;
         $username = $request->username;
-        $status = $request->status;
+//        $status = $request->status;
 
         $user = DB::table('ms_users')->where('username','=',$username);
         if ($user->exists()) {
@@ -160,7 +169,7 @@ class AndroidSPK extends Controller
                     'catatan' => $newCat,
                     'tanggal_target' => $tanggalTarget,
                     'username' => $username,
-                    'status' => $status,
+//                    'status' => $status,
                     'tgl_target_updated' => '1',
                 ];
                 if ($spk->update($data)) {

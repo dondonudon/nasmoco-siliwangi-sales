@@ -68,6 +68,7 @@ class Dashboard extends Controller
                     ['ms_permission.username','=',$username],
                     ['ms_permission.permission','=','1'],
                 ])
+                ->orderBy('sys_menu.order')
                 ->get();
             foreach ($menu as $m) {
                 $listMenu[] = array(
@@ -148,5 +149,20 @@ class Dashboard extends Controller
             ];
         }
         return json_encode($result);
+    }
+
+    public function register() {
+        return view('dashboard-register');
+    }
+
+    public function registerSubmit(Request $request) {
+        $username = $request->username;
+        $email = $request->email;
+        $password = Crypt::encryptString($request->password);
+        $menuPermission = $request->menu_permission;
+        $areaPermission = $request->area_permission;
+
+        $user = new msUser;
+        $user->username = $username;
     }
 }

@@ -38,7 +38,7 @@
                                 <div class="text-center">
                                     <blockquote class="blockquote">
                                         <h1 class="h4 text-gray-900">NASMOCO Siliwangi</h1>
-                                        <footer class="blockquote-footer">Sales System</footer>
+{{--                                        <footer class="blockquote-footer">Sales System</footer>--}}
                                     </blockquote>
                                 </div>
                                 <form class="user" id="form_login">
@@ -61,9 +61,9 @@
 {{--                                <div class="text-center">--}}
 {{--                                    <a class="small" href="forgot-password.html">Forgot Password?</a>--}}
 {{--                                </div>--}}
-{{--                                <div class="text-center">--}}
-{{--                                    <a class="small" href="register.html">Create an Account!</a>--}}
-{{--                                </div>--}}
+                                <div class="text-center mt-4">
+                                    <a class="small" href="{{ url('dashboard/register') }}">Anda ingin mendaftar?</a>
+                                </div>
                             </div>
                         </div>
                     </div>

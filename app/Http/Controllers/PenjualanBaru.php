@@ -80,7 +80,7 @@ class PenjualanBaru extends Controller
 
     public function add(Request $request) {
         $tglSekarang = date('Y-m-d');
-        $tglIncrement = $tglSekarang;
+
         $area = DB::table('ms_areas')->get();
         $mst = DB::table('penjualan_mst');
         $trn = DB::table('penjualan_trn');
@@ -95,6 +95,8 @@ class PenjualanBaru extends Controller
         $alamat = $request->alamat;
         $tglSPK = date('Y-m-d',strtotime($request->tanggal_spk));
         $username = Session::get('username');
+
+        $tglIncrement = $tglSPK;
 
         if ($mst->where('no_spk','=',$noSPK)->doesntExist()) {
             $mstBaru = new penjualanMst;
