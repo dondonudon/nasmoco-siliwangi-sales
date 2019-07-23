@@ -38,13 +38,15 @@ class AndroidSPK extends Controller
             if ($userArea->exists()) {
                 switch ($idArea) {
                     case '10':
+                        $result['pembayaran_ar'] = DB::table('pembayaran_ar')
+                            ->select('nominal')
+                            ->where('no_spk','=',$noSpk)
+                            ->sum('nominal');
                         $trn = DB::table('penjualan_trn')
                             ->where([
                                 ['no_spk','=',$noSpk],
-                            ])
-                            ->whereIn('id_area',['5','9','10'])
-                            ->orderBy('ord','asc');
-                        $result = $trn->get();
+                            ])->whereIn('id_area',['9','10'])->get();
+                        $result['trn'] = $trn;
                         break;
                     case '12':
                         $result['pembayaran_ar'] = DB::table('pembayaran_ar')
@@ -54,9 +56,8 @@ class AndroidSPK extends Controller
                         $trn = DB::table('penjualan_trn')
                             ->where([
                                 ['no_spk','=',$noSpk],
-                                ['id_area','=','9'],
-                            ])->first();
-                        $result['kurang_bayar'] = $trn;
+                            ])->whereIn('id_area',['9','12'])->get();
+                        $result['trn'] = $trn;
                         break;
                     default:
                         $trn = DB::table('penjualan_trn')
@@ -115,7 +116,7 @@ class AndroidSPK extends Controller
                         'nominal' => $request->nominal,
                         'status' => $status,
                     ];
-                } elseif ($idArea == '13') {
+                } elseif ($idArea == '12') {
                     $ar = new pembayaranAR();
                     $ar->no_spk = $noSpk;
                     $ar->nominal = $request->nominal;

@@ -339,6 +339,18 @@
                 }, 500);
             });
 
+            cuBtnClose.click(function(e) {
+                e.preventDefault();
+                $("html, body").animate({ scrollTop: 0 }, 500, function () {
+                    cuSelectTipe.attr('disabled',false);
+                    FilePond.destroy(cuUpload);
+                    cuUpload.setAttribute('hidden','');
+                    cuBtnSet.attr('disabled',false);
+                    cardUpload.addClass('d-none');
+                    tables.ajax.reload();
+                });
+            });
+
             cuBtnSet.click(function (e) {
                 e.preventDefault();
                 $(this).attr('disabled',true);
@@ -357,7 +369,7 @@
                             formData.append(fieldName, file, file.name);
 
                             const request = new XMLHttpRequest();
-                            request.open('POST','{{ url('dashboard/penjualan/baru/upload/1') }}');
+                            request.open('POST','{{ url('dashboard/penjualan/baru/upload/') }}'+cuSelectTipe.val());
                             request.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
 
                             request.upload.onprogress = (e) => {
