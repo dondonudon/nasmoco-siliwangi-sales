@@ -64,6 +64,7 @@ Route::get('/dashboard/penjualan/baru/leasing','PenjualanBaru@leasing');
 Route::get('/dashboard/penjualan/baru/kota','PenjualanBaru@kota');
 Route::post('/dashboard/penjualan/baru/kecamatan','PenjualanBaru@kecamatan');
 Route::post('/dashboard/penjualan/baru/add','PenjualanBaru@add');
+Route::post('/dashboard/penjualan/baru/upload/{tipe}','PenjualanBaru@upload');
 
 Route::get('/dashboard/penjualan/summary','PenjualanSummary@index')->name('penjualan_summary');
 Route::post('/dashboard/penjualan/summary/list','PenjualanSummary@getPenjualan');

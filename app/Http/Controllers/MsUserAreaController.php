@@ -31,6 +31,7 @@ class MsUserAreaController extends Controller
             ->select('ms_user_areas.id_area AS id_area','ms_areas.nama')
             ->where('ms_user_areas.username','=',$username)
             ->join('ms_areas','ms_areas.id','=','ms_user_areas.id_area')
+            ->orderBy('ord','asc')
             ->get();
         return $area->toJson();
     }

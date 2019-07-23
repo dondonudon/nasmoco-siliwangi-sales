@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\pembayaranAR;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -35,21 +36,37 @@ class AndroidSPK extends Controller
                     ['id_area','=',$idArea],
                 ]);
             if ($userArea->exists()) {
-                if ($idArea == '10') {
-                    $trn = DB::table('penjualan_trn')
-                        ->where([
-                            ['no_spk','=',$noSpk],
-                        ])
-                        ->whereIn('id_area',['5','9','10'])
-                        ->orderBy('id_area','asc');
-                } else {
-                    $trn = DB::table('penjualan_trn')
-                        ->where([
-                            ['no_spk','=',$noSpk],
-                            ['id_area','=',$idArea],
-                        ]);
+                switch ($idArea) {
+                    case '10':
+                        $trn = DB::table('penjualan_trn')
+                            ->where([
+                                ['no_spk','=',$noSpk],
+                            ])
+                            ->whereIn('id_area',['5','9','10'])
+                            ->orderBy('ord','asc');
+                        $result = $trn->get();
+                        break;
+                    case '12':
+                        $result['pembayaran_ar'] = DB::table('pembayaran_ar')
+                            ->select('nominal')
+                            ->where('no_spk','=',$noSpk)
+                            ->sum('nominal');
+                        $trn = DB::table('penjualan_trn')
+                            ->where([
+                                ['no_spk','=',$noSpk],
+                                ['id_area','=','9'],
+                            ])->first();
+                        $result['kurang_bayar'] = $trn;
+                        break;
+                    default:
+                        $trn = DB::table('penjualan_trn')
+                            ->where([
+                                ['no_spk','=',$noSpk],
+                                ['id_area','=',$idArea],
+                            ]);
+                        $result = $trn->get();
+                        break;
                 }
-                $result = $trn->get();
             } else {
                 $result = [
                     'status' => 'failed',
@@ -96,6 +113,18 @@ class AndroidSPK extends Controller
                         'tanggal' => $tanggal,
                         'username' => $username,
                         'nominal' => $request->nominal,
+                        'status' => $status,
+                    ];
+                } elseif ($idArea == '13') {
+                    $ar = new pembayaranAR();
+                    $ar->no_spk = $noSpk;
+                    $ar->nominal = $request->nominal;
+                    $ar->save();
+                    $data = [
+                        'catatan' => $newCat,
+                        'tanggal' => $tanggal,
+                        'username' => $username,
+                        'nominal' => 0,
                         'status' => $status,
                     ];
                 } else {

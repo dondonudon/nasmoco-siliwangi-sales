@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\msArea;
+use App\msLeasing;
+use App\msWilayahKecamatan;
 use App\msWilayahKota;
 use App\penjualanMst;
 use App\penjualanTrn;
@@ -10,6 +12,8 @@ use http\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use PhpOffice\PhpSpreadsheet\Reader\Xls;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class PenjualanBaru extends Controller
 {
@@ -64,19 +68,6 @@ class PenjualanBaru extends Controller
             ->get();
         return json_encode($result);
     }
-
-//    public function addTrn($idMst) {
-//        $trn = DB::table('penjualan_trn');
-//        $area = DB::table('ms_areas')->select('id')->get();
-//        foreach ($area as $v) {
-//            $data = [
-//                'id_penjualan_mst' => $idMst,
-//                'id_area' => $v->id,
-//                'username' => Session::get('username'),
-//            ];
-//            $trn->insert($data);
-//        }
-//    }
 
     public function add(Request $request) {
         $tglSekarang = date('Y-m-d');
@@ -163,6 +154,116 @@ class PenjualanBaru extends Controller
                 'reason' => 'No SPK sudah terdaftar',
             ];
         }
+        return json_encode($result);
+    }
+
+    public function upload(Request $request, $tipe) {
+        $dbLeasing = DB::table('ms_leasings')->select('id','nama')->get();
+        $dbKecamatan = DB::table('ms_wilayah_kecamatans')->select('id','nama')->get();
+        $dbKotaKab = DB::table('ms_wilayah_kotas')->select('id','nama')->get();
+
+        $noSPK = 0;
+        $namaCust = 0;
+        $noRangka = 0;
+        $leasing = 0;
+        $kotaKab = 0;
+        $kecamatan =0;
+        $alamat = 0;
+        $tglSPK = 0;
+
+        $file = $request->file('filepond');
+        $extension = $file->extension();
+
+        switch ($extension) {
+            case 'xls':
+                $reader = new Xls();
+                break;
+
+            case 'xlsx':
+                $reader = new Xlsx();
+        }
+        $spreadsheet = $reader->load($file);
+        $worksheet = $spreadsheet->getActiveSheet();
+        $array = $worksheet->toArray();
+
+        foreach ($array[0] as $key => $value) {
+            switch ($value) {
+                case 'nomor spk':
+                    $noSPK = $key;
+                    break;
+
+                case 'nama customer':
+                    $namaCust = $key;
+                    break;
+
+                case 'nomor rangka':
+                    $noRangka = $key;
+                    break;
+
+                case 'leasing':
+                    $leasing = $key;
+                    break;
+
+                case 'kota/kabupaten':
+                    $kotaKab = $key;
+                    break;
+
+                case 'kecamatan':
+                    $kecamatan = $key;
+                    break;
+
+                case 'alamat':
+                    $alamat = $key;
+                    break;
+
+                case 'tanggal spk':
+                    $tglSPK = $key;
+                    break;
+            }
+        }
+
+        $result = array();
+        for ($i=1 ; $i < count($array) ; $i++) {
+            $leas = 0;
+            $kec = 0;
+            $kot = 0;
+            foreach ($dbLeasing as $l) {
+                if ($l->nama == $array[$i][$leasing]) {
+                    $leas = $l->id;
+                }
+            }
+            foreach ($dbKotaKab as $ko) {
+                if ($ko->nama == $array[$i][$kotaKab]) {
+                    $kot = $ko->id;
+                }
+            }
+            foreach ($dbKecamatan as $kc) {
+                if ($kc->nama == $array[$i][$kecamatan]) {
+                    $kec = $kc->id;
+                }
+            }
+            $result[] = [
+                'nomor_spk' => $array[$i][$noSPK],
+                'nama_customer' => $array[$i][$namaCust],
+                'nomor_rangka' => $array[$i][$noRangka],
+                'leasing' => $leas,
+                'kota_kabupaten' => $kot,
+                'kecamatan' => $kec,
+                'alamat' => $array[$i][$alamat],
+                'tanggal_spk' => $array[$i][$tglSPK],
+            ];
+//            $mstBaru = new penjualanMst;
+//            $mstBaru->no_spk = $array[$i][$noSPK];
+//            $mstBaru->nama_customer = $array[$i][$namaCust];
+//            $mstBaru->no_rangka = $array[$i][$noRangka];
+//            $mstBaru->id_leasing = $array[$i][$leasing];
+//            $mstBaru->id_kota = $array[$i][$kotaKab];
+//            $mstBaru->id_kecamatan = $array[$i][$kecamatan];
+//            $mstBaru->alamat = $array[$i][$alamat];
+//            $mstBaru->tanggal_spk = $array[$i][$tglSPK];
+//            $mstBaru->username = Session::get('username');
+        }
+
         return json_encode($result);
     }
 }

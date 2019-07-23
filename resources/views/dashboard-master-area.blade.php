@@ -167,7 +167,7 @@
 
         $(document).ready(function() {
             let tables = $('#datatable').DataTable({
-                "scrollY": "150px",
+                "scrollY": "250px",
                 "scrollX": true,
                 "scrollCollapse": true,
                 // "paging": false,

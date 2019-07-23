@@ -195,7 +195,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; NASMOCO Siliwangi {{ date('Y') }}</span>
+                    <span><i class="fas fa-copyright"></i> {{ date('Y') }} NASMOCO Siliwangi </span>
                 </div>
             </div>
         </footer>

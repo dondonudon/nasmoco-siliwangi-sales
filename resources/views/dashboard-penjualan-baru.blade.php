@@ -1,5 +1,9 @@
 @extends('dashboard-layout')
 
+@section('style')
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/filepond-master/filepond.min.css') }}">
+@endsection
+
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -134,25 +138,88 @@
             </div>
         </div>
 
+        <div class="row d-none" id="cardUpload">
+
+            <div class="col-xl col-lg">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary" id="cardUpload_title">Upload Image</h6>
+                        <button type="button" class="btn d-none d-sm-inline-block btn btn-sm btn-outline-danger shadow-sm" style="font-size: 12px;" id="cardUpload_btnClose">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <form id="cardUpload_cardForm">
+                    @csrf
+                    <!-- Card Body -->
+                        <div class="card-body">
+                            <input type="hidden" id="cardUpload_cardOption" value="new">
+                            <div class="form-group">
+                                <label for="inputArea">Pilih Tipe Upload</label>
+                                <div class="row">
+                                    <div class="col-lg-10">
+                                        <select id="cardUpload_selectTipe" name="nama" class="custom-select">
+                                            <option value="1">Upload Data SPK Baru</option>
+                                            <option value="2">Update SPK</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <button type="button" class="btn btn-block btn-success" id="cardUpload_btnSet">SET</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input id="cardUpload_uploadFile" type="file" hidden>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
 @endsection
 
 @section('script')
+    <script src="{{ asset('vendor/filepond-master/filepond.min.js') }}"></script>
     <script>
-        var noSPK = '';
-        var iNomorSpk = $('#inputNomorSPK');
-        var iCustomer = $('#inputCustomer');
-        var iNomorRangka = $('#inputNomorRangka');
-        var iLeasing = $('#inputLeasing');
-        var iKota = $('#inputKota');
-        var iKecamatan = $('#inputKecamatan');
-        var iAlamat = $('#inputAlamat');
-        var iTanggalSpk = $('#inputTanggalSPK');
-        var iUsername = $('#inputUsername');
+        /*
+        Card Data
+        new SPK and edit SPK
+         */
+        const cardData = $('#cardData');
+        const iNomorSpk = $('#inputNomorSPK');
+        const iCustomer = $('#inputCustomer');
+        const iNomorRangka = $('#inputNomorRangka');
+        const iLeasing = $('#inputLeasing');
+        const iKota = $('#inputKota');
+        const iKecamatan = $('#inputKecamatan');
+        const iAlamat = $('#inputAlamat');
+        const iTanggalSpk = $('#inputTanggalSPK');
+        const iUsername = $('#inputUsername');
 
-        var htmlLeasing = '';
-        var htmlKota = '';
-        var htmlKecamatan = '';
+        /*
+        Card Upload
+         */
+        const btnUpload = $('#btnUpload');
+        const cardUpload = $('#cardUpload');
+        const cuBtnClose = $('#cardUpload_btnClose');
+        const cuBtnSet = $('#cardUpload_btnSet');
+        const cuSelectTipe = $('#cardUpload_selectTipe');
+        const cuTitle = $('#cardUpload_title');
+        const cuForm = $('#cardUpload_cardForm');
+        const cuUpload = document.getElementById('cardUpload_uploadFile');
+
+        let noSPK = '';
+        let htmlLeasing = '';
+        let htmlKota = '';
+        let htmlKecamatan = '';
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            }
+        });
 
         iTanggalSpk.daterangepicker({
             maxDate: moment().format('DD-MM-YYYY'),
@@ -184,11 +251,9 @@
             var cardForm = $('#cardForm');
             var cardTitle = $('#judulCard');
             var optionData = $('#option');
-
             var buttonNew = $('#btnNew');
             var buttonEdit = $('#btnEdit');
             var buttonCancel = $('#btnCancel');
-            var buttonUpload = $('#btnUpload');
 
             $.ajax({
                 url: "{{ url('dashboard/penjualan/baru/leasing') }}",
@@ -215,13 +280,9 @@
                     iKota.html(htmlKota);
                 }
             });
+
             iKota.change(function(e) {
                 e.preventDefault();
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                    }
-                });
                 $.ajax({
                     url: "{{ url('dashboard/penjualan/baru/kecamatan') }}",
                     method: "post",
@@ -270,7 +331,63 @@
                 }, 500);
             });
 
-            var tables = $('#datatable').DataTable({
+            btnUpload.click(function (e) {
+                e.preventDefault();
+                cardUpload.removeClass('d-none');
+                $('html, body').animate({
+                    scrollTop: cardUpload.offset().top
+                }, 500);
+            });
+
+            cuBtnSet.click(function (e) {
+                e.preventDefault();
+                $(this).attr('disabled',true);
+                cuSelectTipe.attr('disabled',true);
+                cuUpload.removeAttribute('hidden');
+                $('html, body').animate({
+                    scrollTop: cardUpload.offset().top
+                }, 1000);
+                FilePond.create( cuUpload );
+                FilePond.setOptions({
+                    allowMultiple: false,
+                    allowDrop: true,
+                    server: {
+                        process: (fieldName, file, metadata, load, error, progress, abort) => {
+                            const formData = new FormData();
+                            formData.append(fieldName, file, file.name);
+
+                            const request = new XMLHttpRequest();
+                            request.open('POST','{{ url('dashboard/penjualan/baru/upload/1') }}');
+                            request.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
+
+                            request.upload.onprogress = (e) => {
+                                progress(e.lengthComputable, e.loaded, e.total);
+                            };
+
+                            request.onload = function () {
+                                if (request.status >= 200 && request.status < 300) {
+                                    load(request.responseText);
+                                    console.log(request.responseText);
+                                } else {
+                                    error('gagal');
+                                }
+                            };
+
+                            request.send(formData);
+
+                            return {
+                                abort: () => {
+                                    request.abort();
+
+                                    abort();
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+
+            const tables = $('#datatable').DataTable({
                 "scrollY": "150px",
                 "scrollX": true,
                 "scrollCollapse": true,
@@ -328,71 +445,40 @@
 
             cardForm.submit(function (e) {
                 e.preventDefault();
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                let url;
+                if (optionData.val() === 'new') {
+                    url = "{{ url('dashboard/penjualan/baru/add') }}";
+                } else {
+                    url = "{{ url('dashboard/penjualan/baru/edit') }}";
+                }
+                $.ajax({
+                    url: url,
+                    method: "post",
+                    data: $(this).serialize(),
+                    success: function(result) {
+                        // console.log(result);
+                        var data = JSON.parse(result);
+                        if (data.status === 'success') {
+                            Swal.fire({
+                                type: 'success',
+                                title: 'Berhasil',
+                                text: 'Data tersimpan',
+                                onClose: function() {
+                                    $("html, body").animate({ scrollTop: 0 }, 500, function () {
+                                        cardComponent.addClass('d-none');
+                                        tables.ajax.reload();
+                                    });
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                type: 'info',
+                                title: 'Gagal',
+                                text: data.reason,
+                            });
+                        }
                     }
                 });
-                if (optionData.val() == 'new') {
-                    $.ajax({
-                        url: "{{ url('dashboard/penjualan/baru/add') }}",
-                        method: "post",
-                        data: $(this).serialize(),
-                        success: function(result) {
-                            // console.log(result);
-                            var data = JSON.parse(result);
-                            if (data.status == 'success') {
-                                Swal.fire({
-                                    type: 'success',
-                                    title: 'Berhasil',
-                                    text: 'Data user tersimpan',
-                                    onClose: function() {
-                                        $("html, body").animate({ scrollTop: 0 }, 500, function () {
-                                            cardComponent.addClass('d-none');
-                                            tables.ajax.reload();
-                                        });
-                                    }
-                                });
-                            } else {
-                                Swal.fire({
-                                    type: 'info',
-                                    title: 'Gagal',
-                                    text: data.reason,
-                                });
-                            }
-                        }
-                    });
-                } else {
-                    $.ajax({
-                        url: "{{ url('dashboard/master/user/edit') }}",
-                        method: "post",
-                        data: $(this).serialize(),
-                        success: function(result) {
-                            var data = JSON.parse(result);
-                            console.log(data);
-                            var data = JSON.parse(result);
-                            if (data.status == 'success') {
-                                Swal.fire({
-                                    type: 'success',
-                                    title: 'Berhasil',
-                                    text: 'Data penjualan tersimpan',
-                                    onClose: function() {
-                                        $("html, body").animate({ scrollTop: 0 }, 500, function () {
-                                            cardComponent.addClass('d-none');
-                                            tables.ajax.reload();
-                                        });
-                                    }
-                                });
-                            } else {
-                                Swal.fire({
-                                    type: 'info',
-                                    title: 'Gagal',
-                                    text: data.reason,
-                                });
-                            }
-                        }
-                    });
-                }
             });
         })
     </script>
