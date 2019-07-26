@@ -51,7 +51,10 @@
                     <!-- Card Footer -->
                     <div class="card-footer">
                         <div class="row">
-                            <div class="col-xl-10"></div>
+                            <div class="col-xl-8"></div>
+                            <div class="col-xl-2">
+                                <button class="btn btn-block btn-outline-primary" id="btnDelete" disabled>Delete</button>
+                            </div>
                             <div class="col-xl-2">
                                 <button class="btn btn-block btn-primary" id="btnEdit" disabled>Edit</button>
                             </div>
@@ -154,9 +157,16 @@
                     <!-- Card Body -->
                         <div class="card-body">
                             <input type="hidden" id="cardUpload_cardOption" value="new">
-
                             <input id="cardUpload_uploadFile" type="file" hidden>
-
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-lg">
+                                    <button type="button" class="btn btn-sm btn-outline-info" id="downloadExcel">
+                                        Download Excel Sample
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -164,6 +174,7 @@
         </div>
 
     </div>
+    <iframe id="downloadFrame" style="display: none;"></iframe>
 @endsection
 
 @section('script')
@@ -173,7 +184,11 @@
         Card Data
         new SPK and edit SPK
          */
-        const cardData = $('#cardData');
+        const cardComponent = $('#cardData');
+        const cardForm = $('#cardForm');
+        const cardTitle = $('#judulCard');
+        const optionData = $('#option');
+        const buttonCancel = $('#btnCancel');
         const iNomorSpk = $('#inputNomorSPK');
         const iCustomer = $('#inputCustomer');
         const iNomorRangka = $('#inputNomorRangka');
@@ -183,6 +198,13 @@
         const iAlamat = $('#inputAlamat');
         const iTanggalSpk = $('#inputTanggalSPK');
         const iUsername = $('#inputUsername');
+
+        /*
+        Card SPK List
+        */
+        const buttonNew = $('#btnNew');
+        const buttonEdit = $('#btnEdit');
+        const buttonDelete = $('#btnDelete');
 
         /*
         Card Upload
@@ -196,6 +218,11 @@
         const cuForm = $('#cardUpload_cardForm');
         const cuUpload = document.getElementById('cardUpload_uploadFile');
 
+        /*
+        Download Excel
+         */
+        const btnSample = $('#downloadExcel');
+
         let noSPK = '';
         let htmlLeasing = '';
         let htmlKota = '';
@@ -205,18 +232,6 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
             }
-        });
-
-        iTanggalSpk.daterangepicker({
-            maxDate: moment().format('DD-MM-YYYY'),
-            singleDatePicker: true,
-            showDropdowns: true,
-            locale: {
-                format: 'DD-MM-YYYY',
-            }
-        }, function (start,end,label) {
-            startDate = moment(start).format('YYYY-MM-DD');
-            // console.log(startDate);
         });
 
         function formReset() {
@@ -233,14 +248,6 @@
         }
 
         $(document).ready(function() {
-            var cardComponent = $('#cardData');
-            var cardForm = $('#cardForm');
-            var cardTitle = $('#judulCard');
-            var optionData = $('#option');
-            var buttonNew = $('#btnNew');
-            var buttonEdit = $('#btnEdit');
-            var buttonCancel = $('#btnCancel');
-
             $.ajax({
                 url: "{{ url('dashboard/penjualan/baru/leasing') }}",
                 method: "get",
@@ -265,6 +272,18 @@
                     });
                     iKota.html(htmlKota);
                 }
+            });
+
+            iTanggalSpk.daterangepicker({
+                maxDate: moment().format('DD-MM-YYYY'),
+                singleDatePicker: true,
+                showDropdowns: true,
+                locale: {
+                    format: 'DD-MM-YYYY',
+                }
+            }, function (start,end,label) {
+                startDate = moment(start).format('YYYY-MM-DD');
+                // console.log(startDate);
             });
 
             iKota.change(function(e) {
@@ -317,6 +336,38 @@
                 }, 500);
             });
 
+            buttonDelete.click(function (e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Anda yakin ingin menghapus SPK?',
+                    text: 'Data area pada SPK tersebut akan ikut terhapus dan tidak dapat dikembalikan!',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Hapus SPK'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: '{{ url('dashboard/penjualan/hapus') }}',
+                            method: 'post',
+                            data: {no_spk: noSPK},
+                            success: function(result) {
+                                let data = JSON.parse(result);
+                                if (data.status === 'success') {
+                                    tables.ajax.reload();
+                                    Swal.fire(
+                                        'Terhapus',
+                                        'SPK berhasil dihapus',
+                                        'success'
+                                    )
+                                }
+                            }
+                        });
+                    }
+                })
+            });
+
             // btnUpload.click(function (e) {
             //     e.preventDefault();
             //     cardUpload.removeClass('d-none');
@@ -335,6 +386,11 @@
                     cardUpload.addClass('d-none');
                     tables.ajax.reload();
                 });
+            });
+
+            btnSample.click(function (e) {
+                e.preventDefault();
+                window.open('{{ url('/dashboard/penjualan/baru/upload/sample') }}');
             });
 
             btnUpload.click(function (e) {
@@ -428,16 +484,18 @@
             });
 
             $('#datatable tbody').on( 'click', 'tr', function () {
-                var data = tables.row( this ).data();
+                let data = tables.row( this ).data();
                 noSPK = data.no_spk;
                 // console.log(data);
                 if ( $(this).hasClass('selected') ) {
                     $(this).removeClass('selected');
                     buttonEdit.attr('disabled','true');
+                    buttonDelete.attr('disabled','true');
                 } else {
                     tables.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
                     buttonEdit.removeAttr('disabled');
+                    buttonDelete.removeAttr('disabled');
                 }
             });
 
@@ -455,7 +513,7 @@
                     data: $(this).serialize(),
                     success: function(result) {
                         // console.log(result);
-                        var data = JSON.parse(result);
+                        let data = JSON.parse(result);
                         if (data.status === 'success') {
                             Swal.fire({
                                 type: 'success',

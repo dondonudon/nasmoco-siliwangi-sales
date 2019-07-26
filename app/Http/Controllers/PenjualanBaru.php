@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpSpreadsheet\Reader\Xls;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
@@ -69,6 +70,7 @@ class PenjualanBaru extends Controller
 
     public function add(Request $request) {
         $tglSekarang = date('Y-m-d');
+        $kota = DB::table('ms_wilayah_kotas')->where('id','=',$request->id_kota)->first();
 
         $area = DB::table('ms_areas')->get();
         $mst = DB::table('penjualan_mst');
@@ -79,7 +81,7 @@ class PenjualanBaru extends Controller
         $namaCust = $request->nama_customer;
         $noRangka = $request->no_rangka;
         $idLeasing = $request->id_leasing;
-        $idKota = $request->id_kota;
+        $idKota = $kota->nama;
         $idKecamatan = $request->id_kecamatan;
         $alamat = $request->alamat;
         $tglSPK = date('Y-m-d',strtotime($request->tanggal_spk));
@@ -89,12 +91,13 @@ class PenjualanBaru extends Controller
 
         if ($mst->where('no_spk','=',$noSPK)->doesntExist()) {
             $mstBaru = new penjualanMst;
+
             $mstBaru->no_spk = $noSPK;
             $mstBaru->nama_customer = $namaCust;
             $mstBaru->no_rangka = $noRangka;
-            $mstBaru->id_leasing = $idLeasing;
-            $mstBaru->id_kota = $idKota;
-            $mstBaru->id_kecamatan = $idKecamatan;
+            $mstBaru->leasing = $idLeasing;
+            $mstBaru->kota = $idKota;
+            $mstBaru->kecamatan = $idKecamatan;
             $mstBaru->alamat = $alamat;
             $mstBaru->tanggal_spk = $tglSPK;
             $mstBaru->username = $username;
@@ -264,5 +267,26 @@ class PenjualanBaru extends Controller
                 }
             }
         }
+    }
+
+    public function sample() {
+        return Storage::download('public/spk-baru.xlsx');
+    }
+
+    public function hapus(Request $request) {
+        $noSPK = $request->no_spk;
+
+        try {
+            DB::table('penjualan_mst')->where('no_spk','=',$noSPK)->delete();
+            DB::table('penjualan_trn')->where('no_spk','=',$noSPK)->delete();
+        } catch (\Exception $ex) {
+            dd('Exception Block', $ex);
+        }
+
+        $result = [
+            'status' => 'success'
+        ];
+
+        return json_encode($result);
     }
 }

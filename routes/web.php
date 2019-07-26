@@ -67,9 +67,14 @@ Route::get('/dashboard/penjualan/baru/kota','PenjualanBaru@kota');
 Route::post('/dashboard/penjualan/baru/kecamatan','PenjualanBaru@kecamatan');
 Route::post('/dashboard/penjualan/baru/add','PenjualanBaru@add');
 Route::post('/dashboard/penjualan/baru/upload/{tipe}','PenjualanBaru@upload');
+Route::get('/dashboard/penjualan/baru/upload/sample','PenjualanBaru@sample');
+
+Route::post('/dashboard/penjualan/hapus','PenjualanBaru@hapus');
 
 Route::get('/dashboard/penjualan/summary','PenjualanSummary@index')->name('penjualan_summary');
 Route::post('/dashboard/penjualan/summary/list','PenjualanSummary@getPenjualan');
 Route::get('/dashboard/penjualan/summary/{start}/{end}/{status}','PenjualanSummary@fullscreen')->name('penjualan_full');
 Route::post('/dashboard/penjualan/summary/spk/detail','PenjualanSummary@getDetailSPK');
 Route::post('/dashboard/penjualan/summary/spk/difference','PenjualanSummary@getDifference');
+
+Route::get('/dashboard/export/excel/{data}/{start}/{end}/{status}','PenjualanSummary@export');

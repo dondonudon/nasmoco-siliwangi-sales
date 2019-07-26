@@ -115,9 +115,21 @@
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
-                        <button type="button" class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#modalInfoWarna">
-                            info warna
-                        </button>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <button type="button" class="btn btn-sm btn-block btn-outline-info" data-toggle="modal" data-target="#modalInfoWarna">
+                                    info warna
+                                </button>
+                            </div>
+                            <div class="col-lg-2">
+                                <button type="button" class="btn btn-sm btn-block btn-outline-danger" id="exportExcel">
+                                    Export to Excel
+                                </button>
+                            </div>
+                        </div>
+
+                        <hr>
+
                         <table class="table table-hover table-bordered table-sm display nowrap" id="datatable" width="100%">
                             <thead class="text-white bg-dark">
                                 <tr>
@@ -250,6 +262,8 @@
             </div>
         </div>
     </div>
+
+    <iframe id="downloadFrame" style="display: none;"></iframe>
 @endsection
 
 @section('script')
@@ -259,6 +273,9 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
             }
         });
+
+        const iframe = $('#downloadFrame');
+
         const iStatus = $('#inputPenjualan');
         const iAreaAwal = $('#area_awal');
         const iAreaAkhir = $('#area_akhir');
@@ -271,6 +288,7 @@
         const btnNewTab = $('#newTab');
         const btnViewDetail = $('#btnViewDetail');
         const btnViewDateDiff = $('#btnViewDateDiff');
+        const btnExportExcel = $('#exportExcel');
 
         const vNoSpk = $('#viewNoSpk');
 
@@ -432,7 +450,7 @@
                 "scrollCollapse": true,
                 "paging": false,
                 // "pageLength": 25,
-                "searching": false,
+                // "searching": false,
                 "bInfo": false,
                 "fixedColumns": {
                     "leftColumns": 1,
@@ -804,6 +822,32 @@
                     }
                 });
             });
+
+            btnExportExcel.click(function (e) {
+                e.preventDefault();
+
+                let startDate = moment($('#inputTanggal').data('daterangepicker').startDate._d).format('YYYY-MM-DD');
+                let endDate = moment($('#inputTanggal').data('daterangepicker').endDate._d).format('YYYY-MM-DD');
+
+                window.open('{{ url('dashboard/export/excel/penjualan-summary') }}'+'/'+startDate+'/'+endDate+'/'+iStatus.val(),'_blank');
+                {{--$.ajax({--}}
+                {{--    url: '{{ url('/dashboard/penjualan/summary/export/excel') }}',--}}
+                {{--    method: 'post',--}}
+                {{--    data: {start_date: startDate, end_date: endDate, status: iStatus.val(), data:'penjualan-summary'},--}}
+                {{--    success: function(result) {--}}
+                {{--        console.log(result);--}}
+                {{--        // const a = document.createElement('a');--}}
+                {{--        // const url = window.URL.createObjectURL((result));--}}
+                {{--        //--}}
+                {{--        // a.href = url;--}}
+                {{--        // a.download = 'export-summary.xlsx';--}}
+                {{--        // document.body.append(a);--}}
+                {{--        // a.click();--}}
+                {{--        // a.remove();--}}
+                {{--        // window.URL.revokeObjectURL(url);--}}
+                {{--    }--}}
+                {{--});--}}
+            })
         });
     </script>
 @endsection
