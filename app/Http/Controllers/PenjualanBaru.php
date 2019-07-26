@@ -10,6 +10,7 @@ use App\penjualanMst;
 use App\penjualanTrn;
 use http\Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use PhpOffice\PhpSpreadsheet\Reader\Xls;
@@ -37,10 +38,7 @@ class PenjualanBaru extends Controller
     public function list() {
         $result['data'] = penjualanMst::all();
         $result['data'] = DB::table('penjualan_mst')
-            ->select('no_spk','nama_customer','no_rangka','ms_leasings.nama as id_leasing','ms_wilayah_kotas.nama as id_kota','ms_wilayah_kecamatans.nama as id_kecamatan','alamat','tanggal_spk','username','finish')
-            ->join('ms_leasings','penjualan_mst.id_leasing','=','ms_leasings.id')
-            ->join('ms_wilayah_kotas','penjualan_mst.id_kota','=','ms_wilayah_kotas.id')
-            ->join('ms_wilayah_kecamatans','penjualan_mst.id_kecamatan','=','ms_wilayah_kecamatans.id')
+            ->select('no_spk','nama_customer','no_rangka','leasing','kota','kecamatan','alamat','tanggal_spk','username','finish')
             ->get();
         return json_encode($result);
     }
@@ -157,20 +155,19 @@ class PenjualanBaru extends Controller
         return json_encode($result);
     }
 
-    public function upload(Request $request, $tipe) {
-        $dbLeasing = DB::table('ms_leasings')->select('id','nama')->get();
-        $dbKecamatan = DB::table('ms_wilayah_kecamatans')->select('id','nama')->get();
-        $dbKotaKab = DB::table('ms_wilayah_kotas')->select('id','nama')->get();
+    function checkNull($date) {
+//        $check = $short = substr($date, 0, strpos( $date, ' '));
+        if ($date == '' || $date == null || $date == ' ') {
+            $result = null;
+        } else {
+            $result = date('Y-m-d', strtotime($date));
+        }
+        return $result;
+    }
 
-        $noSPK = 0;
-        $namaCust = 0;
-        $noRangka = 0;
-        $leasing = 0;
-        $kotaKab = 0;
-        $kecamatan =0;
-        $alamat = 0;
-        $tglSPK = 0;
-
+    public function upload(Request $request) {
+        $username = Session::get('username');
+        $area = msArea::all();
         $file = $request->file('filepond');
         $extension = $file->extension();
 
@@ -182,88 +179,90 @@ class PenjualanBaru extends Controller
             case 'xlsx':
                 $reader = new Xlsx();
         }
-        $spreadsheet = $reader->load($file);
-        $worksheet = $spreadsheet->getActiveSheet();
+
+        try {
+            $spreadsheet = $reader->load($file);
+            $worksheet = $spreadsheet->getActiveSheet();
+        } catch (\Exception $ex) {
+            dd('Exception Block',$ex);
+        }
         $array = $worksheet->toArray();
 
         foreach ($array[0] as $key => $value) {
             switch ($value) {
-                case 'nomor spk':
+                case 'No SPK':
                     $noSPK = $key;
                     break;
 
-                case 'nama customer':
+                case 'Nama Customer':
                     $namaCust = $key;
                     break;
 
-                case 'nomor rangka':
+                case 'No Rangka':
                     $noRangka = $key;
                     break;
 
-                case 'leasing':
-                    $leasing = $key;
-                    break;
-
-                case 'kota/kabupaten':
+                case 'Leasing':
                     $kotaKab = $key;
                     break;
 
-                case 'kecamatan':
+                case 'Kota / Kabupaten':
                     $kecamatan = $key;
                     break;
 
-                case 'alamat':
+                case 'Alamat':
                     $alamat = $key;
                     break;
 
-                case 'tanggal spk':
+                case 'Tanggal SPK':
                     $tglSPK = $key;
                     break;
             }
         }
 
-        $result = array();
-        for ($i=1 ; $i < count($array) ; $i++) {
-            $leas = 0;
-            $kec = 0;
-            $kot = 0;
-            foreach ($dbLeasing as $l) {
-                if ($l->nama == $array[$i][$leasing]) {
-                    $leas = $l->id;
-                }
-            }
-            foreach ($dbKotaKab as $ko) {
-                if ($ko->nama == $array[$i][$kotaKab]) {
-                    $kot = $ko->id;
-                }
-            }
-            foreach ($dbKecamatan as $kc) {
-                if ($kc->nama == $array[$i][$kecamatan]) {
-                    $kec = $kc->id;
-                }
-            }
-            $result[] = [
-                'nomor_spk' => $array[$i][$noSPK],
-                'nama_customer' => $array[$i][$namaCust],
-                'nomor_rangka' => $array[$i][$noRangka],
-                'leasing' => $leas,
-                'kota_kabupaten' => $kot,
-                'kecamatan' => $kec,
-                'alamat' => $array[$i][$alamat],
-                'tanggal_spk' => $array[$i][$tglSPK],
-            ];
-//            $mstBaru = new penjualanMst;
-//            $mstBaru->no_spk = $array[$i][$noSPK];
-//            $mstBaru->nama_customer = $array[$i][$namaCust];
-//            $mstBaru->no_rangka = $array[$i][$noRangka];
-//            $mstBaru->id_leasing = $array[$i][$leasing];
-//            $mstBaru->id_kota = $array[$i][$kotaKab];
-//            $mstBaru->id_kecamatan = $array[$i][$kecamatan];
-//            $mstBaru->alamat = $array[$i][$alamat];
-//            $mstBaru->tanggal_spk = $array[$i][$tglSPK];
-//            $mstBaru->username = Session::get('username');
-        }
+        for ($i = 1; $i < count($array); $i++) {
+            $dtNoSPK = $array[$i][$noSPK];
+            $dtTglSPK = $array[$i][$tglSPK];
+            $mst = new penjualanMst();
 
-        return json_encode($result);
+            $mst->no_spk = $array[$i][$noSPK];
+            $mst->nama_customer = $array[$i][$namaCust];
+            $mst->no_rangka = $array[$i][$noRangka];
+            $mst->kota = $array[$i][$kotaKab];
+            $mst->kecamatan = $array[$i][$kecamatan];
+            $mst->alamat = $array[$i][$alamat];
+            $mst->tanggal_spk = $array[$i][$tglSPK];
+            $mst->username = $username;
+
+            try {
+                $mst->save();
+            } catch (\Exception $ex) {
+                dd('Exception Block',$ex);
+            }
+
+            $counter = 0;
+            foreach ($area as $a) {
+                $counter += $a->tgl_target_default;
+                $thisDate = $dtTglSPK;
+
+                $your_date = strtotime($counter." day", strtotime($thisDate));
+                $tglIncrement = date("Y-m-d", $your_date);
+
+                $trn = new penjualanTrn();
+
+                $trn->no_spk = $dtNoSPK;
+                $trn->id_area = $a->id;
+                $trn->catatan = '';
+                $trn->status = '0';
+                $trn->tanggal_target = $tglIncrement;
+                $trn->username = $username;
+
+                try {
+                    $trn->save();
+                } catch (\Exception $ex) {
+                    return dd('Exception block', $ex);
+                }
+            }
+        }
     }
 }

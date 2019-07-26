@@ -10,11 +10,7 @@ class AndroidSPK extends Controller
 {
     public function search(Request $request) {
         $spk = DB::table('penjualan_mst')
-            ->select('no_spk','nama_customer','no_rangka','ms_leasings.nama AS leasing','ms_wilayah_kotas.nama AS kota','ms_wilayah_kecamatans.nama AS kecamatan','alamat','tanggal_spk','username','finish')
-            ->join('ms_leasings','penjualan_mst.id_leasing','=','ms_leasings.id')
-            ->join('ms_wilayah_kotas','penjualan_mst.id_kota','=','ms_wilayah_kotas.id')
-            ->join('ms_wilayah_kecamatans','penjualan_mst.id_kecamatan','=','ms_wilayah_kecamatans.id')
-            ->orderBy('finish');
+            ->select('no_spk','nama_customer','no_rangka','leasing','kota','kecamatan','alamat','tanggal_spk','username','finish');
         if ($request->search !== '') {
             $search = '%'.$request->search.'%';
             $spk->where('no_spk','like', $search)
@@ -45,7 +41,7 @@ class AndroidSPK extends Controller
                         $trn = DB::table('penjualan_trn')
                             ->where([
                                 ['no_spk','=',$noSpk],
-                            ])->whereIn('id_area',['9','10'])->get();
+                            ])->whereIn('id_area',['5','10','12'])->get();
                         $result['trn'] = $trn;
                         break;
                     case '12':

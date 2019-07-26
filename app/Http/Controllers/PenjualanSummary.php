@@ -64,13 +64,20 @@ class PenjualanSummary extends Controller
         $trn = DB::table('penjualan_trn')->select('id_area','tanggal','tanggal_target','tgl_target_updated');
         $mst = DB::table('penjualan_mst')
             ->where('finish','=',$status)
-            ->whereBetween('tanggal_spk',[$startDate,$endDate])
-            ->get();
+            ->whereBetween('tanggal_spk',[$startDate,$endDate])->get();
+        if ($mst->count() == 0) {
+            $result['data'] = '';
+            return json_encode($result);
+        }
         $store = array();
-        if ($mst->count() > 1) {
+        if ($mst->count() > 0) {
             foreach ($mst as $msts) {
                 $query = clone $trn;
-                $hslTrn[] = $query->where('no_spk','=',$msts->no_spk)->get();
+                try {
+                    $hslTrn[] = $query->where('no_spk','=',$msts->no_spk)->get();
+                } catch (\Exception $ex) {
+                    return dd('Exception block', $ex);
+                }
             }
 	    $i = 0;
             foreach ($hslTrn as $h) {
@@ -114,12 +121,14 @@ class PenjualanSummary extends Controller
     public function getDetailSPK(Request $request) {
         $noSpk = $request->no_spk;
 
-        $spk = DB::table('penjualan_trn')
+        $spk['detail'] = DB::table('penjualan_trn')
             ->select('no_spk','ms_areas.nama as nama_area','catatan','nominal','tanggal','tanggal_target','username')
             ->join('ms_areas','penjualan_trn.id_area','=','ms_areas.id')
             ->where('no_spk','=',$noSpk)
             ->orderBy('id_area')
             ->get();
+        $spk['ar'] = DB::table('pembayaran_ar')
+            ->where('no_spk','=',$noSpk)->get();
         return json_encode($spk);
     }
 
@@ -150,6 +159,7 @@ class PenjualanSummary extends Controller
             ->select('no_spk','ms_areas.nama as nama_area','ms_areas.id as id_area','tanggal','tanggal_target')
             ->join('ms_areas','penjualan_trn.id_area','=','ms_areas.id')
             ->where('no_spk','=',$noSpk)
+            ->whereBetween('id_area',[1,11])
             ->orderBy('id_area')
             ->get();
 

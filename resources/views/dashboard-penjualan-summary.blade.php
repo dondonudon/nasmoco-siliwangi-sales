@@ -115,6 +115,9 @@
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
+                        <button type="button" class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#modalInfoWarna">
+                            info warna
+                        </button>
                         <table class="table table-hover table-bordered table-sm display nowrap" id="datatable" width="100%">
                             <thead class="text-white bg-dark">
                                 <tr>
@@ -217,30 +220,32 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <dl class="row" id="detailArea">
-                        <dt class="col-sm-3">Nomor SPK</dt>
-                        <dd class="col-sm-9">WV-9175-2019</dd>
-
-                        <dt class="col-sm-3">AJU FAKTUR</dt>
-                        <dd class="col-sm-9">
-                            <dl class="row">
-                                <dt class="col-sm-4">Catatan</dt>
-                                <dd class="col-sm-8">Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc.</dd>
-
-                                <dt class="col-sm-4">Tanggal Validasi</dt>
-                                <dd class="col-sm-8">10-07-2019</dd>
-
-                                <dt class="col-sm-4">Tanggal Target</dt>
-                                <dd class="col-sm-8">10-07-2019</dd>
-
-                                <dt class="col-sm-4">Nominal</dt>
-                                <dd class="col-sm-8">100.000.000</dd>
-                            </dl>
-                        </dd>
-                    </dl>
+                    <dl class="row text-dark" id="detailArea"></dl>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCloseDetail">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal INFO Warna -->
+    <div class="modal fade bd-example-modal-lg" id="modalInfoWarna" tabindex="-1" role="dialog" aria-labelledby="modalDetailTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Info Warna</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert text-white bg-success" role="alert">
+                        Area yang sudah tervalidasi melalui <strong>Nasmoco Siliwangi APPS</strong>
+                    </div>
+                    <div class="alert text-white bg-danger" role="alert">
+                        Area sudah melewati batas tanggal target
+                    </div>
+                    <div class="alert text-white bg-warning" role="alert">
+                        Tanggal target pada area tersebut telah dirubah
+                    </div>
                 </div>
             </div>
         </div>
@@ -351,23 +356,52 @@
                     console.log(result);
                     let data = JSON.parse(result);
                     htmlData += '<dt class="col-sm-3">Nomor SPK</dt>';
-                    htmlData += '<dd class="col-sm-9">'+data[0].no_spk+'</dd>';
+                    htmlData += '<dd class="col-sm-9">'+data.detail[0].no_spk+'</dd>';
 
-                    data.forEach(function(v,i) {
+                    data.detail.forEach(function(v,i) {
                         htmlData += '<dt class="col-sm-3">'+v.nama_area+'</dt>';
                         htmlData += '<dd class="col-sm-9">';
                         htmlData += '<dl class="row">';
                         htmlData += '<dt class="col-sm-4">Catatan</dt>';
-                        htmlData += '<dd class="col-sm-8">'+v.catatan+'</dd>';
+                        htmlData += '<dd class="col-sm-8"><textarea class="form-control" rows="4" readonly>'+v.catatan+'</textarea></dd>';
 
                         htmlData += '<dt class="col-sm-4">Tanggal Validasi</dt>';
-                        htmlData += '<dd class="col-sm-8">'+v.tanggal+'</dd>';
+                        if (v.tanggal == null) {
+                            htmlData += '<dd class="col-sm-8">__</dd>';
+                        } else {
+                            htmlData += '<dd class="col-sm-8">'+v.tanggal+'</dd>';
+                        }
 
                         htmlData += '<dt class="col-sm-4">Tanggal Target</dt>';
                         htmlData += '<dd class="col-sm-8">'+v.tanggal_target+'</dd>';
 
-                        htmlData += '<dt class="col-sm-4">Nominal</dt>';
-                        htmlData += '<dd class="col-sm-8">'+v.nominal+'</dd>';
+                        if (data.ar !== '') {
+                            switch (v.nama_area) {
+                                case 'AR':
+                                    htmlData += '<dt class="col-sm-4">Nominal</dt>';
+                                    htmlData += '<dd class="col-sm-8">';
+                                    data.ar.forEach(function(v,i) {
+                                        htmlData += '<p>'+v.nominal+'</p>';
+                                    });
+                                    htmlData += '</dd>';
+                                    break;
+
+                                case 'RETAIL':
+                                    htmlData += '<dt class="col-sm-4">Nominal</dt>';
+                                    htmlData += '<dd class="col-sm-8">'+v.nominal+'</dd>';
+                                    break;
+
+                                case 'PENAGIHAN':
+                                    htmlData += '<dt class="col-sm-4">Nominal</dt>';
+                                    htmlData += '<dd class="col-sm-8">'+v.nominal+'</dd>';
+                                    break;
+
+                                case 'PELUNASAN':
+                                    htmlData += '<dt class="col-sm-4">Nominal</dt>';
+                                    htmlData += '<dd class="col-sm-8">'+v.nominal+'</dd>';
+                                    break;
+                            }
+                        }
                         htmlData += '</dl>';
                         htmlData += '</dd>';
                     });
@@ -393,7 +427,7 @@
 
         $(document).ready(function () {
             var tables = $('#datatable').DataTable({
-                // "scrollY": "150px",
+                "scrollY": "250px",
                 "scrollX": true,
                 "scrollCollapse": true,
                 "paging": false,

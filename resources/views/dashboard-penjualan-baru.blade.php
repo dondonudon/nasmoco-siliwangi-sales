@@ -144,7 +144,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary" id="cardUpload_title">Upload Image</h6>
+                        <h6 class="m-0 font-weight-bold text-primary" id="cardUpload_title">Upload File</h6>
                         <button type="button" class="btn d-none d-sm-inline-block btn btn-sm btn-outline-danger shadow-sm" style="font-size: 12px;" id="cardUpload_btnClose">
                             <i class="fas fa-times"></i>
                         </button>
@@ -154,20 +154,6 @@
                     <!-- Card Body -->
                         <div class="card-body">
                             <input type="hidden" id="cardUpload_cardOption" value="new">
-                            <div class="form-group">
-                                <label for="inputArea">Pilih Tipe Upload</label>
-                                <div class="row">
-                                    <div class="col-lg-10">
-                                        <select id="cardUpload_selectTipe" name="nama" class="custom-select">
-                                            <option value="1">Upload Data SPK Baru</option>
-                                            <option value="2">Update SPK</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <button type="button" class="btn btn-block btn-success" id="cardUpload_btnSet">SET</button>
-                                    </div>
-                                </div>
-                            </div>
 
                             <input id="cardUpload_uploadFile" type="file" hidden>
 
@@ -262,7 +248,7 @@
                     var data = JSON.parse(result);
                     // console.log(data);
                     data.forEach(function(val,index) {
-                        htmlLeasing += '<option value="' + val.id + '">' + val.nama + '</option>';
+                        htmlLeasing += '<option value="' + val.nama + '">' + val.nama + '</option>';
                     });
                     iLeasing.html(htmlLeasing);
                 }
@@ -291,7 +277,7 @@
                         var data = JSON.parse(result);
                         htmlKecamatan = '';
                         data.forEach(function(val,index) {
-                            htmlKecamatan += '<option value="' + val.id + '">' + val.nama + '</option>';
+                            htmlKecamatan += '<option value="' + val.nama + '">' + val.nama + '</option>';
                         });
                         iKecamatan.html(htmlKecamatan);
                     }
@@ -331,13 +317,13 @@
                 }, 500);
             });
 
-            btnUpload.click(function (e) {
-                e.preventDefault();
-                cardUpload.removeClass('d-none');
-                $('html, body').animate({
-                    scrollTop: cardUpload.offset().top
-                }, 500);
-            });
+            // btnUpload.click(function (e) {
+            //     e.preventDefault();
+            //     cardUpload.removeClass('d-none');
+            //     $('html, body').animate({
+            //         scrollTop: cardUpload.offset().top
+            //     }, 500);
+            // });
 
             cuBtnClose.click(function(e) {
                 e.preventDefault();
@@ -351,9 +337,9 @@
                 });
             });
 
-            cuBtnSet.click(function (e) {
+            btnUpload.click(function (e) {
                 e.preventDefault();
-                $(this).attr('disabled',true);
+                cardUpload.removeClass('d-none');
                 cuSelectTipe.attr('disabled',true);
                 cuUpload.removeAttribute('hidden');
                 $('html, body').animate({
@@ -369,7 +355,7 @@
                             formData.append(fieldName, file, file.name);
 
                             const request = new XMLHttpRequest();
-                            request.open('POST','{{ url('dashboard/penjualan/baru/upload/') }}'+cuSelectTipe.val());
+                            request.open('POST','{{ url('dashboard/penjualan/baru/upload') }}/'+cuSelectTipe.val());
                             request.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
 
                             request.upload.onprogress = (e) => {
@@ -417,9 +403,9 @@
                     { "data": "no_spk" },
                     { "data": "nama_customer" },
                     { "data": "no_rangka" },
-                    { "data": "id_leasing" },
-                    { "data": "id_kota" },
-                    { "data": "id_kecamatan" },
+                    { "data": "leasing" },
+                    { "data": "kota" },
+                    { "data": "kecamatan" },
                     { "data": "alamat" },
                     {
                         "render": function (data, type, full, meta) {

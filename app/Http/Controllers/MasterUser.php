@@ -87,8 +87,8 @@ class MasterUser extends Controller
         if ($checkUser->doesntExist()) {
             $user = DB::table('ms_users');
             if ($user->insert($data)) {
-                if (msPermission::insert($permission)) {
-                    if (msUserArea::insert($area)) {
+                if (DB::table('ms_permission')->insert($permission)) {
+                    if (DB::table('ms_user_areas')->insert($area)) {
                         $result = [
                             'status' => 'success'
                         ];

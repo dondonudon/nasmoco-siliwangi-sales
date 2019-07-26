@@ -16,6 +16,8 @@ Route::get('/', function () {
     return redirect('dashboard/login');
 });
 
+Route::post('/dashboard/penjualan-lama/upload/{tipe}','OldDataUploader@uploadDataLama');
+
 Route::get('/dashboard/register', 'Dashboard@register')->name('dashboard_register');
 Route::post('/dashboard/register/submit', 'Dashboard@registerSubmit')->name('dashboard_register_submit');
 

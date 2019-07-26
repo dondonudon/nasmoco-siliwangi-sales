@@ -4,7 +4,13 @@
     <list default="true" id="23933228-8642-4896-88f7-8ed68d795c66" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AndroidSPK.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AndroidSPK.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MasterUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MasterUser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PenjualanBaru.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PenjualanBaru.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PenjualanSummary.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PenjualanSummary.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/sb-admin-2.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/sb-admin-2.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/dashboard-penjualan-baru.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard-penjualan-baru.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dashboard-penjualan-summary.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard-penjualan-summary.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,49 +41,6 @@
   <component name="FavoritesManager">
     <favorites_list name="nasmoco-siliwangi" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1197">
-              <caret line="66" column="78" selection-start-line="66" selection-start-column="78" selection-end-line="66" selection-end-column="78" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AndroidSPK.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="47" column="58" selection-start-line="47" selection-start-column="58" selection-end-line="47" selection-end-column="58" />
-              <folding>
-                <element signature="e#40#61#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/api.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/dashboard-penjualan-baru.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7791">
-              <caret line="371" column="113" selection-start-line="371" selection-start-column="113" selection-end-line="371" selection-end-column="113" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>undraw</find>
@@ -99,6 +62,8 @@
       <find>back</find>
       <find>attr(</find>
       <find>wrap</find>
+      <find>table</find>
+      <find>table-sm</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -109,66 +74,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AndroidSearchSpk.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_07_06_041053_create_penjualan_trns_table.php" />
-        <option value="$USER_HOME$/Downloads/nasmoco_siliwangi (3).sql" />
-        <option value="$USER_HOME$/Downloads/penjualan_mst (1).sql" />
-        <option value="$PROJECT_DIR$/app/sysMenuGroup.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_07_09_061909_create_sys_menus_table.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_07_09_061928_create_sys_menu_groups_table.php" />
-        <option value="$PROJECT_DIR$/app/DashboardSidebar.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_07_10_033946_create_ms_permissions_table.php" />
-        <option value="$PROJECT_DIR$/app/msPermission.php" />
-        <option value="$PROJECT_DIR$/app/sysMenu.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/MasterLeasing.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/SystemGroupMenu.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/SystemMenu.php" />
-        <option value="$PROJECT_DIR$/app/msUserArea.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/MasterUser.php" />
-        <option value="$PROJECT_DIR$/resources/views/dashboard-system-menu.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/dashboard-system-group-menu.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/dashboard-master-user.blade.php" />
-        <option value="$PROJECT_DIR$/public/css/sb-admin-2.css" />
-        <option value="$PROJECT_DIR$/resources/views/dashboard-master-leasing.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/MasterArea.php" />
-        <option value="$PROJECT_DIR$/resources/views/status-penjualan.blade.php" />
-        <option value="$PROJECT_DIR$/public/vendor/datatables/FixedColumns-3.2.5/css/fixedColumns.bootstrap4.css" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/MasterProfile.php" />
-        <option value="$PROJECT_DIR$/resources/views/dashboard-master-profile.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/dashboard-register.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/dashboard-penjualan-fullscreen.blade.php" />
-        <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/resources/views/dashboard-penjualan-summary.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/PenjualanSummary.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Dashboard.php" />
-        <option value="$PROJECT_DIR$/resources/views/dashboard-layout.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/app/Imports/UsersImport.php" />
-        <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/PenjualanBaru.php" />
-        <option value="$PROJECT_DIR$/public/login/css/main.css" />
-        <option value="$PROJECT_DIR$/public/login/index.html" />
-        <option value="$PROJECT_DIR$/resources/views/dashboard-login.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/dashboard-master-area.blade.php" />
-        <option value="$PROJECT_DIR$/config/app.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/OverviewCard.php" />
-        <option value="$PROJECT_DIR$/resources/views/dashboard-overview.blade.php" />
-        <option value="$PROJECT_DIR$/app/Exceptions/Handler.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_07_22_110850_create_pembayaran_a_r_s_table.php" />
-        <option value="$PROJECT_DIR$/app/pembayaranAR.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/MsUserAreaController.php" />
-        <option value="$PROJECT_DIR$/routes/api.php" />
-        <option value="$PROJECT_DIR$/resources/views/dashboard-penjualan-baru.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AndroidSPK.php" />
-      </list>
-    </option>
-  </component>
-  <component name="PhpServers">
-    <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -262,155 +167,10 @@
       <path value="$PROJECT_DIR$/vendor/phpexcel/phpexcel" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="170" />
-    <option name="y" value="119" />
-    <option name="width" value="1026" />
-    <option name="height" value="557" />
-  </component>
+  <component name="ProjectId" id="1OXY4izZ390NPtI3BhvR1jPRE0C" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="login" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="login" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="datatables" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="datatables" type="462c0819:PsiDirectoryNode" />
-              <item name="FixedColumns-3.2.5" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="datatables" type="462c0819:PsiDirectoryNode" />
-              <item name="FixedColumns-3.2.5" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nasmoco-siliwangi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nasmoco-siliwangi" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
-  </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -423,7 +183,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -525,417 +285,36 @@
       <workItem from="1563759180104" duration="8238000" />
       <workItem from="1563846044775" duration="14045000" />
       <workItem from="1563871179328" duration="159000" />
+      <workItem from="1564018890787" duration="23325000" />
+      <workItem from="1564123474023" duration="43000" />
+      <workItem from="1564125239706" duration="182000" />
+      <workItem from="1564125512351" duration="7233000" />
     </task>
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="377434000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1366" height="743" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Favorites" order="0" sideWeight="0.50166667" side_tool="true" weight="0.23560606" />
-      <window_info id="npm" order="1" sideWeight="0.50166667" side_tool="true" weight="0.23560606" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.49833333" visible="true" weight="0.2560606" />
-      <window_info id="Structure" order="3" sideWeight="0.50166667" side_tool="true" weight="0.23560606" />
-      <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49848485" weight="0.24666667" />
-      <window_info anchor="bottom" id="Database Changes" order="1" />
-      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50151515" side_tool="true" weight="0.24666667" />
-      <window_info anchor="bottom" id="Version Control" order="3" />
-      <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Message" order="5" />
-      <window_info anchor="bottom" id="Find" order="6" weight="0.32833335" />
-      <window_info anchor="bottom" id="Run" order="7" />
-      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="11" />
-      <window_info anchor="right" id="Database" order="0" weight="0.32954547" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-    </layout>
-    <layout-to-restore>
-      <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info id="npm" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.26630008" />
-      <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" visible="true" weight="0.32890365" />
-      <window_info anchor="bottom" id="Database Changes" order="1" />
-      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="3" />
-      <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Message" order="5" />
-      <window_info anchor="bottom" id="Find" order="6" weight="0.32890365" />
-      <window_info anchor="bottom" id="Run" order="7" />
-      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="11" />
-      <window_info anchor="right" id="Database" order="0" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-    </layout-to-restore>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/summary.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/dashboard-system-menu.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="93" column="95" selection-start-line="93" selection-start-column="95" selection-end-line="93" selection-end-column="95" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashboard-system-group-menu.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="88" column="95" selection-start-line="88" selection-start-column="95" selection-end-line="88" selection-end-column="95" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/lampp/htdocs/template/startbootstrap-sb-admin-2-gh-pages/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="88" column="32" lean-forward="true" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/sb-admin-2.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="11643" column="60" selection-start-line="11643" selection-start-column="60" selection-end-line="11643" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/status-penjualan.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/lampp/htdocs/template/startbootstrap-sb-admin-2-gh-pages/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="136" column="12" lean-forward="true" selection-start-line="136" selection-start-column="12" selection-end-line="136" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/vendor/datatables/FixedColumns-3.2.5/css/fixedColumns.bootstrap4.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MasterArea.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="25" selection-end-column="9" />
-          <folding>
-            <element signature="e#40#55#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MasterProfile.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1399">
-          <caret line="69" column="6" selection-start-line="69" selection-start-column="6" selection-end-line="69" selection-end-column="6" />
-          <folding>
-            <element signature="e#40#55#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashboard-master-leasing.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="240" column="48" selection-start-line="240" selection-start-column="48" selection-end-line="240" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/lampp/htdocs/template/startbootstrap-sb-admin-2-gh-pages/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="95" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashboard-register.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="164" column="11" selection-start-line="164" selection-start-column="11" selection-end-line="164" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashboard-penjualan-fullscreen.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="106" column="20" selection-start-line="106" selection-start-column="20" selection-end-line="121" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashboard-master-profile.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="26" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PenjualanSummary.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="601">
-          <caret line="132" column="21" selection-start-line="132" selection-start-column="21" selection-end-line="132" selection-end-column="21" />
-          <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashboard-penjualan-summary.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2436">
-          <caret line="141" column="114" selection-start-line="141" selection-start-column="114" selection-end-line="141" selection-end-column="114" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../nasmoco-kaligawe/resources/views/dashboard-master-image.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" selection-start-line="2" selection-end-line="4" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../nasmoco-kaligawe/app/Http/Controllers/MasterImage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="51" column="58" lean-forward="true" selection-start-line="51" selection-start-column="58" selection-end-line="51" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/msArea.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Imports/UsersImport.php" />
-    <entry file="file:///opt/lampp/htdocs/reseller-madu/app/class/class-penj_proses_pengiriman-upload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-945" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MasterLeasing.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-          <folding>
-            <element signature="e#40#58#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Contracts/Debug/ExceptionHandler.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="97" column="20" selection-start-line="97" selection-start-column="20" selection-end-line="97" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-252">
-          <caret line="3" column="14" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/excel.php" />
-    <entry file="file://$PROJECT_DIR$/public/login/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="213" column="17" lean-forward="true" selection-start-line="213" selection-start-column="17" selection-end-line="213" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashboard-login.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="36" column="112" selection-start-line="36" selection-start-column="112" selection-end-line="36" selection-end-column="112" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/login/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="38" column="110" selection-start-line="38" selection-start-column="110" selection-end-line="38" selection-end-column="110" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PenjualanBaru.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="216" column="26" selection-start-line="216" selection-start-column="26" selection-end-line="216" selection-end-column="26" />
-          <folding>
-            <element signature="e#40#55#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashboard-master-user.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/filesystems.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="41" column="36" selection-start-line="41" selection-start-column="36" selection-end-line="41" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_10_033946_create_ms_permissions_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-42">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Handler.php" />
-    <entry file="file://$PROJECT_DIR$/app/Exceptions/Handler.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="42" column="40" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="40" />
-          <folding>
-            <element signature="e#34#48#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_22_110850_create_pembayaran_a_r_s_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="18" column="42" lean-forward="true" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashboard-overview.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="23" column="99" selection-start-line="23" selection-start-column="99" selection-end-line="23" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashboard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-          <folding>
-            <element signature="e#40#55#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/OverviewCard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
-          <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/msUserArea.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MsUserAreaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="33" column="32" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashboard-layout.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-126">
-          <caret line="15" column="55" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashboard-master-area.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="62" column="25" lean-forward="true" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/pembayaranAR.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="39" lean-forward="true" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1197">
-          <caret line="66" column="78" selection-start-line="66" selection-start-column="78" selection-end-line="66" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashboard-penjualan-baru.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7791">
-          <caret line="371" column="113" selection-start-line="371" selection-start-column="113" selection-end-line="371" selection-end-column="113" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AndroidSPK.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="47" column="58" selection-start-line="47" selection-start-column="58" selection-end-line="47" selection-end-column="58" />
-          <folding>
-            <element signature="e#40#61#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
