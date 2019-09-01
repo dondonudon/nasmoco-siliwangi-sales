@@ -1,0 +1,20 @@
+checklist ditambah
+Area Aju Faktur
+
+
+Tanggal target tidak bisa maju, hanya bisa mundur
+
+ANDROID:
+- Log user android di dev
+- Summary android
+
+WEBSITE:
+- AREA:
+	()
+	- BPKB jadi
+	- BPKB diterima customer
+	- BPKB diserahkan
+
+	- Selisih hari tidak bisa dari area atasnya, perbandingan dari area tertentu
+
+	- tabel dikecilkan
