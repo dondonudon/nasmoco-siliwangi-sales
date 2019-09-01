@@ -16,8 +16,12 @@ Route::get('/', function () {
     return redirect('dashboard/login');
 });
 
+<<<<<<< HEAD
 Route::get('/dashboard/system/penjualan-lama/','OldDataUploader@uploadDataLama')->name('dashboard_system_penjualan_lama');
 Route::post('/dashboard/system/penjualan-lama/upload/{tipe}','OldDataUploader@uploadDataLama');
+=======
+Route::post('/dashboard/penjualan-lama/upload/{tipe}','OldDataUploader@uploadDataLama');
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 
 Route::get('/dashboard/register', 'Dashboard@register')->name('dashboard_register');
 Route::post('/dashboard/register/submit', 'Dashboard@registerSubmit')->name('dashboard_register_submit');
@@ -27,7 +31,10 @@ Route::post('/dashboard/login/check','Dashboard@loginCheck');
 Route::get('/dashboard/session/flush','Dashboard@sessionFLush');
 
 Route::get('/dashboard','Dashboard@index')->name('dashboard_overview');
+<<<<<<< HEAD
 Route::post('/dashboard/get-detail','OverviewCard@listSPK');
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 
 Route::get('/dashboard/system/menu','SystemMenu@index')->name('system_menu');
 Route::get('/dashboard/system/menu/list','SystemMenu@list');
@@ -73,12 +80,15 @@ Route::get('/dashboard/penjualan/baru/upload/sample','PenjualanBaru@sample');
 
 Route::post('/dashboard/penjualan/hapus','PenjualanBaru@hapus');
 
+<<<<<<< HEAD
 Route::get('/dashboard/penjualan/update-data','PenjualanUploadBpkb@index')->name('penjualan_update_data');
 Route::get('/dashboard/penjualan/update-data/upload/sample','PenjualanUploadBpkb@sample');
 Route::post('/dashboard/penjualan/update-data/upload','PenjualanUploadBpkb@upload');
 Route::post('/dashboard/penjualan/update-data/upload/preview','PenjualanUploadBpkb@preview');
 Route::post('/dashboard/penjualan/update-data/upload/preview/simpan','PenjualanUploadBpkb@simpan');
 
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 Route::get('/dashboard/penjualan/summary','PenjualanSummary@index')->name('penjualan_summary');
 Route::post('/dashboard/penjualan/summary/list','PenjualanSummary@getPenjualan');
 Route::get('/dashboard/penjualan/summary/{start}/{end}/{status}','PenjualanSummary@fullscreen')->name('penjualan_full');

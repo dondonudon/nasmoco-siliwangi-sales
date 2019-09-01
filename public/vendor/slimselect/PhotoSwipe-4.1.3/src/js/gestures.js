@@ -1125,7 +1125,11 @@ _registerModule('Gestures', {
 			if(_pointerEventEnabled && !_likelyTouchDevice) {
 				_likelyTouchDevice = (navigator.maxTouchPoints > 1) || (navigator.msMaxTouchPoints > 1);
 			}
+<<<<<<< HEAD
 			// make variable Public
+=======
+			// make variable public
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 			self.likelyTouchDevice = _likelyTouchDevice; 
 			
 			_globalEventHandlers[_dragStartEvent] = _onDragStart;

@@ -89,12 +89,16 @@
                         <!-- Card Footer -->
                         <div class="card-footer">
                             <div class="row">
+<<<<<<< HEAD
                                 <div class="col-xl-4"></div>
                                 <div class="col-xl-4">
                                     <button type="button" class="btn btn-sm btn-block btn-danger" id="btnViewAverage" disabled>
                                         <i class="fas fa-eye"></i> View Average
                                     </button>
                                 </div>
+=======
+                                <div class="col-xl-8"></div>
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                 <div class="col-xl-4">
                                     <button type="submit" class="btn btn-sm btn-block btn-danger" id="btnViewDateDiff" disabled>
                                         <i class="fas fa-eye"></i> View
@@ -146,12 +150,19 @@
                                     <th>RETAIL</th>
                                     <th>F. DATANG</th>
                                     <th>PDS OUT</th>
+<<<<<<< HEAD
                                     <th>STNK JADI</th>
                                     <th>PENAGIHAN</th>
                                     <th>PELUNASAN</th>
                                     <th>BPKB JADI</th>
                                     <th>BPKB DITERIMA</th>
                                     <th>BPKB DISERAHKAN</th>
+=======
+                                    <th>STNK</th>
+                                    <th>PENAGIHAN</th>
+                                    <th>PELUNASAN</th>
+                                    <th>BPKB</th>
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                 </tr>
                             </thead>
                         </table>
@@ -201,9 +212,13 @@
                                 <th>STNK</th>
                                 <th>PENAGIHAN</th>
                                 <th>PELUNASAN</th>
+<<<<<<< HEAD
                                 <th>BPKB JADI</th>
                                 <th>BPKB DITERIMA</th>
                                 <th>BPKB DISERAHKAN</th>
+=======
+                                <th>BPKB</th>
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                             </tr>
                             </thead>
                             <tbody>
@@ -297,7 +312,10 @@
         const btnNewTab = $('#newTab');
         const btnViewDetail = $('#btnViewDetail');
         const btnViewDateDiff = $('#btnViewDateDiff');
+<<<<<<< HEAD
         const btnViewAverage = $('#btnViewAverage');
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
         const btnExportExcel = $('#exportExcel');
 
         const vNoSpk = $('#viewNoSpk');
@@ -503,7 +521,11 @@
                                 $(td).css('background-color', 'white');
                             } else {
                                 if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                                     $(td).html('');
+=======
+                                    $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                     $(td).css('background-color', 'red');
                                     $(td).css('color', 'white');
                                 } else if (tgl.startsWith('updated') == true) {
@@ -525,7 +547,11 @@
                                 $(td).css('background-color', 'white');
                             } else {
                                 if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                                     $(td).html('');
+=======
+                                    $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                     $(td).css('background-color', 'red');
                                     $(td).css('color', 'white');
                                 } else if (tgl.startsWith('updated') == true) {
@@ -547,7 +573,11 @@
                                 $(td).css('background-color', 'white');
                             } else {
                                 if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                                     $(td).html('');
+=======
+                                    $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                     $(td).css('background-color', 'red');
                                     $(td).css('color', 'white');
                                 } else if (tgl.startsWith('updated') == true) {
@@ -569,7 +599,11 @@
                                 $(td).css('background-color', 'white');
                             } else {
                                 if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                                     $(td).html('');
+=======
+                                    $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                     $(td).css('background-color', 'red');
                                     $(td).css('color', 'white');
                                 } else if (tgl.startsWith('updated') == true) {
@@ -591,7 +625,11 @@
                                 $(td).css('background-color', 'white');
                             } else {
                                 if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                                     $(td).html('');
+=======
+                                    $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                     $(td).css('background-color', 'red');
                                     $(td).css('color', 'white');
                                 } else if (tgl.startsWith('updated') == true) {
@@ -613,7 +651,11 @@
                                 $(td).css('background-color', 'white');
                             } else {
                                 if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                                     $(td).html('');
+=======
+                                    $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                     $(td).css('background-color', 'red');
                                     $(td).css('color', 'white');
                                 } else if (tgl.startsWith('updated') == true) {
@@ -635,7 +677,11 @@
                                 $(td).css('background-color', 'white');
                             } else {
                                 if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                                     $(td).html('');
+=======
+                                    $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                     $(td).css('background-color', 'red');
                                     $(td).css('color', 'white');
                                 } else if (tgl.startsWith('updated') == true) {
@@ -657,7 +703,11 @@
                                 $(td).css('background-color', 'white');
                             } else {
                                 if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                                     $(td).html('');
+=======
+                                    $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                     $(td).css('background-color', 'red');
                                     $(td).css('color', 'white');
                                 } else if (tgl.startsWith('updated') == true) {
@@ -679,6 +729,7 @@
                                 $(td).css('background-color', 'white');
                             } else {
                                 if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                                     $(td).html('');
                                     $(td).css('background-color', 'red');
                                     $(td).css('color', 'white');
@@ -702,6 +753,9 @@
                             } else {
                                 if (tgl.startsWith('overdue') == true) {
                                     $(td).html('');
+=======
+                                    $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                     $(td).css('background-color', 'red');
                                     $(td).css('color', 'white');
                                 } else if (tgl.startsWith('updated') == true) {
@@ -716,14 +770,22 @@
                         }
                     },
                     {
+<<<<<<< HEAD
                         "data": "12",
+=======
+                        "data": "10",
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                         createdCell: function (td, cellData, rowData, row, col) {
                             var tgl = cellData;
                             if (tgl == null) {
                                 $(td).css('background-color', 'white');
                             } else {
                                 if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                                     $(td).html('');
+=======
+                                    $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                     $(td).css('background-color', 'red');
                                     $(td).css('color', 'white');
                                 } else if (tgl.startsWith('updated') == true) {
@@ -738,6 +800,7 @@
                         }
                     },
                     {
+<<<<<<< HEAD
                         "data": "13",
                         createdCell: function (td, cellData, rowData, row, col) {
                             var tgl = cellData;
@@ -761,13 +824,20 @@
                     },
                     {
                         "data": "14",
+=======
+                        "data": "11",
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                         createdCell: function (td, cellData, rowData, row, col) {
                             var tgl = cellData;
                             if (tgl == null) {
                                 $(td).css('background-color', 'white');
                             } else {
                                 if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                                     $(td).html('');
+=======
+                                    $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                     $(td).css('background-color', 'red');
                                     $(td).css('color', 'white');
                                 } else if (tgl.startsWith('updated') == true) {
@@ -786,7 +856,11 @@
             });
 
             $('#datatable tbody').on( 'click', 'tr', function () {
+<<<<<<< HEAD
                 let data = tables.row( this ).data();
+=======
+                var data = tables.row( this ).data();
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                 noSPK = data.no_spk;
                 $('#viewNoSpk').val(noSPK);
                 // console.log(noSPK);
@@ -833,7 +907,10 @@
                         }
                         selectSpk.setData(dataSPK);
                         btnViewDateDiff.removeAttr('disabled');
+<<<<<<< HEAD
                         // btnViewAverage.removeAttr('disabled');
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                     }
                 });
             });
@@ -878,10 +955,13 @@
                 });
             });
 
+<<<<<<< HEAD
             btnViewAverage.click(function (e) {
                 e.preventDefault();
             });
 
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
             btnExportExcel.click(function (e) {
                 e.preventDefault();
 

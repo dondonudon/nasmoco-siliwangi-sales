@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Route;
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +29,8 @@ Route::post('spk/search','AndroidSPK@search');
 Route::post('spk/area','AndroidSPK@getTrn');
 Route::post('spk/save','AndroidSPK@comment');
 Route::post('spk/update/target','AndroidSPK@updateTarget');
+<<<<<<< HEAD
 
 Route::post('upload-data-lama','OldDataUploader@upload');
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac

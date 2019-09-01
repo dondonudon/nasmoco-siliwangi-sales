@@ -28,7 +28,12 @@ class MasterArea extends Controller
 
     public static function getListArea() {
         $area = DB::table('ms_areas')
+<<<<<<< HEAD
             ->select('id','nama','ord')
+=======
+            ->select('id','nama','color')
+            ->where('initial','=','0')
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
             ->get();
         return $area;
     }
@@ -61,6 +66,7 @@ class MasterArea extends Controller
     public function edit(Request $request) {
         $data = [
             'nama' => $request->area,
+<<<<<<< HEAD
             'perbandingan' => $request->perbandingan,
             'tgl_target_default' => $request->target,
             'ord' => $request->ord,
@@ -74,6 +80,24 @@ class MasterArea extends Controller
         $result = [
             'status' => 'success',
         ];
+=======
+            'tgl_target_default' => $request->target,
+            'color' => $request->color,
+            'ord' => $request->ord,
+        ];
+        $area = DB::table('ms_areas')->where('id', $request->id);
+
+        if ($area->update($data)) {
+            $result = [
+                'status' => 'success',
+            ];
+        } else {
+            $result = [
+                'status' => 'failed',
+                'reason' => 'Gagal menyimpan data',
+            ];
+        }
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
         return json_encode($result);
     }
 }

@@ -1,7 +1,11 @@
 /**
 *
 * UI on top of main sliding area (caption, arrows, close button, etc.).
+<<<<<<< HEAD
 * Built just using Public methods/properties of PhotoSwipe.
+=======
+* Built just using public methods/properties of PhotoSwipe.
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 * 
 */
 (function (root, factory) { 

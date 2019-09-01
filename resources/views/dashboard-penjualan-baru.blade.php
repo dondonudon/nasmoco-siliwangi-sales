@@ -36,13 +36,20 @@
                             <tr>
                                 <th>Nomor SPK</th>
                                 <th>Nama Customer</th>
+<<<<<<< HEAD
                                 <th>Nama STNK</th>
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                 <th>Nomor Rangka</th>
                                 <th>Leasing</th>
                                 <th>Kota / Kabupaten</th>
                                 <th>Kecamatan</th>
                                 <th>Alamat</th>
+<<<<<<< HEAD
                                 <th>Tanggal Input</th>
+=======
+                                <th>Tanggal SPK</th>
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                 <th>Admin</th>
                                 <th>Status</th>
                             </tr>
@@ -78,6 +85,7 @@
                     <!-- Card Body -->
                         <div class="card-body">
                             <input type="hidden" id="option" value="new">
+<<<<<<< HEAD
 {{--                            <div class="form-group">--}}
 {{--                                <label for="inputKota">Tipe Aju</label>--}}
 {{--                                <select class="form-control" id="inputAju" name="aju" >--}}
@@ -89,6 +97,15 @@
 {{--                                <label for="inputTanggalSPK">Tanggal Area Aju</label>--}}
 {{--                                <input type="text" class="form-control" id="inputTanggalSPK" name="tanggal_spk" placeholder="Tanggal SPK" autocomplete="off" >--}}
 {{--                            </div>--}}
+=======
+                            <div class="form-group">
+                                <label for="inputKota">Tipe Aju</label>
+                                <select class="form-control" id="inputAju" name="aju" required>
+                                    <option value="1">AJU FAKTUR</option>
+                                    <option value="2">AJU DR</option>
+                                </select>
+                            </div>
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                             <div class="form-group">
                                 <label for="inputNomorSPK">Nomor SPK</label>
                                 <input type="text" class="form-control" id="inputNomorSPK" name="no_spk" placeholder="Nomor SPK" autocomplete="off" required>
@@ -98,10 +115,13 @@
                                 <input type="text" class="form-control" id="inputCustomer" name="nama_customer" placeholder="Nama Customer" autocomplete="off" required>
                             </div>
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="inputNamaSTNK">Nama STNK</label>
                                 <input type="text" class="form-control" id="inputNamaSTNK" name="nama_stnk" placeholder="Nama STNK" autocomplete="off" required>
                             </div>
                             <div class="form-group">
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                 <label for="inputNomorRangka">Nomor Rangka</label>
                                 <input type="text" class="form-control" id="inputNomorRangka" name="no_rangka" placeholder="Nomor Rangka" autocomplete="off" required>
                             </div>
@@ -125,6 +145,13 @@
                                 <input type="text" class="form-control" id="inputAlamat" name="alamat" placeholder="Alamat" autocomplete="off" required>
                             </div>
                             <div class="form-group">
+<<<<<<< HEAD
+=======
+                                <label for="inputTanggalSPK">Tanggal SPK</label>
+                                <input type="text" class="form-control" id="inputTanggalSPK" name="tanggal_spk" placeholder="Tanggal SPK" autocomplete="off" required>
+                            </div>
+                            <div class="form-group">
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                 <label for="inputUsername">Admin</label>
                                 <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Admin" value="{{ \Illuminate\Support\Facades\Session::get('username') }}" readonly>
                             </div>
@@ -180,6 +207,7 @@
 
     </div>
     <iframe id="downloadFrame" style="display: none;"></iframe>
+<<<<<<< HEAD
 
     <div class="modal fade" id="ModalInfoUpload" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -201,13 +229,18 @@
     </div>
     <iframe id="downloadArea" hidden></iframe>
 
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 @endsection
 
 @section('script')
     <script src="{{ asset('vendor/filepond-master/filepond.min.js') }}"></script>
     <script>
+<<<<<<< HEAD
         const download = document.getElementById('downloadArea');
 
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
         /*
         Card Data
         new SPK and edit SPK
@@ -217,15 +250,21 @@
         const cardTitle = $('#judulCard');
         const optionData = $('#option');
         const buttonCancel = $('#btnCancel');
+<<<<<<< HEAD
 
         const iNomorSpk = $('#inputNomorSPK');
         const iCustomer = $('#inputCustomer');
         const iNamaSTNK = $('#inputNamaSTNK');
+=======
+        const iNomorSpk = $('#inputNomorSPK');
+        const iCustomer = $('#inputCustomer');
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
         const iNomorRangka = $('#inputNomorRangka');
         const iLeasing = $('#inputLeasing');
         const iKota = $('#inputKota');
         const iKecamatan = $('#inputKecamatan');
         const iAlamat = $('#inputAlamat');
+<<<<<<< HEAD
         const iUsername = $('#inputUsername');
 
         let vNomorSpk = '';
@@ -238,6 +277,11 @@
         let vAlamat = '';
         let vUsername = '';
 
+=======
+        const iTanggalSpk = $('#inputTanggalSPK');
+        const iUsername = $('#inputUsername');
+
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
         /*
         Card SPK List
         */
@@ -281,6 +325,12 @@
             iKecamatan.html('');
             iKecamatan.attr('disabled');
             iAlamat.val('');
+<<<<<<< HEAD
+=======
+            iTanggalSpk.val(
+                moment().format('DD-MM-YYYY')
+            );
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
         }
 
         $(document).ready(function() {
@@ -288,7 +338,11 @@
                 url: "{{ url('dashboard/penjualan/baru/leasing') }}",
                 method: "get",
                 success: function(result) {
+<<<<<<< HEAD
                     let data = JSON.parse(result);
+=======
+                    var data = JSON.parse(result);
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                     // console.log(data);
                     data.forEach(function(val,index) {
                         htmlLeasing += '<option value="' + val.nama + '">' + val.nama + '</option>';
@@ -310,6 +364,21 @@
                 }
             });
 
+<<<<<<< HEAD
+=======
+            iTanggalSpk.daterangepicker({
+                maxDate: moment().format('DD-MM-YYYY'),
+                singleDatePicker: true,
+                showDropdowns: true,
+                locale: {
+                    format: 'DD-MM-YYYY',
+                }
+            }, function (start,end,label) {
+                startDate = moment(start).format('YYYY-MM-DD');
+                // console.log(startDate);
+            });
+
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
             iKota.change(function(e) {
                 e.preventDefault();
                 $.ajax({
@@ -317,7 +386,11 @@
                     method: "post",
                     data: {kota: iKota.val()},
                     success: function(result) {
+<<<<<<< HEAD
                         let data = JSON.parse(result);
+=======
+                        var data = JSON.parse(result);
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                         htmlKecamatan = '';
                         data.forEach(function(val,index) {
                             htmlKecamatan += '<option value="' + val.nama + '">' + val.nama + '</option>';
@@ -352,6 +425,7 @@
                 optionData.val('edit');
                 cardTitle.html('Edit Data Penjualan');
                 cardComponent.removeClass('d-none');
+<<<<<<< HEAD
                 iNomorSpk.val(vNomorSpk);
                 iCustomer.val(vCustomer);
                 iNamaSTNK.val(vNamaSTNK);
@@ -361,6 +435,10 @@
                 iKecamatan.val(vKecamatan);
                 iAlamat.val(vAlamat);
                 iUsername.val(vUsername);
+=======
+                inputUsername.val(username);
+                inputNamaLengkap.val(namalengkap);
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 
                 $('html, body').animate({
                     scrollTop: cardComponent.offset().top
@@ -421,8 +499,12 @@
 
             btnSample.click(function (e) {
                 e.preventDefault();
+<<<<<<< HEAD
                 {{--window.open('{{ url('/dashboard/penjualan/baru/upload/sample') }}');--}}
                 download.src = '{{ url('dashboard/penjualan/baru/upload/sample') }}';
+=======
+                window.open('{{ url('/dashboard/penjualan/baru/upload/sample') }}');
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
             });
 
             btnUpload.click(function (e) {
@@ -454,6 +536,7 @@
                                 if (request.status >= 200 && request.status < 300) {
                                     load(request.responseText);
                                     console.log(request.responseText);
+<<<<<<< HEAD
                                     let data = JSON.parse(request.responseText);
                                     if (data.duplicate == '') {
                                         Swal.fire({
@@ -472,6 +555,8 @@
                                         $('#ModalInfoData').html(htmlData);
                                         $('#ModalInfoUpload').modal('show');
                                     }
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                 } else {
                                     error('gagal');
                                 }
@@ -492,7 +577,11 @@
             });
 
             const tables = $('#datatable').DataTable({
+<<<<<<< HEAD
                 "scrollY": "400px",
+=======
+                "scrollY": "150px",
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                 "scrollX": true,
                 "scrollCollapse": true,
                 // "paging": false,
@@ -508,7 +597,10 @@
                 "columns": [
                     { "data": "no_spk" },
                     { "data": "nama_customer" },
+<<<<<<< HEAD
                     { "data": "nama_stnk" },
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                     { "data": "no_rangka" },
                     { "data": "leasing" },
                     { "data": "kota" },
@@ -516,7 +608,11 @@
                     { "data": "alamat" },
                     {
                         "render": function (data, type, full, meta) {
+<<<<<<< HEAD
                             return moment(full.created_at).format('DD-MM-YYYY');
+=======
+                            return moment(full.tanggal_spk).format('DD-MM-YYYY');
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                         },
                     },
                     { "data": "username" },
@@ -533,6 +629,10 @@
                 ],
                 "order": [[0,'asc']]
             });
+<<<<<<< HEAD
+=======
+
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
             $('#datatable tbody').on( 'click', 'tr', function () {
                 let data = tables.row( this ).data();
                 noSPK = data.no_spk;
@@ -546,6 +646,7 @@
                     $(this).addClass('selected');
                     buttonEdit.removeAttr('disabled');
                     buttonDelete.removeAttr('disabled');
+<<<<<<< HEAD
                     vNomorSpk = data.no_spk;
                     vCustomer = data.nama_customer;
                     vNamaSTNK = data.nama_stnk;
@@ -555,6 +656,8 @@
                     vKecamatan = data.kecamatan;
                     vAlamat = data.alamat;
                     vUsername = data.username;
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                 }
             });
 
@@ -571,7 +674,11 @@
                     method: "post",
                     data: $(this).serialize(),
                     success: function(result) {
+<<<<<<< HEAD
                         console.log(result);
+=======
+                        // console.log(result);
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                         let data = JSON.parse(result);
                         if (data.status === 'success') {
                             Swal.fire({

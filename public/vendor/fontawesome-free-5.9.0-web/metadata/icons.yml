@@ -2375,7 +2375,11 @@ bus:
   label: Bus
   search:
     terms:
+<<<<<<< HEAD
       - Public transportation
+=======
+      - public transportation
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
       - transportation
       - travel
       - vehicle
@@ -2390,7 +2394,11 @@ bus-alt:
   search:
     terms:
       - mta
+<<<<<<< HEAD
       - Public transportation
+=======
+      - public transportation
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
       - transportation
       - travel
       - vehicle
@@ -15414,7 +15422,11 @@ shuttle-van:
     terms:
       - airport
       - machine
+<<<<<<< HEAD
       - Public-transportation
+=======
+      - public-transportation
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
       - transportation
       - travel
       - vehicle

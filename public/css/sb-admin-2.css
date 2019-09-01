@@ -1690,7 +1690,11 @@ pre code {
 
 .table-sm th,
 .table-sm td {
+<<<<<<< HEAD
   padding: 0.1rem;
+=======
+  padding: 0.2rem;
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 }
 
 .table-bordered {

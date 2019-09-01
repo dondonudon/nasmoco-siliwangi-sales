@@ -232,7 +232,11 @@ var Alert = function ($) {
 
     // getters
 
+<<<<<<< HEAD
     // Public
+=======
+    // public
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 
     Alert.prototype.close = function close(element) {
       element = element || this._element;
@@ -413,7 +417,11 @@ var Button = function ($) {
 
     // getters
 
+<<<<<<< HEAD
     // Public
+=======
+    // public
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 
     Button.prototype.toggle = function toggle() {
       var triggerChangeEvent = true;
@@ -636,7 +644,11 @@ var Carousel = function ($) {
 
     // getters
 
+<<<<<<< HEAD
     // Public
+=======
+    // public
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 
     Carousel.prototype.next = function next() {
       if (!this._isSliding) {
@@ -1128,7 +1140,11 @@ var Collapse = function ($) {
 
     // getters
 
+<<<<<<< HEAD
     // Public
+=======
+    // public
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 
     Collapse.prototype.toggle = function toggle() {
       if ($(this._element).hasClass(ClassName.SHOW)) {
@@ -1501,7 +1517,11 @@ var Dropdown = function ($) {
 
     // getters
 
+<<<<<<< HEAD
     // Public
+=======
+    // public
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 
     Dropdown.prototype.toggle = function toggle() {
       if (this._element.disabled || $(this._element).hasClass(ClassName.DISABLED)) {
@@ -1914,7 +1934,11 @@ var Modal = function ($) {
 
     // getters
 
+<<<<<<< HEAD
     // Public
+=======
+    // public
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 
     Modal.prototype.toggle = function toggle(relatedTarget) {
       return this._isShown ? this.hide() : this.show(relatedTarget);
@@ -2486,7 +2510,11 @@ var ScrollSpy = function ($) {
 
     // getters
 
+<<<<<<< HEAD
     // Public
+=======
+    // public
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 
     ScrollSpy.prototype.refresh = function refresh() {
       var _this21 = this;
@@ -2770,7 +2798,11 @@ var Tab = function ($) {
 
     // getters
 
+<<<<<<< HEAD
     // Public
+=======
+    // public
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 
     Tab.prototype.show = function show() {
       var _this22 = this;
@@ -3090,7 +3122,11 @@ var Tooltip = function ($) {
 
     // getters
 
+<<<<<<< HEAD
     // Public
+=======
+    // public
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 
     Tooltip.prototype.enable = function enable() {
       this._isEnabled = true;
@@ -3828,4 +3864,8 @@ var Popover = function ($) {
 }(jQuery);
 
 
+<<<<<<< HEAD
 })();
+=======
+})();
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac

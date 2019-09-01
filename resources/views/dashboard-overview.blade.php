@@ -20,8 +20,13 @@ $infoArea = App\Http\Controllers\OverviewCard::infoDashboard();
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
+<<<<<<< HEAD
                             <div class="font-weight-bold text-primary text-uppercase mb-1">SPK Bulan Ini</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $infoArea['spk_bulan_ini']->total }}</div>
+=======
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">SPK Bulan Ini</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $infoArea['spk'] }}</div>
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                         </div>
                         <div class="col-auto" id="cobaIcon">
 
@@ -32,6 +37,7 @@ $infoArea = App\Http\Controllers\OverviewCard::infoDashboard();
         </div>
     </div>
 
+<<<<<<< HEAD
     <div class="row">
         <div class="col col-md mt-4 mb-4">
             <div class="card shadow h-100 bg-dark text-white text-center">
@@ -59,6 +65,22 @@ $infoArea = App\Http\Controllers\OverviewCard::infoDashboard();
                                     <input type="hidden" name="area" value="{{ $i->id_area }}">
                                         <button type="submit" class="btn btn-primary btn-sm">Lihat</button>
                                 </form>
+=======
+    <!-- Content Row -->
+    <div class="row">
+
+        @foreach($infoArea['info'] as $i => $v)
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card {{ $v['color'] }} shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ $i }}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $v['x'] }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-chart-area fa-2x text-gray-300"></i>
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                             </div>
                         </div>
                     </div>
@@ -67,6 +89,7 @@ $infoArea = App\Http\Controllers\OverviewCard::infoDashboard();
         @endforeach
 
     </div>
+<<<<<<< HEAD
     <!-- Content Row -->
 
 </div>
@@ -92,11 +115,19 @@ $infoArea = App\Http\Controllers\OverviewCard::infoDashboard();
             </div>
         </div>
     </div>
+=======
+
+    <!-- Content Row -->
+
+
+
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 </div>
 @endsection
 
 @section('script')
     <script>
+<<<<<<< HEAD
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -130,3 +161,8 @@ $infoArea = App\Http\Controllers\OverviewCard::infoDashboard();
         }
     </script>
 @endsection
+=======
+        $('#cobaIcon').html('<i class="fas fa-car fa-2x text-gray-300"></i>');
+    </script>
+@endsection
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac

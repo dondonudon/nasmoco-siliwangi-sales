@@ -27,10 +27,16 @@
                         <table class="table table-sm table-hover table-bordered display nowrap" id="datatable" width="100%">
                             <thead class="text-white bg-primary">
                                 <tr>
+<<<<<<< HEAD
                                     <th>ID Area</th>
                                     <th>Nama Area</th>
                                     <th>Perbandingan (ID Area)</th>
                                     <th>Target (Hari)</th>
+=======
+                                    <th>Nama Area</th>
+                                    <th>Target (Hari)</th>
+                                    <th>Color</th>
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                     <th>Order</th>
                                 </tr>
                             </thead>
@@ -70,14 +76,24 @@
                                 <input type="text" class="form-control" id="inputArea" name="area" placeholder="Nama Area" autocomplete="off" required>
                             </div>
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="inputTarget">ID Pembanding</label>
                                 <input type="number" class="form-control" id="inputPembanding" name="perbandingan" placeholder="Tanggal Target" autocomplete="off" required>
                             </div>
                             <div class="form-group">
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                 <label for="inputTarget">Tanggal Target Default</label>
                                 <input type="number" class="form-control" id="inputTarget" name="target" placeholder="Tanggal Target" autocomplete="off" required>
                             </div>
                             <div class="form-group">
+<<<<<<< HEAD
+=======
+                                <label for="inputColor">Color</label>
+                                <input type="text" class="form-control" id="inputColor" name="color" placeholder="Hex Color" autocomplete="off" required>
+                            </div>
+                            <div class="form-group">
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                 <label for="inputOrder">Order</label>
                                 <input type="number" class="form-control" id="inputOrder" name="ord" placeholder="Input Order" autocomplete="off" required>
                             </div>
@@ -105,7 +121,10 @@
 @section('script')
     <script>
         let iArea = $('#inputArea');
+<<<<<<< HEAD
         let iPembanding = $('#inputPembanding');
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
         let iTarget = $('#inputTarget');
         let iColor = $('#inputColor');
         let iOrder = $('#inputOrder');
@@ -120,7 +139,15 @@
         let buttonEdit = $('#btnEdit');
         let buttonCancel = $('#btnCancel');
 
+<<<<<<< HEAD
         let idArea, namaArea, pembanding, target, color, order;
+=======
+        var idArea;
+        var namaArea;
+        var target;
+        var color;
+        var order;
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 
         function resetForm() {
             iArea.val('');
@@ -146,7 +173,10 @@
             cardTitle.html('Edit Area');
             cardComponent.removeClass('d-none');
             iArea.val(namaArea);
+<<<<<<< HEAD
             iPembanding.val(pembanding);
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
             iTarget.val(target);
             iColor.val(color);
             iOrder.val(order);
@@ -180,6 +210,7 @@
                     }
                 },
                 "columns": [
+<<<<<<< HEAD
                     { "data": "id" },
                     { "data": "nama" },
                     { "data": "perbandingan" },
@@ -187,12 +218,28 @@
                     { "data": "ord" },
                 ],
                 "order": [[0,'asc']]
+=======
+                    { "data": "nama" },
+                    { "data": "tgl_target_default" },
+                    {
+                        "render": function (data, type, full, meta) {
+                            // return '<hr style="border: 10px; border-color: '+full.color+'; border-radius: 5px;">';
+                            return '<span style="font-weight: bold; color: '+full.color+'">'+full.color+'</span>';
+                        },
+                    },
+                    { "data": "ord" },
+                ],
+                "order": [[3,'asc']]
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
             });
             $('#datatable tbody').on( 'click', 'tr', function () {
                 var data = tables.row( this ).data();
                 idArea = data.id;
                 namaArea = data.nama;
+<<<<<<< HEAD
                 pembanding = data.perbandingan;
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                 target = data.tgl_target_default;
                 color = data.color;
                 order = data.ord;
@@ -249,9 +296,16 @@
                     $.ajax({
                         url: "{{ url('dashboard/master/area/edit') }}",
                         method: "post",
+<<<<<<< HEAD
                         data: {id: idArea, area: iArea.val(),perbandingan: iPembanding.val(), target: iTarget.val(), color: iColor.val(), ord: iOrder.val()},
                         success: function(result) {
                             console.log(result);
+=======
+                        data: {id: idArea, area: iArea.val(), target: iTarget.val(), color: iColor.val(), ord: iOrder.val()},
+                        success: function(result) {
+                            var data = JSON.parse(result);
+                            console.log(data);
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                             var data = JSON.parse(result);
                             if (data.status == 'success') {
                                 Swal.fire({
@@ -277,4 +331,8 @@
             });
         })
     </script>
+<<<<<<< HEAD
 @endsection
+=======
+@endsection
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac

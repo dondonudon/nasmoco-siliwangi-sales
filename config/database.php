@@ -56,7 +56,11 @@ return [
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
             'prefix_indexes' => true,
+<<<<<<< HEAD
             'strict' => false,
+=======
+            'strict' => true,
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
@@ -74,7 +78,11 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
+<<<<<<< HEAD
             'schema' => 'Public',
+=======
+            'schema' => 'public',
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
             'sslmode' => 'prefer',
         ],
 

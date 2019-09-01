@@ -452,7 +452,11 @@ $.extend( FixedColumns.prototype , {
 
 
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+<<<<<<< HEAD
 	 * Private methods (they are of course Public in JS, but recommended as private)
+=======
+	 * Private methods (they are of course public in JS, but recommended as private)
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 	 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 	/**

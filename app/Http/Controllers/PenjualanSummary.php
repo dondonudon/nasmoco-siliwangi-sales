@@ -66,13 +66,21 @@ class PenjualanSummary extends Controller
 
     public function getPenjualan(Request $request) {
         $startDate = $request->start_date;
+<<<<<<< HEAD
         $endDate = $request->end_date.' 23:50:50';
+=======
+        $endDate = $request->end_date;
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
         $status = $request->status;
 
         $trn = DB::table('penjualan_trn')->select('id_area','tanggal','tanggal_target','tgl_target_updated');
         $mst = DB::table('penjualan_mst')
             ->where('finish','=',$status)
+<<<<<<< HEAD
             ->whereBetween('created_at',[$startDate,$endDate])->get();
+=======
+            ->whereBetween('tanggal_spk',[$startDate,$endDate])->get();
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
         if ($mst->count() == 0) {
             $result['data'] = '';
             return json_encode($result);
@@ -100,10 +108,15 @@ class PenjualanSummary extends Controller
                     '7' => $this->checkOverdue($h[6]->tanggal, $h[6]->tanggal_target, $h[6]->tgl_target_updated),
                     '8' => $this->checkOverdue($h[7]->tanggal, $h[7]->tanggal_target, $h[7]->tgl_target_updated),
                     '9' => $this->checkOverdue($h[8]->tanggal, $h[8]->tanggal_target, $h[8]->tgl_target_updated),
+<<<<<<< HEAD
                     '11' => $this->checkOverdue($h[10]->tanggal, $h[10]->tanggal_target, $h[10]->tgl_target_updated),
                     '12' => $this->checkOverdue($h[11]->tanggal, $h[11]->tanggal_target, $h[11]->tgl_target_updated),
                     '13' => $this->checkOverdue($h[12]->tanggal, $h[12]->tanggal_target, $h[12]->tgl_target_updated),
                     '14' => $this->checkOverdue($h[13]->tanggal, $h[13]->tanggal_target, $h[13]->tgl_target_updated),
+=======
+                    '10' => $this->checkOverdue($h[9]->tanggal, $h[9]->tanggal_target, $h[9]->tgl_target_updated),
+                    '11' => $this->checkOverdue($h[10]->tanggal, $h[10]->tanggal_target, $h[10]->tgl_target_updated),
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                 );
 		$i++;
             }
@@ -122,9 +135,12 @@ class PenjualanSummary extends Controller
                     '9' => $this->checkOverdue($hslTrn[8]->tanggal, $hslTrn[8]->tanggal_target),
                     '10' => $this->checkOverdue($hslTrn[9]->tanggal, $hslTrn[9]->tanggal_target),
                     '11' => $this->checkOverdue($hslTrn[10]->tanggal, $hslTrn[10]->tanggal_target),
+<<<<<<< HEAD
                     '12' => $this->checkOverdue($hslTrn[11]->tanggal, $hslTrn[11]->tanggal_target),
                     '13' => $this->checkOverdue($hslTrn[12]->tanggal, $hslTrn[12]->tanggal_target),
                     '14' => $this->checkOverdue($hslTrn[13]->tanggal, $hslTrn[13]->tanggal_target),
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                 );
         }
         $result['data'] = $store;
@@ -172,8 +188,13 @@ class PenjualanSummary extends Controller
             ->select('no_spk','ms_areas.nama as nama_area','ms_areas.id as id_area','tanggal','tanggal_target')
             ->join('ms_areas','penjualan_trn.id_area','=','ms_areas.id')
             ->where('no_spk','=',$noSpk)
+<<<<<<< HEAD
             ->whereIn('id_area',[1,2,3,4,5,6,7,8,9,11,12,13,14])
             ->orderBy('ord','asc')
+=======
+            ->whereBetween('id_area',[1,11])
+            ->orderBy('id_area')
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
             ->get();
 
         if ($trn[$areaAwal]->tanggal == null) {
@@ -187,12 +208,16 @@ class PenjualanSummary extends Controller
         } else {
             $customTglAkhir = new \DateTime($trn[$areaAkhir-1]->tanggal);
         }
+<<<<<<< HEAD
 
         if ($customTglAwal < $customTglAkhir) {
             $customDateDiff = $customTglAkhir->diff($customTglAwal);
         } else {
             $customDateDiff = $customTglAwal->diff($customTglAkhir);
         }
+=======
+        $customDateDiff = $customTglAwal->diff($customTglAkhir);
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 
         $tgl = array();
         foreach ($trn as $t) {
@@ -234,12 +259,20 @@ class PenjualanSummary extends Controller
             $start = date_create($tgl[3]);
             $end = date_create($tgl[8]);
             $rvpg = date_diff($start, $end);
+<<<<<<< HEAD
             $rvpg = '<td>Retail vs Penagihan</td><td></td><td></td><td></td><td></td><th class="bg-gradient-warning text-center text-white" colspan="5">' . $rvpg->format("%a") . '</th><td></td><td></td><td></td><td></td>';
+=======
+            $rvpg = '<td>Retail vs Penagihan</td><td></td><td></td><td></td><td></td><th class="bg-gradient-warning text-center text-white" colspan="5">' . $rvpg->format("%a") . '</th><td></td><td></td>';
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 
             $start = date_create($tgl[3]);
             $end = date_create($tgl[9]);
             $rvpl = date_diff($start, $end);
+<<<<<<< HEAD
             $rvpl = '<td>Retail vs Pelunasan</td><td></td><td></td><td></td><td></td><th class="bg-gradient-warning text-center text-white" colspan="6">' . $rvpl->format("%a") . '</th><td></td><td></td><td></td>';
+=======
+            $rvpl = '<td>Retail vs Pelunasan</td><td></td><td></td><td></td><td></td><th class="bg-gradient-warning text-center text-white" colspan="6">' . $rvpl->format("%a") . '</th><td></td>';
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 
             if ($idArea >= $areaAwal && $idArea <= $areaAkhir) {
                 $colspan += 1;
@@ -462,16 +495,26 @@ class PenjualanSummary extends Controller
         $writer->save('php://output');
         $content = ob_get_contents();
         ob_end_clean();
+<<<<<<< HEAD
         Storage::disk('Public')->put('export-summary.xlsx',$content);
 
         return Storage::download('Public/export-summary.xlsx');
+=======
+        Storage::disk('public')->put('export-summary.xlsx',$content);
+
+        return Storage::download('public/export-summary.xlsx');
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 
 
 //        response()->headers->set('Content-Type','application/vnd.ms-excel');
 //        response()->headers->set('Content-Disposition','attachment;filename="ExportSummary.xlsx"');
 //        response()->headers->set('Cache-Control','max-age=0');
 
+<<<<<<< HEAD
 //        Storage::putFile('Public', new File($writer->save('summary.xlsx')), 'export-summary.xlsx');
+=======
+//        Storage::putFile('public', new File($writer->save('summary.xlsx')), 'export-summary.xlsx');
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 //        $save = $writer->save('php://output');
 //
 //        $headers = [
@@ -481,7 +524,11 @@ class PenjualanSummary extends Controller
 //            'Content-Transfer-Encoding' => 'binary',
 //            'Expires' => '0',
 //            'Cache-Control' => 'must-revalidate',
+<<<<<<< HEAD
 //            'Pragma' => 'Public',
+=======
+//            'Pragma' => 'public',
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 //            'Content-Length' => filesize($save),
 //        ];
 //

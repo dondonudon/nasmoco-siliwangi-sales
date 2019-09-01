@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 class OverviewCard extends Controller
 {
     public static function infoDashboard() {
+<<<<<<< HEAD
         $startdate = date('Y-m-d',strtotime('first day of this month',time()));
         $enddate = date('Y-m-d',strtotime('last day of this month',time()));
 
@@ -48,4 +49,36 @@ class OverviewCard extends Controller
         }
         return json_encode($spk);
     }
+=======
+        $dateStart = date('Y-m-1');
+        $dateEnd = date('Y-m-t');
+
+        $mst = DB::table('penjualan_mst')->whereBetween('tanggal_spk',[$dateStart,$dateEnd])->count();
+        $area = DB::table('ms_areas')
+            ->select('id','nama','color')
+            ->orderBy('ord','asc')
+            ->get();
+        $trn = DB::table('penjualan_trn')
+            ->select('id_area')
+            ->where('status','=','0')
+            ->get();
+
+        $result['spk'] = $mst;
+        foreach ($area as $a) {
+            $counter = 0;
+            foreach ($trn as $t) {
+                if ($t->id_area == $a->id) {
+                    $counter++;
+                }
+            }
+            $result['info'][$a->nama] = [
+//                'x' => count($x),
+                'x' => $counter,
+                'color' => $a->color,
+            ];
+        }
+
+        return $result;
+    }
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 }

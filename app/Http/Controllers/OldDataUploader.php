@@ -2,20 +2,27 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Http\Controllers\OpenFunction\AjuFakturChecklist;
 use App\Http\Controllers\OpenFunction\UpdateAllArea;
 use App\Http\Controllers\OpenFunction\UpdateArea;
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 use App\penjualanMst;
 use App\penjualanTrn;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+<<<<<<< HEAD
 use PhpOffice\PhpSpreadsheet\Reader\Csv;
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 use PhpOffice\PhpSpreadsheet\Reader\Xls;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class OldDataUploader extends Controller
 {
+<<<<<<< HEAD
     private function checkNull($date) {
         if ($date == '' || $date == null || $date == ' ') {
             $result = null;
@@ -31,10 +38,16 @@ class OldDataUploader extends Controller
 
         $username = Session::get('username');
         $date = date('Y-m-d H:i:s');
+=======
+    public function upload(Request $request) {
+        $area = DB::table('ms_areas')->get();
+
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
         $noSPK = 0;
         $namaCust = 0;
         $noRangka = 0;
         $kotaKab = 0;
+<<<<<<< HEAD
         $kecamatan = 0;
         $alamat = 0;
         $tglSPK = 0;
@@ -43,6 +56,17 @@ class OldDataUploader extends Controller
 //        $extension = $file->extension();
 
 //        $reader = null;
+=======
+        $kecamatan =0;
+        $alamat = 0;
+        $tglSPK = 0;
+        $username = Session::get('username');
+        $date = date('Y-m-d H:i:s');
+
+        $file = $request->file('filepond');
+        $extension = $file->extension();
+
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
         switch ($extension) {
             case 'xls':
                 $reader = new Xls();
@@ -50,17 +74,24 @@ class OldDataUploader extends Controller
 
             case 'xlsx':
                 $reader = new Xlsx();
+<<<<<<< HEAD
                 break;
 
             case 'csv':
                 $reader = new Csv();
                 break;
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
         }
         $spreadsheet = $reader->load($file);
         $worksheet = $spreadsheet->getActiveSheet();
         $array = $worksheet->toArray();
 
+<<<<<<< HEAD
         foreach ($array[0] as $key => $value) {
+=======
+        foreach ($array[1] as $key => $value) {
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
             switch ($value) {
                 case 'No SPK':
                     $noSPK = $key;
@@ -137,6 +168,7 @@ class OldDataUploader extends Controller
         }
 
         $result = array();
+<<<<<<< HEAD
         for ($i=1 ; $i < count($array) ; $i++) {
             $trnData = [
                 ['id' => '1','nama_area' => 'aju_faktur', 'tgl' => $this->checkNull($array[$i][$tglAjuFaktur])],
@@ -189,10 +221,49 @@ class OldDataUploader extends Controller
                         }
                     }
                 }
+=======
+        for ($i=2 ; $i < count($array) ; $i++) {
+            $trnData = [
+                'AJU FAKTUR' => $this->checkNull($array[$i][$tglAjuFaktur]),
+                'AJU DR' => $this->checkNull($array[$i][$tglAjuDR]),
+                'PDS IN' => $this->checkNull($array[$i][$tglPDSIn]),
+                'GESEK' => $this->checkNull($array[$i][$tglGesek]),
+                'RETAIL' => $this->checkNull($array[$i][$tglRetail]),
+                'FAKTUR DATANG' => $this->checkNull($array[$i][$tglFakturDatang]),
+                'PDS OUT' => $this->checkNull($array[$i][$tglPDSOut]),
+                'STNK JADI' => $this->checkNull($array[$i][$tglSTNKJadi]),
+                'PENAGIHAN' => $this->checkNull($array[$i][$tglPenagihan]),
+                'PELUNASAN' => $this->checkNull($array[$i][$tglPelunasan]),
+                'BPKB' => $this->checkNull($array[$i][$tglBPKB]),
+                'AR' => null,
+            ];
+
+            $reformatTglSPK = date('Y-m-d H:i:s', strtotime($array[$i][$tglSPK]));
+            $iNoSPK = $array[$i][$noSPK];
+            $mst = new penjualanMst();
+
+            $mst->no_spk = $iNoSPK;
+            $mst->nama_customer = $array[$i][$namaCust];
+            $mst->no_rangka = $array[$i][$noRangka];
+            $mst->kota = $array[$i][$kotaKab];
+            $mst->kecamatan = $array[$i][$kecamatan];
+            $mst->alamat = $array[$i][$alamat];
+            $mst->tanggal_spk = $reformatTglSPK;
+            $mst->username = $username;
+            if ($trnData['BPKB'] == null) {
+                $mst->finish = 0;
+            } else {
+                $mst->finish = 1;
+            }
+
+            try {
+                $mst->save();
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
             } catch (\Exception $ex) {
                 return dd('Exception block', $ex);
             }
 
+<<<<<<< HEAD
 //            $counter = 0;
 //            foreach ($area as $a) {
 //                $counter += $a->tgl_target_default;
@@ -225,5 +296,39 @@ class OldDataUploader extends Controller
         }
 
         return 'success';
+=======
+            $counter = 0;
+            foreach ($area as $a) {
+                $counter += $a->tgl_target_default;
+                $thisDate = $reformatTglSPK;
+
+                $your_date = strtotime($counter." day", strtotime($thisDate));
+                $tglIncrement = date("Y-m-d", $your_date);
+
+                $trn = new penjualanTrn();
+
+                $trn->no_spk = $iNoSPK;
+                $trn->id_area = $a->id;
+                $trn->catatan = '';
+                if ($trnData[$a->nama] !== null) {
+                    $trn->tanggal = $trnData[$a->nama];
+                    $trn->status = '1';
+                } else {
+                    $trn->status = '0';
+                }
+                $trn->tanggal_target = $tglIncrement;
+                $trn->username = $username;
+
+                try {
+                    $trn->save();
+                    $lastDate = $trnData[$a->nama];
+                } catch (\Exception $ex) {
+                    return dd('Exception block', $ex);
+                }
+            }
+        }
+
+        return json_encode($result);
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
     }
 }

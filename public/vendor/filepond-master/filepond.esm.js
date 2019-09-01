@@ -1114,7 +1114,11 @@ const createView =
       query: store.query
     };
 
+<<<<<<< HEAD
     // Public view API methods
+=======
+    // public view API methods
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
     const externalAPIDefinition = {
       element: {
         get: getElement
@@ -1186,7 +1190,11 @@ const createView =
     // call did create
     didCreateView(internalAPI);
 
+<<<<<<< HEAD
     // expose Public api
+=======
+    // expose public api
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
     return createObject(externalAPIDefinition, props);
   };
 
@@ -8100,7 +8108,11 @@ const createApp = (initialOptions = {}) => {
     removeFile,
 
     /**
+<<<<<<< HEAD
      * Returns all files (wrapped in Public api)
+=======
+     * Returns all files (wrapped in public api)
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
      */
     getFiles,
 

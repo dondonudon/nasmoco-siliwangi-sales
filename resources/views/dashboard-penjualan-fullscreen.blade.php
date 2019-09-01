@@ -39,9 +39,13 @@
                 <th>STNK</th>
                 <th>PENAGIHAN</th>
                 <th>PELUNASAN</th>
+<<<<<<< HEAD
                 <th>BPKB JADI</th>
                 <th>BPKB DITERIMA</th>
                 <th>BPKB DISERAHKAN</th>
+=======
+                <th>BPKB</th>
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
             </tr>
             </thead>
         </table>
@@ -105,12 +109,20 @@
             {
                 "data": "1",
                 createdCell: function (td, cellData, rowData, row, col) {
+<<<<<<< HEAD
                     let tgl = cellData;
+=======
+                    var tgl = cellData;
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                     if (tgl == null) {
                         $(td).css('background-color', 'white');
                     } else {
                         if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                             $(td).html('');
+=======
+                            $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                             $(td).css('background-color', 'red');
                             $(td).css('color', 'white');
                         } else if (tgl.startsWith('updated') == true) {
@@ -127,15 +139,27 @@
             {
                 "data": "2",
                 createdCell: function (td, cellData, rowData, row, col) {
+<<<<<<< HEAD
                     let tgl = cellData;
+=======
+                    var tgl = cellData;
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                     if (tgl == null) {
                         $(td).css('background-color', 'white');
                     } else {
                         if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                             $(td).html('');
                             $(td).css('background-color', 'red');
                             $(td).css('color', 'white');
                         } else if (tgl.startsWith('updated') == true) {
+=======
+                            $(td).html(cellData.replace('overdue -', ''));
+                            $(td).css('background-color', 'red');
+                            $(td).css('color', 'white');
+                        } else if (tgl.startsWith('updated') == true) {
+                            console.log(cellData);
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                             $(td).html(cellData.replace('updated -', ''));
                             $(td).css('background-color', 'orange');
                             $(td).css('color', 'white');
@@ -149,12 +173,20 @@
             {
                 "data": "3",
                 createdCell: function (td, cellData, rowData, row, col) {
+<<<<<<< HEAD
                     let tgl = cellData;
+=======
+                    var tgl = cellData;
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                     if (tgl == null) {
                         $(td).css('background-color', 'white');
                     } else {
                         if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                             $(td).html('');
+=======
+                            $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                             $(td).css('background-color', 'red');
                             $(td).css('color', 'white');
                         } else if (tgl.startsWith('updated') == true) {
@@ -171,12 +203,20 @@
             {
                 "data": "4",
                 createdCell: function (td, cellData, rowData, row, col) {
+<<<<<<< HEAD
                     let tgl = cellData;
+=======
+                    var tgl = cellData;
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                     if (tgl == null) {
                         $(td).css('background-color', 'white');
                     } else {
                         if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                             $(td).html('');
+=======
+                            $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                             $(td).css('background-color', 'red');
                             $(td).css('color', 'white');
                         } else if (tgl.startsWith('updated') == true) {
@@ -193,12 +233,20 @@
             {
                 "data": "5",
                 createdCell: function (td, cellData, rowData, row, col) {
+<<<<<<< HEAD
                     let tgl = cellData;
+=======
+                    var tgl = cellData;
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                     if (tgl == null) {
                         $(td).css('background-color', 'white');
                     } else {
                         if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                             $(td).html('');
+=======
+                            $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                             $(td).css('background-color', 'red');
                             $(td).css('color', 'white');
                         } else if (tgl.startsWith('updated') == true) {
@@ -215,12 +263,20 @@
             {
                 "data": "6",
                 createdCell: function (td, cellData, rowData, row, col) {
+<<<<<<< HEAD
                     let tgl = cellData;
+=======
+                    var tgl = cellData;
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                     if (tgl == null) {
                         $(td).css('background-color', 'white');
                     } else {
                         if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                             $(td).html('');
+=======
+                            $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                             $(td).css('background-color', 'red');
                             $(td).css('color', 'white');
                         } else if (tgl.startsWith('updated') == true) {
@@ -237,12 +293,20 @@
             {
                 "data": "7",
                 createdCell: function (td, cellData, rowData, row, col) {
+<<<<<<< HEAD
                     let tgl = cellData;
+=======
+                    var tgl = cellData;
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                     if (tgl == null) {
                         $(td).css('background-color', 'white');
                     } else {
                         if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                             $(td).html('');
+=======
+                            $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                             $(td).css('background-color', 'red');
                             $(td).css('color', 'white');
                         } else if (tgl.startsWith('updated') == true) {
@@ -259,12 +323,20 @@
             {
                 "data": "8",
                 createdCell: function (td, cellData, rowData, row, col) {
+<<<<<<< HEAD
                     let tgl = cellData;
+=======
+                    var tgl = cellData;
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                     if (tgl == null) {
                         $(td).css('background-color', 'white');
                     } else {
                         if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                             $(td).html('');
+=======
+                            $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                             $(td).css('background-color', 'red');
                             $(td).css('color', 'white');
                         } else if (tgl.startsWith('updated') == true) {
@@ -281,12 +353,20 @@
             {
                 "data": "9",
                 createdCell: function (td, cellData, rowData, row, col) {
+<<<<<<< HEAD
                     let tgl = cellData;
+=======
+                    var tgl = cellData;
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                     if (tgl == null) {
                         $(td).css('background-color', 'white');
                     } else {
                         if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                             $(td).html('');
+=======
+                            $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                             $(td).css('background-color', 'red');
                             $(td).css('color', 'white');
                         } else if (tgl.startsWith('updated') == true) {
@@ -301,6 +381,7 @@
                 }
             },
             {
+<<<<<<< HEAD
                 "data": "11",
                 createdCell: function (td, cellData, rowData, row, col) {
                     let tgl = cellData;
@@ -326,11 +407,20 @@
                 "data": "12",
                 createdCell: function (td, cellData, rowData, row, col) {
                     let tgl = cellData;
+=======
+                "data": "10",
+                createdCell: function (td, cellData, rowData, row, col) {
+                    var tgl = cellData;
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                     if (tgl == null) {
                         $(td).css('background-color', 'white');
                     } else {
                         if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                             $(td).html('');
+=======
+                            $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                             $(td).css('background-color', 'red');
                             $(td).css('color', 'white');
                         } else if (tgl.startsWith('updated') == true) {
@@ -345,6 +435,7 @@
                 }
             },
             {
+<<<<<<< HEAD
                 "data": "13",
                 createdCell: function (td, cellData, rowData, row, col) {
                     let tgl = cellData;
@@ -370,11 +461,20 @@
                 "data": "14",
                 createdCell: function (td, cellData, rowData, row, col) {
                     let tgl = cellData;
+=======
+                "data": "11",
+                createdCell: function (td, cellData, rowData, row, col) {
+                    var tgl = cellData;
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                     if (tgl == null) {
                         $(td).css('background-color', 'white');
                     } else {
                         if (tgl.startsWith('overdue') == true) {
+<<<<<<< HEAD
                             $(td).html('');
+=======
+                            $(td).html(cellData.replace('overdue -', ''));
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                             $(td).css('background-color', 'red');
                             $(td).css('color', 'white');
                         } else if (tgl.startsWith('updated') == true) {
@@ -420,8 +520,16 @@
 
         setInterval(function() {
             getTableData(start,end,status);
+<<<<<<< HEAD
         }, 180000);
     });
 </script>
 </body>
 </html>
+=======
+        }, 5000);
+    });
+</script>
+</body>
+</html>
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac

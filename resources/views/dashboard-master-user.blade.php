@@ -107,8 +107,13 @@
                                         @foreach($area as $a)
                                             <div class="col-sm-4">
                                                 <div class="form-check">
+<<<<<<< HEAD
                                                     <input class="form-check-input" type="checkbox" id="area_{{ $a->ord }}" name="area_permission[]" value="{{ $a->ord }}">
                                                     <label class="form-check-label" for="area_{{ $a->ord }}">{{ $a->nama }}</label>
+=======
+                                                    <input class="form-check-input" type="checkbox" id="area_{{ $a->id }}" name="area_permission[]" value="{{ $a->id }}">
+                                                    <label class="form-check-label" for="area_{{ $a->id }}">{{ $a->nama }}</label>
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                                                 </div>
                                             </div>
                                         @endforeach
@@ -372,4 +377,8 @@
             });
         })
     </script>
+<<<<<<< HEAD
 @endsection
+=======
+@endsection
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac

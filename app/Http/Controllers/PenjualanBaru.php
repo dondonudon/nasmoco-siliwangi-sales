@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\AjuFakturValidasi;
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 use App\msArea;
 use App\msLeasing;
 use App\msWilayahKecamatan;
 use App\msWilayahKota;
 use App\penjualanMst;
 use App\penjualanTrn;
+<<<<<<< HEAD
+=======
+use http\Exception;
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -39,7 +46,11 @@ class PenjualanBaru extends Controller
     public function list() {
         $result['data'] = penjualanMst::all();
         $result['data'] = DB::table('penjualan_mst')
+<<<<<<< HEAD
             ->select('no_spk','nama_customer','nama_stnk','no_rangka','leasing','kota','kecamatan','alamat','created_at','username','finish')
+=======
+            ->select('no_spk','nama_customer','no_rangka','leasing','kota','kecamatan','alamat','tanggal_spk','username','finish')
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
             ->get();
         return json_encode($result);
     }
@@ -69,12 +80,15 @@ class PenjualanBaru extends Controller
     }
 
     public function add(Request $request) {
+<<<<<<< HEAD
         $fakturChecklist = array(
             ['id' => 0, 'nama' => 'KTP Asli'],
             ['id' => 1, 'nama' => 'MEMO'],
             ['id' => 2, 'nama' => 'NPWP, TDP, SIUP, Domisili'],
             ['id' => 3, 'nama' => 'KOP Perusahaan'],
         );
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
         $tglSekarang = date('Y-m-d');
         $kota = DB::table('ms_wilayah_kotas')->where('id','=',$request->id_kota)->first();
 
@@ -90,8 +104,16 @@ class PenjualanBaru extends Controller
         $idKota = $kota->nama;
         $idKecamatan = $request->id_kecamatan;
         $alamat = $request->alamat;
+<<<<<<< HEAD
         $username = Session::get('username');
 
+=======
+        $tglSPK = date('Y-m-d',strtotime($request->tanggal_spk));
+        $username = Session::get('username');
+
+        $tglIncrement = $tglSPK;
+
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
         if ($mst->where('no_spk','=',$noSPK)->doesntExist()) {
             $mstBaru = new penjualanMst;
 
@@ -102,6 +124,7 @@ class PenjualanBaru extends Controller
             $mstBaru->kota = $idKota;
             $mstBaru->kecamatan = $idKecamatan;
             $mstBaru->alamat = $alamat;
+<<<<<<< HEAD
             $mstBaru->username = $username;
 
             if ($mstBaru->save()) {
@@ -127,6 +150,57 @@ class PenjualanBaru extends Controller
                 $result = [
                     'status' => 'success',
                 ];
+=======
+            $mstBaru->tanggal_spk = $tglSPK;
+            $mstBaru->username = $username;
+
+            if ($mstBaru->save()) {
+                $counter = 0;
+                $dataTrn = array();
+                foreach ($area as $a) {
+                    if ($a->id !== '1') {
+                        $startDate = $tglIncrement;
+                        $default = $a->tgl_target_default;
+                        $your_date = strtotime($default." day", strtotime($startDate));
+                        $tglIncrement = date("Y-m-d", $your_date);
+                    }
+                    if ($a->id == $aju) {
+                        $listTrn = array(
+                            'no_spk' => $noSPK,
+                            'id_area' => $a->id,
+                            'tanggal_target' => $tglIncrement,
+                            'catatan' => 'initial',
+                            'tanggal' => $tglSPK,
+                            'username' => $username,
+                            'status' => '1',
+                            'created_at' => date('Y-m-d H:i:s'),
+                            'updated_at' => date('Y-m-d H:i:s'),
+                        );
+                    } else {
+                        $listTrn = array(
+                            'no_spk' => $noSPK,
+                            'id_area' => $a->id,
+                            'tanggal_target' => $tglIncrement,
+                            'created_at' => date('Y-m-d H:i:s'),
+                            'updated_at' => date('Y-m-d H:i:s'),
+                        );
+                    }
+                    array_push($dataTrn,$listTrn);
+                    if ($trn->insert($listTrn)) {
+                        $counter++;
+                    }
+                }
+                if ($counter == $area->count()) {
+                    $result = [
+                        'status' => 'success',
+                    ];
+                } else {
+                    $result = [
+                        'status' => 'failed',
+                        'reason' => 'Gagal insert trn',
+                    ];
+                }
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
             }
         } else {
             $result = [
@@ -137,11 +211,28 @@ class PenjualanBaru extends Controller
         return json_encode($result);
     }
 
+<<<<<<< HEAD
+=======
+    function checkNull($date) {
+//        $check = $short = substr($date, 0, strpos( $date, ' '));
+        if ($date == '' || $date == null || $date == ' ') {
+            $result = null;
+        } else {
+            $result = date('Y-m-d', strtotime($date));
+        }
+        return $result;
+    }
+
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
     public function upload(Request $request) {
         $username = Session::get('username');
         $area = msArea::all();
         $file = $request->file('filepond');
+<<<<<<< HEAD
         $extension = $file->getClientOriginalExtension();
+=======
+        $extension = $file->extension();
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 
         switch ($extension) {
             case 'xls':
@@ -170,15 +261,19 @@ class PenjualanBaru extends Controller
                     $namaCust = $key;
                     break;
 
+<<<<<<< HEAD
                 case 'Nama STNK':
                     $namaSTNK = $key;
                     break;
 
+=======
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                 case 'No Rangka':
                     $noRangka = $key;
                     break;
 
                 case 'Leasing':
+<<<<<<< HEAD
                     $leasing = $key;
                     break;
 
@@ -187,12 +282,19 @@ class PenjualanBaru extends Controller
                     break;
 
                 case 'Kecamatan':
+=======
+                    $kotaKab = $key;
+                    break;
+
+                case 'Kota / Kabupaten':
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
                     $kecamatan = $key;
                     break;
 
                 case 'Alamat':
                     $alamat = $key;
                     break;
+<<<<<<< HEAD
             }
         }
 
@@ -256,6 +358,63 @@ class PenjualanBaru extends Controller
     public function sample() {
         return response()
             ->download('sample/template-penjualan-baru.xlsx','template-penjualan-baru.xlsx');
+=======
+
+                case 'Tanggal SPK':
+                    $tglSPK = $key;
+                    break;
+            }
+        }
+
+        for ($i = 1; $i < count($array); $i++) {
+            $dtNoSPK = $array[$i][$noSPK];
+            $dtTglSPK = $array[$i][$tglSPK];
+            $mst = new penjualanMst();
+
+            $mst->no_spk = $array[$i][$noSPK];
+            $mst->nama_customer = $array[$i][$namaCust];
+            $mst->no_rangka = $array[$i][$noRangka];
+            $mst->kota = $array[$i][$kotaKab];
+            $mst->kecamatan = $array[$i][$kecamatan];
+            $mst->alamat = $array[$i][$alamat];
+            $mst->tanggal_spk = $array[$i][$tglSPK];
+            $mst->username = $username;
+
+            try {
+                $mst->save();
+            } catch (\Exception $ex) {
+                dd('Exception Block',$ex);
+            }
+
+            $counter = 0;
+            foreach ($area as $a) {
+                $counter += $a->tgl_target_default;
+                $thisDate = $dtTglSPK;
+
+                $your_date = strtotime($counter." day", strtotime($thisDate));
+                $tglIncrement = date("Y-m-d", $your_date);
+
+                $trn = new penjualanTrn();
+
+                $trn->no_spk = $dtNoSPK;
+                $trn->id_area = $a->id;
+                $trn->catatan = '';
+                $trn->status = '0';
+                $trn->tanggal_target = $tglIncrement;
+                $trn->username = $username;
+
+                try {
+                    $trn->save();
+                } catch (\Exception $ex) {
+                    return dd('Exception block', $ex);
+                }
+            }
+        }
+    }
+
+    public function sample() {
+        return Storage::download('public/spk-baru.xlsx');
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
     }
 
     public function hapus(Request $request) {

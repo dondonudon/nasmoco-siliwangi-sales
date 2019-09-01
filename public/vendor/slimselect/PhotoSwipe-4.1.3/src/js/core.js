@@ -473,7 +473,11 @@ var _animations = {},
 
 var publicMethods = {
 
+<<<<<<< HEAD
 	// make a few local variables and functions Public
+=======
+	// make a few local variables and functions public
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
 	shout: _shout,
 	listen: _listen,
 	viewportSize: _viewportSize,

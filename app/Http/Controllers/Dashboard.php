@@ -53,9 +53,13 @@ class Dashboard extends Controller
             ->where([
                 ['ms_permission.username','=',$username],
                 ['ms_permission.permission','=','1']
+<<<<<<< HEAD
             ])
             ->orderBy('sys_menu_group.order','asc')
             ->distinct()
+=======
+            ])->distinct()
+>>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
             ->get();
         $listSidebar = array();
 //        $group = sysMenuGroup::all();
