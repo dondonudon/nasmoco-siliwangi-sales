@@ -48,19 +48,16 @@ return [
             'root' => storage_path('app'),
         ],
 
-<<<<<<< HEAD
         'Public' => [
             'driver' => 'local',
             'root' => storage_path('app/Public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'Public',
-=======
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
->>>>>>> fb36541946d6bf550f664e9214eca5d209eafcac
         ],
 
         's3' => [
@@ -74,4 +71,4 @@ return [
 
     ],
 
-];
+]];
